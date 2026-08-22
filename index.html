@@ -2856,7 +2856,7 @@ input,select{
   padding-bottom:54px!important;
 }
 #dashboard::after{
-  content:"TEAM GRID · VERSION 11 · V106 CLOUD";
+  content:"TEAM GRID · VERSION 11 · V107 AUTO CLOUD";
   position:fixed;
   left:50%;
   bottom:max(14px,env(safe-area-inset-bottom));
@@ -9825,6 +9825,14 @@ html[data-device-mode="phone"] #phoneLandscapeHint.active{display:flex;align-ite
   }
 }
 
+
+/* V107 — cloud invisible pour les utilisateurs : synchronisation automatique */
+.cloud-modal,.cloud-home-btn{display:none!important}
+.cloud-status-pill{cursor:default!important}
+
+/* En mode téléphone, l'application reste systématiquement en paysage. */
+html[data-device-mode="phone"] body{overscroll-behavior:none}
+
 </style>
 
 </head>
@@ -9862,12 +9870,11 @@ html[data-device-mode="phone"] #phoneLandscapeHint.active{display:flex;align-ite
       <div class="dashboard-device-row">
         <span id="deviceModeStatus">Mode PC</span>
         <button type="button" id="phoneModeToggle" class="dashboard-phone-btn" onclick="togglePhoneMode()">📱 Mode téléphone</button>
-        <button type="button" id="cloudModeButton" class="dashboard-phone-btn cloud-home-btn" onclick="TeamGridCloud.open()">☁ Synchronisation</button>
-        <span id="cloudStatusPill" class="cloud-status-pill offline">Local</span>
+        <span id="cloudStatusPill" class="cloud-status-pill syncing">☁ Connexion…</span>
       </div>
     </div>
 
-    <div class="merged-home-version">TEAM GRID · VERSION 11 · V106 CLOUD</div>
+    <div class="merged-home-version">TEAM GRID · VERSION 11 · V107 AUTO CLOUD</div>
   </div>
 </section>
 
@@ -9982,56 +9989,7 @@ html[data-device-mode="phone"] #phoneLandscapeHint.active{display:flex;align-ite
 
 <div id="scrollEndSpacer" style="height:80px"></div></main>
 
-<div id="cloudModal" class="cloud-modal" aria-hidden="true">
-  <div class="cloud-modal-backdrop" onclick="TeamGridCloud.close()"></div>
-  <div class="cloud-dialog">
-    <div class="cloud-dialog-head">
-      <div>
-        <h3>☁ Synchronisation équipe</h3>
-        <p>Sauvegarde partagée en temps réel + copie locale de secours.</p>
-      </div>
-      <button type="button" class="cloud-close" onclick="TeamGridCloud.close()">×</button>
-    </div>
 
-    <div class="cloud-grid">
-      <label>URL Supabase
-        <input id="cloudUrl" placeholder="https://xxxx.supabase.co">
-      </label>
-      <label>Clé publique anon / publishable
-        <input id="cloudAnonKey" placeholder="eyJ...">
-      </label>
-      <label>E-mail
-        <input id="cloudEmail" type="email" placeholder="joueur@email.fr">
-      </label>
-      <label>Nom affiché
-        <input id="cloudDisplayName" placeholder="Cyril">
-      </label>
-      <label>Code équipe
-        <input id="cloudTeamCode" placeholder="40KTASTROPHE">
-      </label>
-      <div class="cloud-state-box">
-        <span>État</span>
-        <strong id="cloudModalStatus">Non connecté</strong>
-        <small id="cloudModalDetail">Les données restent sauvegardées localement.</small>
-      </div>
-    </div>
-
-    <div class="cloud-actions">
-      <button type="button" class="btn" onclick="TeamGridCloud.saveConfig()">Enregistrer la configuration</button>
-      <button type="button" class="btn primary" onclick="TeamGridCloud.sendMagicLink()">Recevoir le lien de connexion</button>
-      <button type="button" class="btn primary" onclick="TeamGridCloud.joinTeam()">Connecter l'équipe</button>
-      <button type="button" class="btn" onclick="TeamGridCloud.pullNow()">↓ Récupérer le cloud</button>
-      <button type="button" class="btn" onclick="TeamGridCloud.pushNow()">↑ Envoyer cette version</button>
-      <button type="button" class="btn danger" onclick="TeamGridCloud.signOut()">Déconnexion</button>
-    </div>
-
-    <div class="cloud-help">
-      <b>Première utilisation :</b> renseigne l'URL et la clé Supabase, enregistre, demande le lien de connexion par e-mail,
-      puis saisis le même <b>code équipe</b> sur les PC/téléphones de tes coéquipiers.
-      Une fois connecté, les modifications sont synchronisées automatiquement.
-    </div>
-  </div>
-</div>
 
 <script>
 const FDS = [
@@ -12470,95 +12428,24 @@ document.addEventListener("DOMContentLoaded", () => {
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 (function(){
-  const CFG_KEY='teamgrid_cloud_config_v1';
-  let client=null, session=null, teamId=null, cloudVersion=0, channel=null;
-  let saveTimer=null, saving=false, pendingAfterSave=false, applyingRemote=false;
+  const TG_URL='https://jpotuzrqamjpckykvwox.supabase.co';
+  const TG_KEY='sb_publishable_ejkWK4TIGAMDLXvUeQEZ0g_4YEfVHFW';
+  const TG_TEAM_CODE='40KTASTROPHE';
 
-  function cfg(){
-    try{return JSON.parse(localStorage.getItem(CFG_KEY)||'{}')}catch(e){return {}}
-  }
-  function setCfg(x){localStorage.setItem(CFG_KEY,JSON.stringify({...cfg(),...x}))}
-  function el(id){return document.getElementById(id)}
-  function status(kind,title,detail){
-    const pill=el('cloudStatusPill');
-    if(pill){pill.className='cloud-status-pill '+kind;pill.textContent=title}
-    const a=el('cloudModalStatus'), b=el('cloudModalDetail');
-    if(a)a.textContent=title;
-    if(b)b.textContent=detail||'';
-  }
-  function fill(){
-    const c=cfg();
-    if(el('cloudUrl'))el('cloudUrl').value=c.url||'';
-    if(el('cloudAnonKey'))el('cloudAnonKey').value=c.key||'';
-    if(el('cloudEmail'))el('cloudEmail').value=c.email||'';
-    if(el('cloudDisplayName'))el('cloudDisplayName').value=c.name||'';
-    if(el('cloudTeamCode'))el('cloudTeamCode').value=c.teamCode||'40KTASTROPHE';
-  }
-  function readForm(){
-    return {
-      url:(el('cloudUrl')?.value||'').trim(),
-      key:(el('cloudAnonKey')?.value||'').trim(),
-      email:(el('cloudEmail')?.value||'').trim(),
-      name:(el('cloudDisplayName')?.value||'').trim(),
-      teamCode:(el('cloudTeamCode')?.value||'').trim().toUpperCase()
-    };
-  }
-  async function init(){
-    const c=cfg();
-    if(!c.url||!c.key||!window.supabase){status('offline','Local','Configuration cloud absente.');return false}
-    try{
-      client=window.supabase.createClient(c.url,c.key,{
-        auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}
-      });
-      const {data}=await client.auth.getSession();
-      session=data?.session||null;
-      if(!session){status('offline','Cloud prêt','Connexion e-mail requise.');return true}
-      status('syncing','Connecté','Recherche de ton équipe…');
-      if(c.teamCode) await joinTeam(true);
-      else status('online','Connecté','Compte authentifié. Renseigne le code équipe.');
-      client.auth.onAuthStateChange(async(_event,newSession)=>{
-        session=newSession||null;
-        if(session && cfg().teamCode) await joinTeam(true);
-        if(!session){teamId=null;status('offline','Local','Déconnecté du cloud.')}
-      });
-      return true;
-    }catch(e){
-      console.error(e);status('error','Erreur cloud',String(e.message||e));return false;
-    }
-  }
+  let client=null;
+  let teamId=null;
+  let cloudVersion=0;
+  let channel=null;
+  let saveTimer=null;
+  let saving=false;
+  let applyingRemote=false;
+  let pendingAfterSave=false;
 
-  async function saveConfig(){
-    const c=readForm(); setCfg(c); fill();
-    if(channel){try{await client.removeChannel(channel)}catch(e){} channel=null}
-    client=null;session=null;teamId=null;
-    await init();
-  }
-
-  async function sendMagicLink(){
-    await saveConfig();
-    const c=cfg();
-    if(!client||!c.email){status('error','E-mail requis','Renseigne ton adresse e-mail.');return}
-    const redirect=location.href.split('#')[0];
-    const {error}=await client.auth.signInWithOtp({email:c.email,options:{emailRedirectTo:redirect}});
-    if(error){status('error','Erreur connexion',error.message);return}
-    status('syncing','Lien envoyé','Ouvre l’e-mail reçu puis reviens sur TEAM GRID.');
-  }
-
-  async function joinTeam(silent=false){
-    if(!client) await init();
-    if(!client){return}
-    const {data:sess}=await client.auth.getSession();
-    session=sess?.session||null;
-    if(!session){if(!silent)status('error','Connexion requise','Connecte-toi d’abord par e-mail.');return}
-    const c=readForm(); setCfg(c);
-    if(!c.teamCode){status('error','Code équipe requis','Exemple : 40KTASTROPHE');return}
-    status('syncing','Connexion équipe','Synchronisation en cours…');
-    const {data,error}=await client.rpc('teamgrid_join_team',{p_code:c.teamCode,p_name:c.name||c.email||'Joueur'});
-    if(error){console.error(error);status('error','Erreur équipe',error.message);return}
-    teamId=data;
-    await pullNow(true);
-    await subscribe();
-    status('online','Synchronisé',`Équipe ${c.teamCode} · données partagées`);
+  function pill(kind,text){
+    const p=document.getElementById('cloudStatusPill');
+    if(!p)return;
+    p.className='cloud-status-pill '+kind;
+    p.textContent=text;
   }
 
   function refreshUI(){
@@ -12567,55 +12454,84 @@ document.addEventListener("DOMContentLoaded", () => {
       if(document.getElementById('matchDetail') && document.getElementById('matchDetail').style.display!=='none') renderMatch();
       if(document.getElementById('tournamentButtons')) renderTournamentButtons();
       if(document.getElementById('meetingButtons')) renderMeetingButtons();
-    }catch(e){console.warn('refreshUI',e)}
+    }catch(e){console.warn('TEAM GRID refresh',e)}
   }
 
-  async function pullNow(silent=false){
-    if(!client||!teamId){if(!silent)status('error','Cloud non connecté','Connecte d’abord ton équipe.');return}
-    status('syncing','Synchronisation','Récupération de la dernière version…');
-    const {data,error}=await client.from('teamgrid_state').select('payload,version,updated_at').eq('team_id',teamId).maybeSingle();
-    if(error){status('error','Erreur lecture',error.message);return}
-    if(!data){
-      cloudVersion=0;
-      await pushNow();
-      return;
-    }
-    if(data.payload && Object.keys(data.payload).length){
-      applyingRemote=true;
-      state=data.payload;
-      localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
+  async function connect(){
+    try{
+      if(!window.supabase) throw new Error('Librairie Supabase indisponible');
+      pill('syncing','☁ Connexion…');
+      client=window.supabase.createClient(TG_URL,TG_KEY,{
+        auth:{persistSession:false,autoRefreshToken:false,detectSessionInUrl:false}
+      });
+
+      const {data,error}=await client.rpc('teamgrid_public_open',{p_code:TG_TEAM_CODE});
+      if(error) throw error;
+      if(!data?.team_id) throw new Error('Équipe cloud introuvable');
+
+      teamId=data.team_id;
       cloudVersion=Number(data.version||0);
-      refreshUI();
-      applyingRemote=false;
+
+      if(data.payload && Object.keys(data.payload).length){
+        applyingRemote=true;
+        state=data.payload;
+        localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
+        refreshUI();
+        applyingRemote=false;
+      }else{
+        // Première ouverture : initialise le cloud avec la copie locale actuelle.
+        await pushNow();
+      }
+
+      await subscribe();
+      pill('online','☁ Synchronisé');
+    }catch(e){
+      console.error('TEAM GRID cloud',e);
+      pill('error','☁ Hors ligne');
     }
-    status('online','Synchronisé',`Version cloud ${cloudVersion}`);
+  }
+
+  async function pullNow(){
+    if(!client||!teamId)return;
+    try{
+      const {data,error}=await client.rpc('teamgrid_public_open',{p_code:TG_TEAM_CODE});
+      if(error) throw error;
+      if(data?.payload && Number(data.version||0)>cloudVersion){
+        applyingRemote=true;
+        state=data.payload;
+        cloudVersion=Number(data.version||0);
+        localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
+        refreshUI();
+        applyingRemote=false;
+      }
+      pill('online','☁ Synchronisé');
+    }catch(e){
+      console.error(e);pill('error','☁ Hors ligne');
+    }
   }
 
   async function pushNow(){
-    if(applyingRemote)return;
-    if(!client||!teamId){return}
+    if(applyingRemote||!client||!teamId)return;
     if(saving){pendingAfterSave=true;return}
-    saving=true; pendingAfterSave=false;
-    status('syncing','Sauvegarde…','Envoi des dernières modifications');
+    saving=true;pendingAfterSave=false;
+    pill('syncing','☁ Sauvegarde…');
     try{
-      const {data,error}=await client.rpc('teamgrid_save_state',{
-        p_team_id:teamId,
+      const {data,error}=await client.rpc('teamgrid_public_save',{
+        p_code:TG_TEAM_CODE,
         p_payload:state,
         p_expected_version:cloudVersion
       });
       if(error) throw error;
-      const r=data||{};
-      if(r.ok===false && r.conflict){
-        // Une autre personne a modifié entre temps : recharge d'abord le cloud
-        cloudVersion=Number(r.version||cloudVersion);
-        status('error','Conflit détecté','Une version plus récente existe. Elle est récupérée automatiquement.');
-        await pullNow(true);
+
+      if(data?.conflict){
+        cloudVersion=Number(data.version||cloudVersion);
+        await pullNow();
       }else{
-        cloudVersion=Number(r.version||cloudVersion+1);
-        status('online','Synchronisé',`Version cloud ${cloudVersion}`);
+        cloudVersion=Number(data?.version||cloudVersion+1);
+        pill('online','☁ Synchronisé');
       }
     }catch(e){
-      console.error(e);status('error','Erreur sauvegarde',String(e.message||e));
+      console.error(e);pill('error','☁ Hors ligne');
     }finally{
       saving=false;
       if(pendingAfterSave){pendingAfterSave=false;scheduleSave()}
@@ -12623,45 +12539,46 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function scheduleSave(){
-    if(applyingRemote||!teamId||!client)return;
+    if(applyingRemote||!client||!teamId)return;
     clearTimeout(saveTimer);
-    saveTimer=setTimeout(pushNow,850);
+    saveTimer=setTimeout(pushNow,650);
   }
 
   async function subscribe(){
     if(!client||!teamId)return;
     if(channel){try{await client.removeChannel(channel)}catch(e){}}
-    channel=client.channel('teamgrid-'+teamId)
+    channel=client.channel('teamgrid-public-'+teamId)
       .on('postgres_changes',{
-        event:'UPDATE',schema:'public',table:'teamgrid_state',filter:'team_id=eq.'+teamId
-      },async(payload)=>{
+        event:'UPDATE',
+        schema:'public',
+        table:'teamgrid_state',
+        filter:'team_id=eq.'+teamId
+      },payload=>{
         const row=payload.new;
         const incoming=Number(row.version||0);
         if(incoming<=cloudVersion)return;
-        cloudVersion=incoming;
         applyingRemote=true;
+        cloudVersion=incoming;
         state=row.payload||state;
         localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
         refreshUI();
         applyingRemote=false;
-        status('online','Synchronisé',`Mise à jour reçue · v${cloudVersion}`);
+        pill('online','☁ Mise à jour reçue');
+        setTimeout(()=>pill('online','☁ Synchronisé'),1200);
       })
       .subscribe();
   }
 
-  async function signOut(){
-    if(client) await client.auth.signOut();
-    session=null;teamId=null;cloudVersion=0;
-    if(channel){try{await client.removeChannel(channel)}catch(e){} channel=null}
-    status('offline','Local','Déconnecté. La sauvegarde locale reste active.');
-  }
+  window.TeamGridCloud={
+    scheduleSave,
+    pushNow,
+    pullNow,
+    init:connect,
+    open:()=>{},
+    close:()=>{}
+  };
 
-  function open(){fill();el('cloudModal')?.classList.add('open');el('cloudModal')?.setAttribute('aria-hidden','false')}
-  function close(){el('cloudModal')?.classList.remove('open');el('cloudModal')?.setAttribute('aria-hidden','true')}
-
-  window.TeamGridCloud={open,close,init,saveConfig,sendMagicLink,joinTeam,pullNow,pushNow,scheduleSave,signOut};
-
-  document.addEventListener('DOMContentLoaded',()=>{fill();setTimeout(init,250)});
+  document.addEventListener('DOMContentLoaded',()=>setTimeout(connect,250));
 })();
 </script>
 
