@@ -2856,7 +2856,7 @@ input,select{
   padding-bottom:54px!important;
 }
 #dashboard::after{
-  content:"TEAM GRID · VERSION 11 · V107 AUTO CLOUD";
+  content:"TEAM GRID · VERSION 11 · V108 AUTO CLOUD";
   position:fixed;
   left:50%;
   bottom:max(14px,env(safe-area-inset-bottom));
@@ -9874,7 +9874,7 @@ html[data-device-mode="phone"] body{overscroll-behavior:none}
       </div>
     </div>
 
-    <div class="merged-home-version">TEAM GRID · VERSION 11 · V107 AUTO CLOUD</div>
+    <div class="merged-home-version">TEAM GRID · VERSION 11 · V108 AUTO CLOUD</div>
   </div>
 </section>
 
@@ -12429,7 +12429,7 @@ document.addEventListener("DOMContentLoaded", () => {
 <script>
 (function(){
   const TG_URL='https://jpotuzrqamjpckykvwox.supabase.co';
-  const TG_KEY='sb_publishable_ejkWK4TIGAMDLXvUeQEZ0g_4YEfVHFW';
+  const TG_KEY='sb_publishable_ejkWK4TlGAMDLXvUeQEZ0g_4YEfVHFW';
   const TG_TEAM_CODE='40KTASTROPHE';
 
   let client=null;
@@ -12459,15 +12459,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function connect(){
     try{
-      if(!window.supabase) throw new Error('Librairie Supabase indisponible');
+      if(!window.supabase) throw new Error('LIBRARY: librairie Supabase indisponible');
       pill('syncing','☁ Connexion…');
       client=window.supabase.createClient(TG_URL,TG_KEY,{
         auth:{persistSession:false,autoRefreshToken:false,detectSessionInUrl:false}
       });
 
       const {data,error}=await client.rpc('teamgrid_public_open',{p_code:TG_TEAM_CODE});
-      if(error) throw error;
-      if(!data?.team_id) throw new Error('Équipe cloud introuvable');
+      if(error){
+        const msg=String(error.message||error);
+        if(msg.includes('teamgrid_public_open')) throw new Error('SQL: fonction teamgrid_public_open absente ou inaccessible');
+        if(msg.toLowerCase().includes('jwt') || msg.toLowerCase().includes('apikey')) throw new Error('KEY: clé Supabase invalide');
+        throw new Error('SUPABASE: '+msg);
+      }
+      if(!data?.team_id) throw new Error('TEAM: équipe cloud introuvable');
 
       teamId=data.team_id;
       cloudVersion=Number(data.version||0);
@@ -12487,7 +12492,15 @@ document.addEventListener("DOMContentLoaded", () => {
       pill('online','☁ Synchronisé');
     }catch(e){
       console.error('TEAM GRID cloud',e);
-      pill('error','☁ Hors ligne');
+      const msg=String(e?.message||e||'Erreur inconnue');
+      let short='☁ Hors ligne';
+      if(msg.startsWith('KEY:')) short='☁ Clé invalide';
+      else if(msg.startsWith('SQL:')) short='☁ SQL manquant';
+      else if(msg.startsWith('LIBRARY:')) short='☁ Librairie KO';
+      else if(msg.startsWith('SUPABASE:')) short='☁ Supabase KO';
+      else if(msg.startsWith('TEAM:')) short='☁ Équipe introuvable';
+      pill('error',short);
+      try{ localStorage.setItem('teamgrid_last_cloud_error',msg); }catch(_){}
     }
   }
 
@@ -12626,6 +12639,20 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener('visibilitychange',()=>{if(!document.hidden)hardLandscape()});
   document.addEventListener('DOMContentLoaded',()=>setTimeout(hardLandscape,350));
 })();
+</script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  const p=document.getElementById('cloudStatusPill');
+  if(!p)return;
+  const updateTitle=()=>{
+    const e=localStorage.getItem('teamgrid_last_cloud_error');
+    p.title=e||'Synchronisation Supabase TEAM GRID';
+  };
+  updateTitle();
+  new MutationObserver(updateTitle).observe(p,{childList:true,characterData:true,subtree:true});
+});
 </script>
 
 </body>
