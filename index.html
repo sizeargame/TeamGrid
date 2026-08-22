@@ -2856,7 +2856,7 @@ input,select{
   padding-bottom:54px!important;
 }
 #dashboard::after{
-  content:"TEAM GRID · VERSION 11 · V113 AUTO CLOUD";
+  content:"TEAM GRID · VERSION 11 · V168 PC ONLY";
   position:fixed;
   left:50%;
   bottom:max(14px,env(safe-area-inset-bottom));
@@ -10486,6 +10486,4811 @@ html[data-device-mode="phone"]:-webkit-full-screen body{
   margin:0!important;
 }
 
+
+/* ============================================================
+   V114 — MODE PC UNIQUEMENT
+   ============================================================ */
+.device-mode-switch,
+.device-mode-note,
+#phoneModeToggle,
+#phoneFullscreenBtn,
+#tgRotatePhone,
+#tgLandscapeRequired,
+#phoneLandscapeHint,
+.device-phone-only{
+  display:none!important;
+}
+
+html,
+html[data-device-mode="pc"],
+html[data-device-mode="phone"]{
+  width:100%!important;
+  height:auto!important;
+  min-height:100%!important;
+  overflow-x:hidden!important;
+  overflow-y:auto!important;
+}
+
+body,
+html[data-device-mode="phone"] body,
+html[data-device-mode="phone"] body.phone-landscape-fallback{
+  position:static!important;
+  width:auto!important;
+  height:auto!important;
+  min-height:100vh!important;
+  max-height:none!important;
+  overflow-x:hidden!important;
+  overflow-y:auto!important;
+  transform:none!important;
+}
+
+main,
+html[data-device-mode="phone"] main,
+html[data-device-mode="phone"] body.phone-landscape-fallback main{
+  position:static!important;
+  width:100%!important;
+  max-width:1600px!important;
+  height:auto!important;
+  min-height:0!important;
+  margin:0 auto!important;
+  padding:18px 20px 80px!important;
+  overflow:visible!important;
+  transform:none!important;
+  transform-origin:initial!important;
+}
+
+main > .view,
+html[data-device-mode="phone"] main > .view{
+  position:static!important;
+  width:100%!important;
+  max-width:none!important;
+  height:auto!important;
+  transform:none!important;
+  overflow:visible!important;
+}
+
+.dashboard-device-row{
+  justify-content:center!important;
+}
+.cloud-status-pill{
+  margin:0 auto!important;
+}
+
+
+/* ============================================================
+   V115 — Adversaire défenseur :
+   nous PROPOSONS 2 joueurs, c'est l'adversaire qui choisit.
+   ============================================================ */
+#matchDetail .match-cell-wrap.pairing-best-choice::before{
+  content:"PROPOSÉ"!important;
+  background:rgba(17,24,32,.94)!important;
+  color:#ffd21f!important;
+  border:1px solid rgba(255,210,31,.85)!important;
+}
+#matchDetail .pairing-rank-1 .simple-match-cell,
+#matchDetail .pairing-rank-2 .simple-match-cell{
+  outline:5px solid #ffd21f!important;
+  outline-offset:0!important;
+  box-shadow:0 0 0 2px #fff,0 0 16px rgba(255,210,31,.82),0 6px 14px rgba(0,0,0,.30)!important;
+}
+#matchDetail .pairing-rank-1 .pairing-choice-badge{
+  background:#168654!important;
+  color:#fff!important;
+  border:3px solid #fff!important;
+  width:auto!important;
+  min-width:58px!important;
+  height:24px!important;
+  padding:0 7px!important;
+  border-radius:999px!important;
+  font-size:7px!important;
+}
+#matchDetail .pairing-rank-2 .pairing-choice-badge{
+  background:#b77d00!important;
+  color:#fff!important;
+  border:3px solid #fff!important;
+  width:auto!important;
+  min-width:34px!important;
+  height:24px!important;
+  padding:0 6px!important;
+  border-radius:999px!important;
+  font-size:7px!important;
+}
+#matchDetail .pairing-rank-3{
+  opacity:.20!important;
+  filter:grayscale(.45)!important;
+}
+#matchDetail .pairing-rank-3 .pairing-choice-badge,
+#matchDetail .pairing-rank-3::before{
+  display:none!important;
+}
+#matchDetail .match-opponent-head.defender-focus::after{
+  content:"DÉFENSEUR ADVERSE · PROPOSER 2 JOUEURS"!important;
+  position:absolute!important;
+  left:50%!important;
+  bottom:3px!important;
+  transform:translateX(-50%)!important;
+  z-index:25!important;
+  padding:2px 6px!important;
+  border-radius:4px!important;
+  background:#df4b4d!important;
+  color:#fff!important;
+  border:1px solid #fff!important;
+  font-size:6px!important;
+  line-height:1!important;
+  font-weight:1000!important;
+  white-space:nowrap!important;
+}
+
+
+/* ============================================================
+   V116 — correctif clic grille
+   ============================================================ */
+
+/* Tous les repères visuels de pairing restent purement décoratifs. */
+#matchDetail .match-cell-wrap.pairing-best-choice::before,
+#matchDetail .match-cell-wrap.pairing-best-choice::after,
+#matchDetail .match-opponent-head.defender-focus::after,
+#matchDetail .pairing-choice-badge,
+#matchDetail .defense-offer-cell::after,
+#matchDetail .defense-chosen-cell::after,
+#matchDetail .defense-other-cell::after{
+  pointer-events:none!important;
+}
+
+/* La cellule de matchup reste toujours la cible de clic prioritaire. */
+#matchDetail .match-cell-wrap,
+#matchDetail .simple-match-cell{
+  pointer-events:auto!important;
+  cursor:pointer!important;
+}
+#matchDetail .simple-match-cell{
+  position:relative!important;
+  z-index:2!important;
+}
+
+
+/* ============================================================
+   V117 — proposition de 2 attaquants : affichage propre
+   ============================================================ */
+
+/* Aucun gros texte par-dessus la grille ou le titre adverse. */
+#matchDetail .match-cell-wrap.pairing-best-choice::before,
+#matchDetail .match-cell-wrap.pairing-best-choice::after,
+#matchDetail .match-opponent-head.defender-focus::after{
+  display:none!important;
+}
+
+/* Le défenseur adverse reste très clairement identifié par sa colonne. */
+#matchDetail .match-opponent-head.defender-focus{
+  background:#ffe7e8!important;
+  color:#632027!important;
+  outline:4px solid #df4b4d!important;
+  outline-offset:-4px!important;
+  box-shadow:0 0 12px rgba(223,75,77,.34)!important;
+}
+
+/* Les 2 joueurs à proposer ont exactement la même bordure jaune. */
+#matchDetail .match-cell-wrap.pairing-best-choice{
+  position:relative!important;
+  overflow:visible!important;
+  z-index:10!important;
+  opacity:1!important;
+  filter:none!important;
+}
+#matchDetail .match-cell-wrap.pairing-best-choice .simple-match-cell{
+  outline:4px solid #ffd21f!important;
+  outline-offset:0!important;
+  box-shadow:
+    0 0 0 2px #fff,
+    0 0 12px rgba(255,210,31,.72),
+    0 5px 11px rgba(0,0,0,.28)!important;
+}
+
+/* Un seul petit badge par case, placé DANS la case. */
+#matchDetail .pairing-choice-badge{
+  position:absolute!important;
+  top:4px!important;
+  right:4px!important;
+  left:auto!important;
+  bottom:auto!important;
+  z-index:60!important;
+  width:auto!important;
+  min-width:0!important;
+  height:17px!important;
+  padding:0 5px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  border-radius:4px!important;
+  background:#8d6700!important;
+  color:#fff!important;
+  border:1px solid rgba(255,255,255,.95)!important;
+  box-shadow:0 2px 5px rgba(0,0,0,.30)!important;
+  font-size:6px!important;
+  line-height:1!important;
+  font-weight:1000!important;
+  white-space:nowrap!important;
+  pointer-events:none!important;
+}
+
+/* Celui qui serait le meilleur POUR NOUS si l'adversaire le choisissait. */
+#matchDetail .pairing-choice-badge.best-for-us{
+  background:#168654!important;
+  color:#fff!important;
+}
+
+/* On neutralise définitivement les anciennes classes rank 1/2/3. */
+#matchDetail .pairing-rank-1 .simple-match-cell,
+#matchDetail .pairing-rank-2 .simple-match-cell,
+#matchDetail .pairing-rank-3 .simple-match-cell{
+  outline:4px solid #ffd21f!important;
+}
+#matchDetail .pairing-rank-3{
+  opacity:1!important;
+  filter:none!important;
+}
+
+/* La cellule reste toujours cliquable. */
+#matchDetail .simple-match-cell{
+  pointer-events:auto!important;
+  cursor:pointer!important;
+}
+
+
+/* V118 — les 2 propositions = bordure jaune ; seule la meilleure porte une étoile */
+#matchDetail .pairing-choice-badge:not(.best-for-us){
+  display:none!important;
+}
+#matchDetail .pairing-choice-badge.best-for-us{
+  display:flex!important;
+  width:22px!important;
+  min-width:22px!important;
+  height:22px!important;
+  padding:0!important;
+  border-radius:50%!important;
+  background:#168654!important;
+  color:#fff!important;
+  border:2px solid #fff!important;
+  font-size:13px!important;
+  line-height:1!important;
+  font-weight:1000!important;
+  align-items:center!important;
+  justify-content:center!important;
+  top:4px!important;
+  right:4px!important;
+}
+
+
+/* ============================================================
+   V119 — Surbrillance du joueur proposé
+   ============================================================ */
+
+/* Quand une case fait partie des 2 propositions, on met aussi en évidence
+   le joueur correspondant à gauche de la grille. */
+#matchDetail tr:has(.match-cell-wrap.pairing-best-choice) > td:nth-child(1),
+#matchDetail tr:has(.match-cell-wrap.pairing-best-choice) > td:nth-child(2),
+#matchDetail tr:has(.match-cell-wrap.pairing-best-choice) > td:nth-child(3){
+  position:relative!important;
+  z-index:8!important;
+  outline:3px solid #ffd21f!important;
+  outline-offset:-3px!important;
+  box-shadow:0 0 10px rgba(255,210,31,.48)!important;
+}
+
+/* Le nom du joueur est le repère principal. */
+#matchDetail tr:has(.match-cell-wrap.pairing-best-choice) > td:nth-child(1){
+  outline-width:4px!important;
+  box-shadow:
+    inset 5px 0 0 #ffd21f,
+    0 0 12px rgba(255,210,31,.62)!important;
+}
+
+/* L'étoile reste uniquement sur le meilleur des deux matchups. */
+#matchDetail .pairing-choice-badge.best-for-us{
+  z-index:70!important;
+}
+
+
+/* V121 — objectifs de ronde */
+#matchDetail .theory-total.win{
+  border-color:#168654!important;
+  background:#eaf7ef!important;
+}
+#matchDetail .theory-box small{
+  white-space:nowrap!important;
+}
+
+
+/* ============================================================
+   V122 — Pairings validés : objectif exact + résultat direct /20
+   ============================================================ */
+#matchDetail .validated-pair-data.v122-direct20{
+  grid-template-columns:150px 150px!important;
+  justify-content:end!important;
+  gap:8px!important;
+}
+
+#matchDetail .v122-direct20 .theory-box{
+  min-height:52px!important;
+  padding:6px 10px!important;
+}
+#matchDetail .v122-direct20 .theory-box span{
+  font-size:7px!important;
+}
+#matchDetail .v122-direct20 .theory-box strong{
+  font-size:23px!important;
+  line-height:1!important;
+}
+#matchDetail .v122-direct20 .theory-box small{
+  font-size:7px!important;
+}
+
+#matchDetail .direct20-result{
+  min-height:52px!important;
+  padding:6px 10px!important;
+  border-radius:7px!important;
+  background:rgba(18,26,35,.94)!important;
+  border:1px solid rgba(255,255,255,.18)!important;
+  color:#fff!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+#matchDetail .direct20-result>span{
+  font-size:7px!important;
+  font-weight:900!important;
+  letter-spacing:.06em!important;
+  margin-bottom:4px!important;
+}
+#matchDetail .direct20-input{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:4px!important;
+}
+#matchDetail .direct20-input input{
+  width:54px!important;
+  min-width:54px!important;
+  height:30px!important;
+  padding:2px 4px!important;
+  text-align:center!important;
+  font-size:17px!important;
+  font-weight:1000!important;
+  background:#fff!important;
+  color:#121820!important;
+  border:1px solid #cbd2d9!important;
+  border-radius:6px!important;
+}
+#matchDetail .direct20-input small{
+  font-size:8px!important;
+  color:#cbd2d9!important;
+}
+
+/* Plus aucun ancien bloc /100 ou conversion visible dans Pairings validés */
+#matchDetail .real100-box,
+#matchDetail .converted20-box{
+  display:none!important;
+}
+
+/* Objectif équipe simple : pas de rappel du seuil. */
+#matchDetail .team-totals .theory-total small{
+  display:none!important;
+}
+
+
+/* ============================================================
+   V123 — Pairings validés : objectif ajustable + réel /100 + /20
+   ============================================================ */
+#matchDetail .validated-pair-data.v123-data{
+  grid-template-columns:170px 190px 135px!important;
+  justify-content:end!important;
+  gap:8px!important;
+}
+
+#matchDetail .objective-control{
+  min-height:58px!important;
+  border-radius:8px!important;
+  padding:5px 8px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  position:relative!important;
+  text-align:center!important;
+}
+#matchDetail .objective-control.c-g2{background:#11804a!important;color:#fff!important}
+#matchDetail .objective-control.c-g1{background:#7bc970!important;color:#17331a!important}
+#matchDetail .objective-control.c-o{background:#f2a43a!important;color:#442d07!important}
+#matchDetail .objective-control.c-r{background:#df4b4d!important;color:#fff!important}
+#matchDetail .objective-control.c-p{background:#7b55ad!important;color:#fff!important}
+
+#matchDetail .objective-control>span{
+  font-size:6px!important;
+  font-weight:1000!important;
+  letter-spacing:.07em!important;
+}
+#matchDetail .objective-stepper{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:7px!important;
+  margin:2px 0!important;
+}
+#matchDetail .objective-stepper strong{
+  min-width:30px!important;
+  font-size:20px!important;
+  line-height:1!important;
+}
+#matchDetail .objective-stepper button{
+  width:24px!important;
+  height:24px!important;
+  padding:0!important;
+  border-radius:50%!important;
+  border:1px solid rgba(255,255,255,.85)!important;
+  background:rgba(10,15,20,.72)!important;
+  color:#fff!important;
+  font-size:16px!important;
+  font-weight:1000!important;
+  line-height:1!important;
+  cursor:pointer!important;
+}
+#matchDetail .objective-control small{
+  font-size:6px!important;
+  font-weight:800!important;
+}
+#matchDetail .objective-reset{
+  position:absolute!important;
+  right:4px!important;
+  bottom:3px!important;
+  border:0!important;
+  background:rgba(0,0,0,.24)!important;
+  color:inherit!important;
+  border-radius:4px!important;
+  padding:2px 4px!important;
+  font-size:5px!important;
+  font-weight:900!important;
+  cursor:pointer!important;
+}
+
+#matchDetail .v123-data .real100-box,
+#matchDetail .v123-data .converted20-box{
+  display:flex!important;
+}
+
+/* Résultat équipe : reprend directement les couleurs de la légende */
+#matchDetail .real-total.c-g2{background:#11804a!important;color:#fff!important;border-color:#11804a!important}
+#matchDetail .real-total.c-g1{background:#7bc970!important;color:#17331a!important;border-color:#7bc970!important}
+#matchDetail .real-total.c-o{background:#f2a43a!important;color:#442d07!important;border-color:#f2a43a!important}
+#matchDetail .real-total.c-r{background:#df4b4d!important;color:#fff!important;border-color:#df4b4d!important}
+#matchDetail .real-total.c-p{background:#7b55ad!important;color:#fff!important;border-color:#7b55ad!important}
+#matchDetail .real-total.c-g2 span,#matchDetail .real-total.c-g2 small,
+#matchDetail .real-total.c-r span,#matchDetail .real-total.c-r small,
+#matchDetail .real-total.c-p span,#matchDetail .real-total.c-p small{
+  color:#fff!important;
+}
+#matchDetail .real-total.c-g1 span,#matchDetail .real-total.c-g1 small{color:#17331a!important}
+#matchDetail .real-total.c-o span,#matchDetail .real-total.c-o small{color:#442d07!important}
+
+/* Supprime définitivement le badge APPAIRÉ fantôme des en-têtes adverses */
+#matchDetail .match-opponent-head .paired-mark,
+#matchDetail .match-opponent-head .opp-paired-mark,
+#matchDetail .match-opponent-head::before,
+#matchDetail .match-opponent-head.opp-final::after{
+  display:none!important;
+  content:none!important;
+}
+
+/* Sur les cellules, le marqueur appairé reste autorisé. */
+#matchDetail .match-cell-wrap.is-final .paired-mark{
+  display:block!important;
+}
+
+
+/* ============================================================
+   V124 — DELTA RONDE
+   ============================================================ */
+#matchDetail .team-totals{
+  display:flex!important;
+  gap:7px!important;
+  align-items:stretch!important;
+}
+
+#matchDetail .delta-total{
+  min-width:105px!important;
+  transition:.15s ease!important;
+}
+#matchDetail .delta-total b{
+  font-size:18px!important;
+}
+#matchDetail .delta-total.positive{
+  background:#eaf7ef!important;
+  border-color:#168654!important;
+  color:#145c3e!important;
+}
+#matchDetail .delta-total.negative{
+  background:#fff0f0!important;
+  border-color:#df4b4d!important;
+  color:#8b292d!important;
+}
+#matchDetail .delta-total.neutral{
+  background:#fff6e5!important;
+  border-color:#f2a43a!important;
+  color:#6b4807!important;
+}
+#matchDetail .delta-total.pending{
+  background:#f1f3f5!important;
+  border-color:#d8dde3!important;
+  color:#717984!important;
+}
+#matchDetail .delta-total.positive span,
+#matchDetail .delta-total.positive small,
+#matchDetail .delta-total.negative span,
+#matchDetail .delta-total.negative small,
+#matchDetail .delta-total.neutral span,
+#matchDetail .delta-total.neutral small{
+  color:inherit!important;
+}
+
+
+/* ============================================================
+   V125 — Nettoyage pairing + grille plus compacte
+   ============================================================ */
+
+/* Objectif fixe, sans boutons manuels */
+#matchDetail .objective-fixed{
+  min-height:54px!important;
+  border-radius:8px!important;
+  padding:6px 10px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+}
+#matchDetail .objective-fixed.c-g2{background:#11804a!important;color:#fff!important}
+#matchDetail .objective-fixed.c-g1{background:#7bc970!important;color:#17331a!important}
+#matchDetail .objective-fixed.c-o{background:#f2a43a!important;color:#442d07!important}
+#matchDetail .objective-fixed.c-r{background:#df4b4d!important;color:#fff!important}
+#matchDetail .objective-fixed.c-p{background:#7b55ad!important;color:#fff!important}
+#matchDetail .objective-fixed>span{font-size:6px!important;font-weight:1000!important}
+#matchDetail .objective-fixed>strong{font-size:21px!important;line-height:1!important;margin:2px 0!important}
+#matchDetail .objective-fixed>small{font-size:6px!important;font-weight:800!important}
+
+#matchDetail .objective-control,
+#matchDetail .objective-stepper,
+#matchDetail .objective-reset{
+  display:none!important;
+}
+
+/* Supprime l'étiquette fantôme APPAIRÉ dans LES EN-TÊTES adverses, y compris
+   les variantes historiques générées par ::after ou par span injecté. */
+#matchDetail .match-opponent-head .paired-mark,
+#matchDetail .match-opponent-head .opp-paired-mark,
+#matchDetail .match-opponent-head .paired-label,
+#matchDetail .match-opponent-head [class*="paired"],
+#matchDetail .match-opponent-head [class*="appair"],
+#matchDetail .match-opponent-head::before,
+#matchDetail .match-opponent-head::after{
+  display:none!important;
+  content:none!important;
+}
+
+/* Le badge APPAIRÉ reste uniquement dans la cellule réellement validée. */
+#matchDetail .match-cell-wrap.is-final .paired-mark{
+  display:block!important;
+}
+
+/* Grille et pairings moins étalés horizontalement */
+#matchDetail{
+  max-width:1380px!important;
+  margin:0 auto!important;
+}
+#matchDetail .match-table-wrap{
+  max-width:1360px!important;
+  margin:0 auto!important;
+}
+#matchDetail .match-roster-table{
+  width:100%!important;
+  table-layout:fixed!important;
+}
+#matchDetail .match-roster-table col:nth-child(1){width:12.5%!important}
+#matchDetail .match-roster-table col:nth-child(2){width:12.5%!important}
+#matchDetail .match-roster-table col:nth-child(3){width:17%!important}
+
+#matchDetail .match-roster-table th,
+#matchDetail .match-roster-table td{
+  padding:3px 4px!important;
+}
+#matchDetail .simple-match-cell{
+  min-height:34px!important;
+  border-radius:6px!important;
+}
+
+/* Pairings validés compacts */
+#matchDetail .final-pairs-panel{
+  max-width:1360px!important;
+  margin:9px auto 0!important;
+  padding:8px!important;
+}
+#matchDetail .validated-pair-card{
+  grid-template-columns:minmax(360px,1.3fr) 500px!important;
+  gap:8px!important;
+  padding:6px 8px!important;
+  margin-top:5px!important;
+}
+#matchDetail .validated-pair-data.v123-data{
+  grid-template-columns:140px 175px 115px!important;
+  gap:6px!important;
+}
+#matchDetail .player-side b{font-size:10px!important}
+#matchDetail .player-side small{font-size:6.5px!important}
+
+/* Résultat équipe / delta plus compacts */
+#matchDetail .team-totals{
+  gap:5px!important;
+}
+#matchDetail .total-line{
+  min-width:92px!important;
+  padding:5px 7px!important;
+}
+
+
+/* ============================================================
+   V126 — Pairings validés ultra compacts : 1 ligne = 1 match
+   ============================================================ */
+
+/* Titre de rencontre blanc */
+#matchDetail .match-title,
+#matchDetail .meeting-title,
+#matchDetail h1,
+#matchDetail .top-title,
+#matchDetail .match-topbar h2,
+#matchDetail .match-topbar h1{
+  color:#fff!important;
+  text-shadow:0 2px 6px rgba(0,0,0,.65)!important;
+}
+
+/* Bandeau équipe adverse : distinct, sombre bleu acier */
+#matchDetail .opponent-team-bar,
+#matchDetail .opponent-team-row,
+#matchDetail .opponent-team-header,
+#matchDetail .match-opponent-team,
+#matchDetail .match-team-strip{
+  background:linear-gradient(90deg,rgba(18,36,54,.97),rgba(28,50,70,.94))!important;
+  border:1px solid rgba(115,170,220,.42)!important;
+  color:#fff!important;
+  box-shadow:0 5px 15px rgba(0,0,0,.22)!important;
+}
+
+/* Si le bandeau n'a pas de classe dédiée, cible la barre contenant l'input adverse */
+#matchDetail .match-topbar + div:has(.opponent-team-input),
+#matchDetail div:has(> .opponent-team-input){
+  background:linear-gradient(90deg,rgba(18,36,54,.97),rgba(28,50,70,.94))!important;
+  color:#fff!important;
+  border-color:rgba(115,170,220,.42)!important;
+}
+#matchDetail div:has(> .opponent-team-input) label,
+#matchDetail div:has(> .opponent-team-input) b,
+#matchDetail div:has(> .opponent-team-input) span{
+  color:#fff!important;
+}
+
+/* ----- Pairings validés ----- */
+#matchDetail .final-pairs-panel{
+  max-width:1360px!important;
+  padding:7px 8px!important;
+  margin-top:7px!important;
+}
+
+#matchDetail .final-pairs-head{
+  margin-bottom:5px!important;
+  align-items:center!important;
+}
+#matchDetail .final-pairs-head h3{
+  font-size:16px!important;
+  line-height:1!important;
+}
+#matchDetail .final-pairs-head p{
+  display:none!important;
+}
+
+/* Une carte = UNE seule ligne */
+#matchDetail .validated-pair-card{
+  display:grid!important;
+  grid-template-columns:
+    minmax(145px,.85fr)
+    18px
+    minmax(145px,.85fr)
+    92px
+    165px
+    92px!important;
+  align-items:center!important;
+  gap:5px!important;
+  min-height:42px!important;
+  padding:4px 6px!important;
+  margin-top:4px!important;
+  border-width:1px!important;
+  border-radius:7px!important;
+}
+
+/* On éclate l'ancien bloc identité dans la ligne */
+#matchDetail .validated-pair-identity{
+  display:contents!important;
+}
+#matchDetail .validated-pair-identity .player-side:first-child{
+  grid-column:1!important;
+}
+#matchDetail .validated-pair-identity .versus{
+  grid-column:2!important;
+  font-size:7px!important;
+}
+#matchDetail .validated-pair-identity .opponent-side{
+  grid-column:3!important;
+}
+
+#matchDetail .player-side{
+  min-width:0!important;
+}
+#matchDetail .player-side .side-label{
+  font-size:5px!important;
+  margin-bottom:1px!important;
+}
+#matchDetail .player-side b{
+  font-size:9px!important;
+  line-height:1.05!important;
+}
+#matchDetail .player-side small{
+  font-size:5.8px!important;
+  line-height:1.05!important;
+  margin-top:1px!important;
+}
+
+/* Les 3 blocs de données deviennent chacun une colonne */
+#matchDetail .validated-pair-data.v123-data{
+  display:contents!important;
+}
+#matchDetail .objective-fixed{
+  grid-column:4!important;
+  min-height:34px!important;
+  padding:3px 5px!important;
+  border-radius:6px!important;
+}
+#matchDetail .objective-fixed>span{
+  font-size:5px!important;
+}
+#matchDetail .objective-fixed>strong{
+  font-size:15px!important;
+  margin:0!important;
+}
+#matchDetail .objective-fixed>small{
+  font-size:5px!important;
+  line-height:1!important;
+}
+
+#matchDetail .real100-box{
+  grid-column:5!important;
+  min-height:34px!important;
+  padding:3px 5px!important;
+  border-radius:6px!important;
+}
+#matchDetail .real100-box>span{
+  font-size:5px!important;
+  margin-bottom:2px!important;
+}
+#matchDetail .real-input-row{
+  gap:3px!important;
+}
+#matchDetail .real-input-row input{
+  width:44px!important;
+  min-width:44px!important;
+  height:24px!important;
+  min-height:24px!important;
+  font-size:9px!important;
+  padding:2px!important;
+}
+#matchDetail .real-input-row b{
+  font-size:8px!important;
+}
+
+#matchDetail .converted20-box{
+  grid-column:6!important;
+  min-height:34px!important;
+  padding:3px 5px!important;
+  border-radius:6px!important;
+}
+#matchDetail .converted20-box>span{
+  font-size:5px!important;
+  margin-bottom:1px!important;
+}
+#matchDetail .converted20-box strong{
+  font-size:14px!important;
+}
+#matchDetail .converted20-box small{
+  font-size:5px!important;
+  margin-top:1px!important;
+}
+
+/* Totaux équipe restent compacts à droite */
+#matchDetail .team-totals{
+  gap:5px!important;
+}
+#matchDetail .total-line{
+  min-width:86px!important;
+  padding:4px 6px!important;
+}
+#matchDetail .total-line span{
+  font-size:5px!important;
+}
+#matchDetail .total-line b{
+  font-size:14px!important;
+}
+#matchDetail .total-line small{
+  font-size:5px!important;
+}
+
+
+/* ============================================================
+   V127 — Pairings validés en 2 colonnes x 3 matchs
+   ============================================================ */
+
+#matchDetail #finalPairs{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:8px!important;
+  align-items:start!important;
+}
+
+#matchDetail .validated-pair-card{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 18px minmax(0,1fr)!important;
+  grid-template-rows:auto auto!important;
+  gap:5px 6px!important;
+  min-height:92px!important;
+  padding:8px!important;
+  margin:0!important;
+  border-radius:8px!important;
+}
+
+/* Ligne 1 : identité du match */
+#matchDetail .validated-pair-identity{
+  display:contents!important;
+}
+#matchDetail .validated-pair-identity .player-side:first-child{
+  grid-column:1!important;
+  grid-row:1!important;
+}
+#matchDetail .validated-pair-identity .versus{
+  grid-column:2!important;
+  grid-row:1!important;
+  align-self:center!important;
+  font-size:9px!important;
+}
+#matchDetail .validated-pair-identity .opponent-side{
+  grid-column:3!important;
+  grid-row:1!important;
+}
+
+#matchDetail .player-side b{
+  font-size:12px!important;
+  line-height:1.1!important;
+}
+#matchDetail .player-side small{
+  font-size:7.5px!important;
+  line-height:1.15!important;
+  margin-top:2px!important;
+}
+#matchDetail .side-label{
+  font-size:6.5px!important;
+  margin-bottom:2px!important;
+}
+
+/* Ligne 2 : objectif / score réel / résultat */
+#matchDetail .validated-pair-data.v123-data{
+  grid-column:1 / 4!important;
+  grid-row:2!important;
+  display:grid!important;
+  grid-template-columns:110px minmax(155px,1fr) 95px!important;
+  gap:6px!important;
+  align-items:stretch!important;
+}
+
+#matchDetail .objective-fixed,
+#matchDetail .real100-box,
+#matchDetail .converted20-box{
+  min-height:44px!important;
+  padding:5px 7px!important;
+}
+
+#matchDetail .objective-fixed>span,
+#matchDetail .real100-box>span,
+#matchDetail .converted20-box>span{
+  font-size:6.5px!important;
+}
+
+#matchDetail .objective-fixed>strong,
+#matchDetail .converted20-box strong{
+  font-size:18px!important;
+}
+
+#matchDetail .objective-fixed>small,
+#matchDetail .converted20-box small{
+  font-size:6px!important;
+}
+
+#matchDetail .real-input-row input{
+  width:48px!important;
+  min-width:48px!important;
+  height:28px!important;
+  min-height:28px!important;
+  font-size:11px!important;
+}
+
+#matchDetail .real-input-row b{
+  font-size:10px!important;
+}
+
+/* En-tête de section */
+#matchDetail .final-pairs-head{
+  margin-bottom:7px!important;
+}
+
+/* Responsive de secours */
+@media(max-width:1100px){
+  #matchDetail #finalPairs{
+    grid-template-columns:1fr!important;
+  }
+}
+
+
+/* ============================================================
+   V128 — Pairings plus lisibles et plus ramassés verticalement
+   ============================================================ */
+
+/* Cartes moins hautes */
+#matchDetail .validated-pair-card{
+  min-height:72px!important;
+  padding:6px 8px!important;
+  grid-template-rows:30px 38px!important;
+  row-gap:2px!important;
+}
+
+/* Rapproche fortement les deux joueurs du centre */
+#matchDetail .validated-pair-card{
+  grid-template-columns:minmax(0,1fr) 10px minmax(0,1fr)!important;
+}
+#matchDetail .validated-pair-identity .player-side:first-child{
+  text-align:right!important;
+  padding-right:4px!important;
+}
+#matchDetail .validated-pair-identity .opponent-side{
+  text-align:left!important;
+  padding-left:4px!important;
+}
+#matchDetail .validated-pair-identity .versus{
+  font-size:8px!important;
+  opacity:.75!important;
+}
+
+/* Police identité nettement plus grande */
+#matchDetail .player-side .side-label{
+  font-size:7px!important;
+  line-height:1!important;
+  margin-bottom:1px!important;
+}
+#matchDetail .player-side b{
+  font-size:14px!important;
+  line-height:1!important;
+}
+#matchDetail .player-side small{
+  font-size:8px!important;
+  line-height:1!important;
+  margin-top:2px!important;
+}
+
+/* Les scores remontent juste sous les noms */
+#matchDetail .validated-pair-data.v123-data{
+  align-self:start!important;
+  margin-top:-1px!important;
+  grid-template-columns:105px minmax(155px,1fr) 90px!important;
+  gap:5px!important;
+}
+
+/* Blocs score moins hauts mais texte plus gros */
+#matchDetail .objective-fixed,
+#matchDetail .real100-box,
+#matchDetail .converted20-box{
+  min-height:36px!important;
+  height:36px!important;
+  padding:3px 6px!important;
+}
+
+#matchDetail .objective-fixed>span,
+#matchDetail .real100-box>span,
+#matchDetail .converted20-box>span{
+  font-size:7px!important;
+  line-height:1!important;
+}
+#matchDetail .objective-fixed>strong,
+#matchDetail .converted20-box strong{
+  font-size:19px!important;
+  line-height:.95!important;
+}
+#matchDetail .objective-fixed>small,
+#matchDetail .converted20-box small{
+  font-size:6.5px!important;
+  line-height:1!important;
+}
+
+#matchDetail .real-input-row{
+  margin-top:1px!important;
+}
+#matchDetail .real-input-row input{
+  width:50px!important;
+  min-width:50px!important;
+  height:25px!important;
+  min-height:25px!important;
+  font-size:12px!important;
+  font-weight:900!important;
+}
+#matchDetail .real-input-row b{
+  font-size:11px!important;
+}
+
+/* Moins d'espace entre les 6 matchs */
+#matchDetail #finalPairs{
+  gap:6px 8px!important;
+}
+
+
+/* ============================================================
+   V129 — Pairings horizontaux + headers de grille améliorés
+   ============================================================ */
+
+/* ---------- PAIRINGS VALIDÉS : 1 ligne claire par match ---------- */
+#matchDetail .validated-pair-card{
+  display:grid!important;
+  grid-template-columns:minmax(250px,1fr) 95px 175px 95px!important;
+  align-items:center!important;
+  gap:8px!important;
+  min-height:56px!important;
+  padding:6px 8px!important;
+  margin:0!important;
+  border-radius:8px!important;
+}
+
+/* Identité du match à gauche, alignée à gauche */
+#matchDetail .validated-pair-identity{
+  grid-column:1!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 22px minmax(0,1fr)!important;
+  align-items:center!important;
+  gap:5px!important;
+  min-width:0!important;
+}
+
+#matchDetail .validated-pair-identity .player-side:first-child,
+#matchDetail .validated-pair-identity .opponent-side{
+  text-align:left!important;
+  padding:0!important;
+}
+
+#matchDetail .validated-pair-identity .versus{
+  text-align:center!important;
+  font-size:8px!important;
+  opacity:.72!important;
+}
+
+#matchDetail .player-side .side-label{
+  font-size:6px!important;
+  line-height:1!important;
+  margin-bottom:2px!important;
+  opacity:.72!important;
+}
+#matchDetail .player-side b{
+  font-size:13px!important;
+  line-height:1.05!important;
+}
+#matchDetail .player-side small{
+  font-size:7px!important;
+  line-height:1.05!important;
+  margin-top:2px!important;
+}
+
+/* Les scores sur la même ligne */
+#matchDetail .validated-pair-data.v123-data{
+  display:contents!important;
+}
+
+#matchDetail .objective-fixed{
+  grid-column:2!important;
+  min-height:40px!important;
+  height:40px!important;
+  padding:4px 6px!important;
+}
+#matchDetail .real100-box{
+  grid-column:3!important;
+  min-height:40px!important;
+  height:40px!important;
+  padding:4px 6px!important;
+}
+#matchDetail .converted20-box{
+  grid-column:4!important;
+  min-height:40px!important;
+  height:40px!important;
+  padding:4px 6px!important;
+}
+
+/* Plus d'équivalent /100 gris sous l'objectif */
+#matchDetail .objective-fixed>small{
+  display:none!important;
+}
+#matchDetail .objective-fixed>span{
+  font-size:6px!important;
+}
+#matchDetail .objective-fixed>strong{
+  font-size:19px!important;
+  line-height:1!important;
+  margin-top:2px!important;
+}
+
+/* Score réel plus lisible */
+#matchDetail .real100-box>span,
+#matchDetail .converted20-box>span{
+  font-size:6px!important;
+}
+#matchDetail .real-input-row input{
+  width:50px!important;
+  min-width:50px!important;
+  height:26px!important;
+  min-height:26px!important;
+  font-size:11px!important;
+}
+#matchDetail .converted20-box strong{
+  font-size:16px!important;
+}
+
+/* Deux colonnes, mais avec lignes bien alignées */
+#matchDetail #finalPairs{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:7px 10px!important;
+}
+
+/* ---------- TITRES DE LA GRILLE PRINCIPALE ---------- */
+#matchDetail .match-roster-table thead th{
+  position:relative!important;
+  padding:8px 6px!important;
+  font-size:8px!important;
+  font-weight:1000!important;
+  letter-spacing:.02em!important;
+  line-height:1.15!important;
+  text-transform:none!important;
+  border:1px solid rgba(255,255,255,.16)!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.07),
+    0 3px 9px rgba(0,0,0,.24)!important;
+}
+
+/* Nos 3 colonnes */
+#matchDetail .match-roster-table thead th:nth-child(1),
+#matchDetail .match-roster-table thead th:nth-child(2){
+  background:linear-gradient(180deg,#dbe9f4,#c9dbe8)!important;
+  color:#24323f!important;
+  border-bottom:4px solid #2d7ed0!important;
+}
+#matchDetail .match-roster-table thead th:nth-child(3){
+  background:linear-gradient(180deg,#f5e8bd,#eadba6)!important;
+  color:#4d3b0b!important;
+  border-bottom:4px solid #d0a42b!important;
+}
+
+/* Colonnes adversaires */
+#matchDetail .match-roster-table thead th:nth-child(n+4){
+  background:linear-gradient(180deg,#dceadf,#c9ddcd)!important;
+  color:#26352b!important;
+  border-bottom:4px solid #168654!important;
+}
+
+/* Défenseur adverse sélectionné garde son code couleur rouge */
+#matchDetail .match-roster-table thead th.match-opponent-head.defender-focus{
+  background:linear-gradient(180deg,#ffe1e3,#f5c8cb)!important;
+  color:#672128!important;
+  border-bottom:4px solid #df4b4d!important;
+  outline:3px solid #df4b4d!important;
+  outline-offset:-3px!important;
+}
+
+/* Noms adversaires plus visibles */
+#matchDetail .match-opponent-head{
+  font-size:8.5px!important;
+}
+#matchDetail .match-opponent-head small,
+#matchDetail .match-opponent-head .opp-army,
+#matchDetail .match-opponent-head .opp-fd{
+  font-size:6px!important;
+  opacity:.82!important;
+}
+
+
+/* ============================================================
+   V130 — Headers grille propres + suppression hauteur pairing vide
+   ============================================================ */
+
+/* --- GRILLE PRINCIPALE : titres compacts, dans leur ligne --- */
+#matchDetail .match-roster-table thead{
+  height:auto!important;
+}
+#matchDetail .match-roster-table thead tr{
+  height:48px!important;
+}
+#matchDetail .match-roster-table thead th{
+  height:48px!important;
+  min-height:48px!important;
+  max-height:48px!important;
+  box-sizing:border-box!important;
+  padding:0 6px!important;
+  vertical-align:middle!important;
+  overflow:hidden!important;
+  border-radius:7px!important;
+  font-size:8px!important;
+  font-weight:1000!important;
+  line-height:1!important;
+  box-shadow:0 3px 7px rgba(0,0,0,.30)!important;
+}
+
+/* Joueur / Armée : plus sobres, bandeau bleu en bas */
+#matchDetail .match-roster-table thead th:nth-child(1),
+#matchDetail .match-roster-table thead th:nth-child(2){
+  background:rgba(224,235,244,.96)!important;
+  color:#172532!important;
+  border:1px solid rgba(255,255,255,.72)!important;
+  border-bottom:4px solid #2c8bd4!important;
+}
+
+/* FD : beige sobre avec bandeau or */
+#matchDetail .match-roster-table thead th:nth-child(3){
+  background:rgba(244,232,194,.97)!important;
+  color:#46370d!important;
+  border:1px solid rgba(255,255,255,.65)!important;
+  border-bottom:4px solid #d5a91e!important;
+}
+
+/* Adversaires : vert-gris plus foncé et lisible */
+#matchDetail .match-roster-table thead th:nth-child(n+4){
+  background:rgba(207,224,211,.96)!important;
+  color:#203027!important;
+  border:1px solid rgba(255,255,255,.55)!important;
+  border-bottom:4px solid #168654!important;
+}
+
+/* Le texte reste parfaitement centré sans déborder */
+#matchDetail .match-roster-table thead th > *{
+  max-width:100%!important;
+}
+#matchDetail .match-opponent-head{
+  padding:4px 3px!important;
+}
+#matchDetail .match-opponent-head .opp-name,
+#matchDetail .match-opponent-head b{
+  display:block!important;
+  font-size:8px!important;
+  line-height:1!important;
+  margin:0 0 2px!important;
+}
+#matchDetail .match-opponent-head .opp-army,
+#matchDetail .match-opponent-head .opp-fd,
+#matchDetail .match-opponent-head small{
+  display:block!important;
+  font-size:5.5px!important;
+  line-height:1.05!important;
+  margin:1px 0!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+
+/* --- PAIRINGS VALIDÉS : aucune hauteur noire inutile --- */
+#matchDetail .final-pairs-panel{
+  min-height:0!important;
+  height:auto!important;
+  padding:6px 8px!important;
+}
+
+#matchDetail #finalPairs{
+  min-height:0!important;
+  height:auto!important;
+  align-items:start!important;
+  align-content:start!important;
+  grid-auto-rows:auto!important;
+}
+
+/* Une carte ne réserve plus une seconde ligne invisible */
+#matchDetail .validated-pair-card{
+  min-height:44px!important;
+  height:auto!important;
+  grid-template-rows:none!important;
+  padding:4px 6px!important;
+  align-self:start!important;
+}
+
+/* Tout reste sur UNE seule ligne */
+#matchDetail .validated-pair-identity{
+  align-self:center!important;
+}
+#matchDetail .objective-fixed,
+#matchDetail .real100-box,
+#matchDetail .converted20-box{
+  min-height:36px!important;
+  height:36px!important;
+  align-self:center!important;
+}
+
+/* Empêche d'anciens pseudo-éléments/blocs de créer du vide sous la carte */
+#matchDetail .validated-pair-card::before,
+#matchDetail .validated-pair-card::after{
+  max-height:0!important;
+}
+
+
+/* ============================================================
+   V132 — HEADERS PREMIUM SANS CASSER LE TABLEAU
+   Important : aucun display:flex/grid sur les <th>.
+   ============================================================ */
+
+#matchDetail .match-roster-table{
+  border-collapse:separate!important;
+  border-spacing:4px 4px!important;
+}
+
+/* Structure native du tableau conservée */
+#matchDetail .match-roster-table thead{
+  display:table-header-group!important;
+}
+#matchDetail .match-roster-table thead tr{
+  display:table-row!important;
+  height:54px!important;
+}
+#matchDetail .match-roster-table thead th{
+  display:table-cell!important;
+  position:relative!important;
+  top:auto!important;
+  left:auto!important;
+  right:auto!important;
+  bottom:auto!important;
+  transform:none!important;
+  translate:none!important;
+  margin:0!important;
+  height:54px!important;
+  min-height:54px!important;
+  max-height:54px!important;
+  box-sizing:border-box!important;
+  vertical-align:middle!important;
+  text-align:center!important;
+  overflow:hidden!important;
+  border-radius:9px!important;
+
+  background:rgba(15,22,30,.96)!important;
+  color:#f5f7f9!important;
+  border:1px solid rgba(255,255,255,.14)!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.05),
+    0 4px 11px rgba(0,0,0,.26)!important;
+}
+
+/* Petite barre premium en haut */
+#matchDetail .match-roster-table thead th::before{
+  content:""!important;
+  position:absolute!important;
+  left:0!important;
+  right:0!important;
+  top:0!important;
+  height:4px!important;
+  border-radius:9px 9px 0 0!important;
+  background:#6c7885!important;
+  pointer-events:none!important;
+}
+
+/* Joueur */
+#matchDetail .match-roster-table thead th:nth-child(1)::before{
+  background:#2d8bd8!important;
+}
+/* Armée */
+#matchDetail .match-roster-table thead th:nth-child(2)::before{
+  background:#3da0df!important;
+}
+/* FD */
+#matchDetail .match-roster-table thead th:nth-child(3)::before{
+  background:#d0a52b!important;
+}
+/* Adversaires */
+#matchDetail .match-roster-table thead th:nth-child(n+4)::before{
+  background:#168654!important;
+}
+
+/* 3 premières colonnes : plus classe, sans fond pastel */
+#matchDetail .match-roster-table thead th:nth-child(-n+3){
+  padding:10px 7px 6px!important;
+  font-size:9px!important;
+  font-weight:1000!important;
+  letter-spacing:.08em!important;
+  text-transform:uppercase!important;
+  text-shadow:0 1px 2px rgba(0,0,0,.55)!important;
+}
+
+/* Adversaires : hiérarchie lisible */
+#matchDetail .match-opponent-head{
+  padding:8px 5px 5px!important;
+  font-size:8px!important;
+  line-height:1.05!important;
+  color:#f4f7f8!important;
+}
+
+#matchDetail .match-opponent-head b,
+#matchDetail .match-opponent-head .opp-name{
+  display:block!important;
+  font-size:8px!important;
+  line-height:1!important;
+  margin:0 0 2px!important;
+  font-weight:1000!important;
+  color:#fff!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+
+#matchDetail .match-opponent-head small,
+#matchDetail .match-opponent-head .opp-army,
+#matchDetail .match-opponent-head .opp-fd{
+  display:block!important;
+  font-size:5.5px!important;
+  line-height:1.05!important;
+  margin:1px 0!important;
+  color:#b9c2cb!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+
+/* Défenseur adverse sélectionné */
+#matchDetail .match-opponent-head.defender-focus{
+  background:linear-gradient(180deg,rgba(70,23,28,.98),rgba(42,17,21,.98))!important;
+  color:#fff!important;
+  border:1px solid rgba(255,105,115,.62)!important;
+  outline:none!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.05),
+    0 0 0 2px rgba(223,75,77,.78),
+    0 5px 13px rgba(0,0,0,.30)!important;
+}
+#matchDetail .match-opponent-head.defender-focus::before{
+  background:#df4b4d!important;
+}
+
+/* Corps de tableau : rien ne doit remonter sous le header */
+#matchDetail .match-roster-table tbody{
+  display:table-row-group!important;
+}
+#matchDetail .match-roster-table tbody tr{
+  display:table-row!important;
+}
+#matchDetail .match-roster-table tbody td{
+  display:table-cell!important;
+  position:static!important;
+  transform:none!important;
+}
+
+
+/* ============================================================
+   V133 — CHARTE GRAPHIQUE HARMONISÉE
+   Base : graphite / ivoire / rouge.
+   Les couleurs fortes sont réservées aux MATCHUPS.
+   ============================================================ */
+
+:root{
+  --tg-bg:#11161d;
+  --tg-panel:rgba(15,20,27,.94);
+  --tg-panel-2:rgba(24,30,38,.94);
+  --tg-line:rgba(238,232,216,.18);
+  --tg-ivory:#eee8d8;
+  --tg-text:#f4f1e8;
+  --tg-muted:#a9afb7;
+  --tg-red:#d94435;
+  --tg-red-dark:#8e2c25;
+  --tg-gold:#b89a54;
+}
+
+/* ---------- TYPOGRAPHIE GLOBALE ---------- */
+html,body,button,input,select,textarea{
+  font-family:"Segoe UI",Inter,Arial,sans-serif!important;
+}
+body{
+  color:var(--tg-text)!important;
+}
+button,input,select{
+  font-weight:650!important;
+}
+
+h1,h2,h3,
+.section-title,
+.match-title,
+.meeting-title{
+  font-family:"Segoe UI",Inter,Arial,sans-serif!important;
+  font-weight:850!important;
+  letter-spacing:-.025em!important;
+}
+
+/* ---------- TITRES ET NAVIGATION ---------- */
+#matchDetail .match-topbar h1,
+#matchDetail .match-topbar h2,
+#matchDetail .meeting-title{
+  color:var(--tg-text)!important;
+  text-shadow:0 2px 7px rgba(0,0,0,.55)!important;
+}
+
+#matchDetail .section-title,
+#matchDetail .final-pairs-head h3{
+  color:var(--tg-text)!important;
+  font-weight:850!important;
+}
+
+/* Trait de section unique, rouge, plutôt que plusieurs accents concurrents */
+#matchDetail .section-title::before,
+#matchDetail .final-pairs-head h3::before{
+  background:var(--tg-red)!important;
+}
+
+/* Boutons généraux */
+#matchDetail .btn{
+  background:rgba(18,24,31,.94)!important;
+  color:var(--tg-text)!important;
+  border:1px solid rgba(238,232,216,.22)!important;
+  box-shadow:0 3px 9px rgba(0,0,0,.20)!important;
+}
+#matchDetail .btn:hover{
+  border-color:rgba(238,232,216,.48)!important;
+  background:rgba(29,36,44,.98)!important;
+}
+#matchDetail .btn.danger{
+  color:#fff!important;
+  border-color:rgba(217,68,53,.65)!important;
+}
+
+/* ---------- BANDEAU ÉQUIPE ADVERSE ---------- */
+#matchDetail .opponent-team-row,
+#matchDetail div:has(> .opponent-team-input){
+  background:
+    linear-gradient(90deg,rgba(17,22,29,.98),rgba(28,30,33,.96))!important;
+  border:1px solid rgba(238,232,216,.18)!important;
+  border-left:5px solid var(--tg-red)!important;
+  box-shadow:0 5px 15px rgba(0,0,0,.24)!important;
+  color:var(--tg-text)!important;
+}
+
+#matchDetail .opponent-team-input{
+  background:rgba(244,241,232,.97)!important;
+  color:#171b20!important;
+  border:1px solid rgba(0,0,0,.18)!important;
+}
+
+/* ---------- LÉGENDE ---------- */
+/* Les seules couleurs saturées de l'interface restent ici et dans la grille */
+#matchDetail .legend-chip,
+#matchDetail .match-legend-compact span{
+  border:1px solid rgba(255,255,255,.34)!important;
+  box-shadow:0 2px 6px rgba(0,0,0,.20)!important;
+  font-weight:800!important;
+}
+
+/* ---------- HEADER DE LA GRILLE ---------- */
+/* Même matériau pour TOUTES les colonnes */
+#matchDetail .match-roster-table thead th{
+  background:
+    linear-gradient(180deg,rgba(27,33,41,.98),rgba(16,21,28,.98))!important;
+  color:var(--tg-text)!important;
+  border:1px solid rgba(238,232,216,.16)!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.045),
+    0 4px 11px rgba(0,0,0,.28)!important;
+}
+
+/* Les zones sont différenciées sobrement par une barre */
+#matchDetail .match-roster-table thead th:nth-child(1)::before,
+#matchDetail .match-roster-table thead th:nth-child(2)::before{
+  background:var(--tg-ivory)!important;
+}
+#matchDetail .match-roster-table thead th:nth-child(3)::before{
+  background:var(--tg-gold)!important;
+}
+#matchDetail .match-roster-table thead th:nth-child(n+4)::before{
+  background:var(--tg-red)!important;
+}
+
+/* 3 premières colonnes : même typo */
+#matchDetail .match-roster-table thead th:nth-child(-n+3){
+  color:var(--tg-text)!important;
+  font-size:9px!important;
+  font-weight:850!important;
+  letter-spacing:.055em!important;
+  text-transform:uppercase!important;
+  text-shadow:none!important;
+}
+
+/* Adversaires */
+#matchDetail .match-opponent-head,
+#matchDetail .match-opponent-head b,
+#matchDetail .match-opponent-head .opp-name{
+  color:var(--tg-text)!important;
+}
+#matchDetail .match-opponent-head small,
+#matchDetail .match-opponent-head .opp-army,
+#matchDetail .match-opponent-head .opp-fd{
+  color:var(--tg-muted)!important;
+}
+
+/* Défenseur sélectionné : rouge, cohérent avec la zone adverse */
+#matchDetail .match-opponent-head.defender-focus{
+  background:
+    linear-gradient(180deg,rgba(78,28,26,.98),rgba(35,19,20,.98))!important;
+  border:1px solid rgba(217,68,53,.75)!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.05),
+    0 0 0 2px rgba(217,68,53,.48),
+    0 5px 14px rgba(0,0,0,.32)!important;
+}
+#matchDetail .match-opponent-head.defender-focus::before{
+  background:#f06452!important;
+}
+
+/* ---------- PREMIÈRES COLONNES DU CORPS ---------- */
+#matchDetail .match-roster-table tbody td:nth-child(-n+3){
+  background:rgba(239,235,224,.96)!important;
+  color:#20252b!important;
+  border:1px solid rgba(255,255,255,.44)!important;
+  box-shadow:0 2px 6px rgba(0,0,0,.18)!important;
+}
+#matchDetail .match-roster-table tbody td:nth-child(1){
+  font-weight:800!important;
+}
+
+/* ---------- MATCHUPS ---------- */
+#matchDetail .simple-match-cell{
+  border:1px solid rgba(255,255,255,.72)!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.10),
+    0 3px 7px rgba(0,0,0,.22)!important;
+}
+
+/* ---------- PAIRINGS VALIDÉS ---------- */
+#matchDetail .final-pairs-panel{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+
+#matchDetail .validated-pair-card{
+  background:
+    linear-gradient(180deg,rgba(18,24,31,.97),rgba(13,18,24,.97))!important;
+  color:var(--tg-text)!important;
+  border:1px solid rgba(238,232,216,.17)!important;
+  box-shadow:0 5px 14px rgba(0,0,0,.25)!important;
+}
+
+#matchDetail .player-side b{
+  color:var(--tg-text)!important;
+  font-weight:800!important;
+}
+#matchDetail .player-side small,
+#matchDetail .side-label,
+#matchDetail .versus{
+  color:var(--tg-muted)!important;
+}
+
+/* Objectif utilise encore la couleur du matchup car c'est une donnée sémantique */
+#matchDetail .objective-fixed{
+  border:1px solid rgba(255,255,255,.30)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.10)!important;
+}
+
+/* Score réel : graphite plutôt que rectangle blanc */
+#matchDetail .real100-box{
+  background:rgba(25,31,39,.96)!important;
+  border:1px solid rgba(238,232,216,.15)!important;
+  color:var(--tg-text)!important;
+}
+#matchDetail .real100-box>span{
+  color:var(--tg-muted)!important;
+}
+#matchDetail .real-input-row input{
+  background:var(--tg-ivory)!important;
+  color:#161b20!important;
+  border:1px solid rgba(0,0,0,.28)!important;
+}
+
+/* ---------- TOTAUX ---------- */
+#matchDetail .total-line{
+  background:rgba(18,24,31,.96)!important;
+  color:var(--tg-text)!important;
+  border:1px solid rgba(238,232,216,.16)!important;
+  box-shadow:0 4px 11px rgba(0,0,0,.22)!important;
+}
+#matchDetail .total-line span,
+#matchDetail .total-line small{
+  color:var(--tg-muted)!important;
+}
+
+/* Delta : ses couleurs restent fonctionnelles mais désaturées */
+#matchDetail .delta-total.positive{
+  background:#173d2d!important;
+  color:#d9f2e4!important;
+  border-color:#397b59!important;
+}
+#matchDetail .delta-total.negative{
+  background:#4b2222!important;
+  color:#ffe3df!important;
+  border-color:#a54842!important;
+}
+#matchDetail .delta-total.neutral{
+  background:#493b20!important;
+  color:#f4e6bb!important;
+  border-color:#8c7337!important;
+}
+
+/* ---------- TRANSITIONS ---------- */
+#matchDetail .btn,
+#matchDetail .simple-match-cell,
+#matchDetail .validated-pair-card,
+#matchDetail .total-line{
+  transition:border-color .15s ease,background .15s ease,box-shadow .15s ease!important;
+}
+
+
+/* ============================================================
+   V134 — TITRE RENCONTRE BLANC + HEADER GRILLE UNIFIÉ
+   ============================================================ */
+
+/* Titre exact de la rencontre : blanc, sans ambiguïté */
+#matchDetail .match-title,
+#matchDetail .meeting-title,
+#matchDetail .match-topbar h1,
+#matchDetail .match-topbar h2,
+#matchDetail > h1,
+#matchDetail > h2{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  opacity:1!important;
+  text-shadow:0 2px 7px rgba(0,0,0,.65)!important;
+}
+
+/* ============================================================
+   EN-TÊTE DE GRILLE : UN SEUL LANGAGE VISUEL
+   ============================================================ */
+#matchDetail .match-roster-table thead tr{
+  height:58px!important;
+}
+
+#matchDetail .match-roster-table thead th,
+#matchDetail .match-roster-table thead th:nth-child(1),
+#matchDetail .match-roster-table thead th:nth-child(2),
+#matchDetail .match-roster-table thead th:nth-child(3),
+#matchDetail .match-roster-table thead th:nth-child(n+4){
+  height:58px!important;
+  min-height:58px!important;
+  max-height:58px!important;
+  padding:8px 6px 6px!important;
+
+  background:
+    linear-gradient(180deg,rgba(31,37,45,.98) 0%,rgba(17,22,29,.98) 100%)!important;
+
+  color:#f4f1e8!important;
+  border:1px solid rgba(238,232,216,.18)!important;
+  border-bottom:3px solid #b89a54!important;
+  border-radius:8px!important;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.055),
+    0 4px 10px rgba(0,0,0,.27)!important;
+
+  vertical-align:middle!important;
+  text-align:center!important;
+  font-family:"Segoe UI",Inter,Arial,sans-serif!important;
+  font-weight:800!important;
+  text-shadow:none!important;
+}
+
+/* On supprime les différentes barres bleu/or/rouge/vert.
+   Toute la grille utilise maintenant le même accent doré. */
+#matchDetail .match-roster-table thead th::before,
+#matchDetail .match-roster-table thead th:nth-child(1)::before,
+#matchDetail .match-roster-table thead th:nth-child(2)::before,
+#matchDetail .match-roster-table thead th:nth-child(3)::before,
+#matchDetail .match-roster-table thead th:nth-child(n+4)::before{
+  display:none!important;
+  content:none!important;
+}
+
+/* Joueur / Armée / FD */
+#matchDetail .match-roster-table thead th:nth-child(-n+3){
+  font-size:9px!important;
+  font-weight:850!important;
+  letter-spacing:.055em!important;
+  text-transform:uppercase!important;
+  color:#f4f1e8!important;
+}
+
+/* Adversaires : même carte, même typographie */
+#matchDetail .match-opponent-head{
+  color:#f4f1e8!important;
+  padding:7px 5px 5px!important;
+}
+#matchDetail .match-opponent-head b,
+#matchDetail .match-opponent-head .opp-name{
+  color:#fff!important;
+  font-size:8.5px!important;
+  font-weight:850!important;
+  line-height:1!important;
+  margin:0 0 3px!important;
+}
+#matchDetail .match-opponent-head small,
+#matchDetail .match-opponent-head .opp-army,
+#matchDetail .match-opponent-head .opp-fd{
+  color:#aeb5bd!important;
+  font-size:5.7px!important;
+  font-weight:600!important;
+  line-height:1.08!important;
+}
+
+/* Seule exception : adversaire actuellement sélectionné.
+   On garde la structure identique, seulement un contour rouge. */
+#matchDetail .match-opponent-head.defender-focus{
+  background:
+    linear-gradient(180deg,rgba(31,37,45,.98) 0%,rgba(17,22,29,.98) 100%)!important;
+  color:#f4f1e8!important;
+  border:2px solid #d94435!important;
+  border-bottom:3px solid #d94435!important;
+  outline:none!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.055),
+    0 0 0 2px rgba(217,68,53,.16),
+    0 4px 10px rgba(0,0,0,.27)!important;
+}
+
+/* Trait continu sous toute la zone de titres */
+#matchDetail .match-roster-table thead{
+  position:relative!important;
+}
+
+
+/* ============================================================
+   V135 — titre blanc, headers sans lignes colorées, dates rencontre
+   ============================================================ */
+
+/* Titre exact : Ligue X · Rencontre Y */
+#matchTournamentTitle{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  opacity:1!important;
+  font-weight:900!important;
+  text-shadow:0 2px 7px rgba(0,0,0,.70)!important;
+}
+
+/* En-têtes vraiment uniformes : aucune ligne bleue/or/verte/dorée */
+#matchDetail .match-roster-table thead th,
+#matchDetail .match-roster-table thead th:nth-child(1),
+#matchDetail .match-roster-table thead th:nth-child(2),
+#matchDetail .match-roster-table thead th:nth-child(3),
+#matchDetail .match-roster-table thead th:nth-child(n+4){
+  border:1px solid rgba(238,232,216,.18)!important;
+  border-bottom:1px solid rgba(238,232,216,.18)!important;
+  outline:none!important;
+}
+#matchDetail .match-roster-table thead th::before,
+#matchDetail .match-roster-table thead th::after{
+  display:none!important;
+  content:none!important;
+}
+
+/* Pas de trait décoratif horizontal autour de l'en-tête */
+#matchDetail .match-roster-table thead,
+#matchDetail .match-roster-table thead tr,
+#matchDetail .match-table-wrap{
+  border-top-color:transparent!important;
+  border-bottom-color:transparent!important;
+  outline:none!important;
+}
+#matchDetail .match-roster-table thead tr::before,
+#matchDetail .match-roster-table thead tr::after{
+  display:none!important;
+  content:none!important;
+}
+
+/* Défenseur sélectionné : contour rouge uniquement sur sa carte */
+#matchDetail .match-opponent-head.defender-focus{
+  border:2px solid #d94435!important;
+  outline:none!important;
+}
+
+/* Dates de rencontre */
+#matchDetail .meeting-date-editor{
+  display:flex!important;
+  align-items:center!important;
+  gap:5px!important;
+  height:30px!important;
+  padding:3px 7px!important;
+  margin-left:auto!important;
+  margin-right:4px!important;
+  border-radius:7px!important;
+  background:rgba(16,22,29,.93)!important;
+  border:1px solid rgba(238,232,216,.18)!important;
+  box-shadow:0 3px 9px rgba(0,0,0,.22)!important;
+  color:#f4f1e8!important;
+}
+#matchDetail .meeting-date-editor label{
+  display:flex!important;
+  align-items:center!important;
+  gap:4px!important;
+  font-size:7px!important;
+  font-weight:800!important;
+  color:#aeb5bd!important;
+  white-space:nowrap!important;
+}
+#matchDetail .meeting-date-editor input[type="date"]{
+  width:112px!important;
+  height:23px!important;
+  min-height:23px!important;
+  padding:1px 4px!important;
+  border-radius:5px!important;
+  border:1px solid rgba(0,0,0,.25)!important;
+  background:#eee8d8!important;
+  color:#171b20!important;
+  font-size:8px!important;
+  font-weight:750!important;
+}
+#matchDetail .meeting-date-icon{
+  font-size:12px!important;
+}
+#matchDetail .meeting-date-sep{
+  color:#7f8994!important;
+  font-size:9px!important;
+}
+#matchDetail .meeting-date-clear{
+  width:19px!important;
+  height:19px!important;
+  min-width:19px!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:50%!important;
+  background:rgba(217,68,53,.18)!important;
+  color:#ff9287!important;
+  font-size:13px!important;
+  line-height:1!important;
+  cursor:pointer!important;
+}
+
+
+/* ============================================================
+   V136 — dates définies depuis la page Rencontres
+   ============================================================ */
+
+#matchDetail #matchTournamentTitle{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+
+/* Tous les titres des colonnes adverses en blanc */
+#matchDetail .match-opponent-head,
+#matchDetail .match-opponent-head b,
+#matchDetail .match-opponent-head .opp-name,
+#matchDetail .match-opponent-head .opp-army,
+#matchDetail .match-opponent-head .opp-fd,
+#matchDetail .match-opponent-head small{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  opacity:1!important;
+}
+
+/* Page Rencontres : bloc dates discret */
+.meeting-page-actions{
+  display:flex!important;
+  align-items:center!important;
+  gap:8px!important;
+}
+.meeting-default-dates{
+  display:flex!important;
+  align-items:center!important;
+  gap:5px!important;
+  padding:4px 7px!important;
+  border-radius:7px!important;
+  background:rgba(17,23,30,.94)!important;
+  border:1px solid rgba(238,232,216,.17)!important;
+  color:#f4f1e8!important;
+}
+.meeting-default-dates label{
+  display:flex!important;
+  align-items:center!important;
+  gap:4px!important;
+  font-size:7px!important;
+  font-weight:800!important;
+  color:#aeb5bd!important;
+}
+.meeting-default-dates input[type="date"]{
+  width:112px!important;
+  height:23px!important;
+  padding:1px 4px!important;
+  border-radius:5px!important;
+  background:#eee8d8!important;
+  color:#171b20!important;
+  border:1px solid rgba(0,0,0,.22)!important;
+  font-size:8px!important;
+  font-weight:750!important;
+}
+
+/* Carte rencontre + bouton date */
+.meeting-card-wrap{
+  position:relative!important;
+}
+.meeting-card-wrap .meeting-card{
+  width:100%!important;
+}
+.meeting-date-edit-btn{
+  position:absolute!important;
+  right:34px!important;
+  top:50%!important;
+  transform:translateY(-50%)!important;
+  width:27px!important;
+  height:27px!important;
+  padding:0!important;
+  border-radius:6px!important;
+  background:rgba(17,23,30,.94)!important;
+  color:#f4f1e8!important;
+  border:1px solid rgba(238,232,216,.18)!important;
+  cursor:pointer!important;
+}
+
+
+/* ============================================================
+   V137 — dates uniquement via "Modifier" sur la page Rencontres
+   ============================================================ */
+.meeting-default-dates,
+.meeting-date-edit-btn{
+  display:none!important;
+}
+
+/* Titre + dates sur une seule ligne, dates exactement après Rencontre X */
+#matchDetail .match-detail-title{
+  display:flex!important;
+  flex-direction:row!important;
+  align-items:baseline!important;
+  gap:0!important;
+  min-width:0!important;
+}
+#matchTournamentTitle{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  font-size:20px!important;
+  font-weight:900!important;
+  white-space:nowrap!important;
+}
+#matchMeetingDateTitle{
+  display:inline!important;
+  color:#d6d0c2!important;
+  -webkit-text-fill-color:#d6d0c2!important;
+  font-size:14px!important;
+  font-weight:750!important;
+  margin-left:3px!important;
+  white-space:nowrap!important;
+}
+#matchOpponentTeamTitle{
+  display:none!important;
+}
+
+/* Le bouton crayon de la page Rencontres signifie désormais Modifier */
+.meeting-edit{
+  color:#f4f1e8!important;
+  background:rgba(17,23,30,.96)!important;
+  border:1px solid rgba(238,232,216,.20)!important;
+}
+
+
+/* V138 — crayon rencontre = modification complète, dates incluses */
+.meeting-edit{
+  cursor:pointer!important;
+}
+
+
+/* ============================================================
+   V139 — Fenêtre "Modifier la rencontre"
+   ============================================================ */
+.tg-modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  align-items:center;
+  justify-content:center;
+}
+.tg-modal.open{
+  display:flex;
+}
+.tg-modal-backdrop{
+  position:absolute;
+  inset:0;
+  background:rgba(5,8,12,.72);
+  backdrop-filter:blur(4px);
+}
+.tg-modal-card{
+  position:relative;
+  z-index:1;
+  width:min(620px,92vw);
+  border-radius:14px;
+  background:
+    linear-gradient(180deg,rgba(24,30,38,.99),rgba(13,18,24,.99));
+  color:#f4f1e8;
+  border:1px solid rgba(238,232,216,.18);
+  box-shadow:0 24px 70px rgba(0,0,0,.55);
+  padding:18px;
+}
+.tg-modal-close{
+  position:absolute;
+  right:12px;
+  top:10px;
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  border:1px solid rgba(238,232,216,.18);
+  background:rgba(255,255,255,.04);
+  color:#f4f1e8;
+  font-size:20px;
+  font-weight:800;
+  cursor:pointer;
+}
+.tg-modal-head{
+  padding-right:42px;
+  margin-bottom:15px;
+}
+.tg-modal-kicker{
+  display:block;
+  margin-bottom:4px;
+  color:#d94435;
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.14em;
+}
+.tg-modal-head h3{
+  margin:0;
+  color:#fff;
+  font-size:22px!important;
+  font-weight:900!important;
+}
+.tg-modal-head p{
+  margin:4px 0 0;
+  color:#aeb5bd;
+  font-size:10px;
+}
+
+.meeting-edit-form{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:11px;
+}
+.meeting-edit-field{
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+}
+.meeting-edit-field-wide{
+  grid-column:1 / -1;
+}
+.meeting-edit-field>span{
+  color:#c9c3b6;
+  font-size:9px;
+  font-weight:850;
+}
+.meeting-edit-field input{
+  width:100%!important;
+  height:36px!important;
+  min-height:36px!important;
+  padding:6px 9px!important;
+  border-radius:8px!important;
+  border:1px solid rgba(238,232,216,.16)!important;
+  background:#eee8d8!important;
+  color:#171b20!important;
+  font-size:12px!important;
+  font-weight:700!important;
+  box-sizing:border-box!important;
+}
+.meeting-edit-field input:focus{
+  outline:2px solid rgba(217,68,53,.24)!important;
+  border-color:#d94435!important;
+}
+.meeting-edit-field small{
+  margin-top:-1px;
+  color:#848c95;
+  font-size:7px;
+}
+
+.meeting-edit-error{
+  min-height:18px;
+  margin-top:8px;
+  color:#ff8c82;
+  font-size:9px;
+  font-weight:750;
+}
+.tg-modal-actions{
+  display:flex;
+  justify-content:flex-end;
+  gap:8px;
+  margin-top:7px;
+}
+.tg-modal-actions .btn{
+  min-width:95px!important;
+}
+.meeting-save-btn{
+  background:#d94435!important;
+  border-color:#d94435!important;
+  color:#fff!important;
+}
+.meeting-save-btn:hover{
+  background:#bd382d!important;
+}
+
+
+/* ============================================================
+   V140 — Pairing défense : sélection propre, sans mille bordures
+   ============================================================ */
+
+/* On neutralise les contours cumulés sur les cellules/joueurs sélectionnés */
+#matchDetail .match-roster-table tbody td{
+  outline:none!important;
+}
+
+/* Sélection de notre joueur : UNE seule bordure bleue nette */
+#matchDetail .match-roster-table tbody tr.defense-selected td:first-child,
+#matchDetail .match-roster-table tbody tr.our-selected td:first-child,
+#matchDetail .match-roster-table tbody td.defense-selected,
+#matchDetail .match-roster-table tbody td.our-selected{
+  outline:none!important;
+  border:2px solid #39a7ff!important;
+  box-shadow:
+    0 0 0 1px rgba(57,167,255,.18),
+    0 3px 8px rgba(0,0,0,.22)!important;
+}
+
+/* Supprime les cadres internes générés par les éléments enfants */
+#matchDetail .match-roster-table tbody td.defense-selected > *,
+#matchDetail .match-roster-table tbody td.our-selected > *,
+#matchDetail .match-roster-table tbody tr.defense-selected td:first-child > *,
+#matchDetail .match-roster-table tbody tr.our-selected td:first-child > *{
+  outline:none!important;
+  box-shadow:none!important;
+  border-color:transparent!important;
+}
+
+/* Les petits indicateurs restent visibles mais ne créent plus de cadre supplémentaire */
+#matchDetail .match-roster-table .choice-badge,
+#matchDetail .match-roster-table .choice-number,
+#matchDetail .match-roster-table .defense-number,
+#matchDetail .match-roster-table .pick-number{
+  box-shadow:none!important;
+  outline:none!important;
+}
+
+/* Si un numéro de choix est présent : pastille simple */
+#matchDetail .match-roster-table .choice-number,
+#matchDetail .match-roster-table .defense-number,
+#matchDetail .match-roster-table .pick-number{
+  border:1px solid rgba(255,255,255,.8)!important;
+}
+
+/* Pas de double contour via pseudo-éléments */
+#matchDetail .match-roster-table tbody td.defense-selected::before,
+#matchDetail .match-roster-table tbody td.defense-selected::after,
+#matchDetail .match-roster-table tbody td.our-selected::before,
+#matchDetail .match-roster-table tbody td.our-selected::after{
+  box-shadow:none!important;
+  outline:none!important;
+}
+
+
+/* ============================================================
+   V141 — Défense : un seul repère bleu, sur le nom du joueur
+   ============================================================ */
+
+/* Supprime toute propagation du bleu sur la ligne */
+#matchDetail .match-roster-table tbody tr.defense-selected td,
+#matchDetail .match-roster-table tbody tr.our-selected td,
+#matchDetail .match-roster-table tbody td.defense-selected,
+#matchDetail .match-roster-table tbody td.our-selected{
+  outline:none!important;
+  box-shadow:none!important;
+  border-color:rgba(255,255,255,.18)!important;
+}
+
+/* Armée, FD et cases matchup restent totalement normales */
+#matchDetail .match-roster-table tbody tr.defense-selected td:not(:first-child),
+#matchDetail .match-roster-table tbody tr.our-selected td:not(:first-child){
+  border:1px solid rgba(255,255,255,.18)!important;
+  box-shadow:none!important;
+}
+
+/* Seule la cellule NOM du joueur sélectionné reçoit un repère */
+#matchDetail .match-roster-table tbody tr.defense-selected td:first-child,
+#matchDetail .match-roster-table tbody tr.our-selected td:first-child{
+  border:2px solid #2f9eea!important;
+  box-shadow:0 0 0 1px rgba(47,158,234,.12)!important;
+}
+
+/* Aucun cadre interne dans la cellule nom */
+#matchDetail .match-roster-table tbody tr.defense-selected td:first-child > *,
+#matchDetail .match-roster-table tbody tr.our-selected td:first-child > *{
+  border:0!important;
+  outline:none!important;
+  box-shadow:none!important;
+}
+
+/* La petite pastille de rang reste visible, mais sobre */
+#matchDetail .match-roster-table .choice-number,
+#matchDetail .match-roster-table .defense-number,
+#matchDetail .match-roster-table .pick-number{
+  border:1px solid rgba(255,255,255,.85)!important;
+  box-shadow:none!important;
+}
+
+/* Supprime tout pseudo-contour bleu historique */
+#matchDetail .match-roster-table tbody tr.defense-selected::before,
+#matchDetail .match-roster-table tbody tr.defense-selected::after,
+#matchDetail .match-roster-table tbody tr.our-selected::before,
+#matchDetail .match-roster-table tbody tr.our-selected::after,
+#matchDetail .match-roster-table tbody td.defense-selected::before,
+#matchDetail .match-roster-table tbody td.defense-selected::after,
+#matchDetail .match-roster-table tbody td.our-selected::before,
+#matchDetail .match-roster-table tbody td.our-selected::after{
+  display:none!important;
+  content:none!important;
+}
+
+
+/* ============================================================
+   V142 — Défense : UNE surbrillance bleue sur toute la ligne
+   Aucun contour bleu.
+   ============================================================ */
+
+/* Neutralisation complète des contours de sélection */
+#matchDetail .match-roster-table tbody tr.defense-selected td,
+#matchDetail .match-roster-table tbody tr.our-selected td,
+#matchDetail .match-roster-table tbody td.defense-selected,
+#matchDetail .match-roster-table tbody td.our-selected,
+#matchDetail .match-roster-table tbody tr.defense-selected td:first-child,
+#matchDetail .match-roster-table tbody tr.our-selected td:first-child{
+  outline:none!important;
+  box-shadow:none!important;
+  border-color:rgba(255,255,255,.18)!important;
+}
+
+/* Surbrillance bleue uniforme superposée à toute la ligne */
+#matchDetail .match-roster-table tbody tr.defense-selected td,
+#matchDetail .match-roster-table tbody tr.our-selected td{
+  position:relative!important;
+}
+
+#matchDetail .match-roster-table tbody tr.defense-selected td::after,
+#matchDetail .match-roster-table tbody tr.our-selected td::after{
+  content:""!important;
+  display:block!important;
+  position:absolute!important;
+  inset:0!important;
+  z-index:5!important;
+  pointer-events:none!important;
+  background:rgba(47,158,234,.20)!important;
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+  border-radius:5px!important;
+}
+
+/* Le contenu et les pastilles restent lisibles au-dessus */
+#matchDetail .match-roster-table tbody tr.defense-selected td > *,
+#matchDetail .match-roster-table tbody tr.our-selected td > *{
+  position:relative!important;
+  z-index:6!important;
+}
+
+/* Aucun contour supplémentaire sur les éléments internes */
+#matchDetail .match-roster-table tbody tr.defense-selected td > *,
+#matchDetail .match-roster-table tbody tr.our-selected td > *,
+#matchDetail .match-roster-table .choice-number,
+#matchDetail .match-roster-table .defense-number,
+#matchDetail .match-roster-table .pick-number{
+  outline:none!important;
+  box-shadow:none!important;
+}
+
+/* La pastille conserve seulement son propre cercle neutre */
+#matchDetail .match-roster-table .choice-number,
+#matchDetail .match-roster-table .defense-number,
+#matchDetail .match-roster-table .pick-number{
+  border:1px solid rgba(255,255,255,.80)!important;
+}
+
+
+/* ============================================================
+   V143 — correction définitive sélection défense
+   ============================================================ */
+
+/* ANCIENNE V102 : on neutralise exactement les bordures bleues
+   appliquées via :has(.selected-our-defender). */
+#matchDetail .match-roster-table tr:has(.match-player-name.selected-our-defender) > td::before{
+  display:none!important;
+  content:none!important;
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+}
+
+#matchDetail .match-roster-table tr:has(.match-player-name.selected-our-defender) > td:first-child::before,
+#matchDetail .match-roster-table tr:has(.match-player-name.selected-our-defender) > td:last-child::before{
+  display:none!important;
+  content:none!important;
+  border:0!important;
+}
+
+/* Aucun contour sur le nom du défenseur sélectionné */
+#matchDetail .match-player-name.selected-our-defender{
+  outline:none!important;
+  box-shadow:none!important;
+  border:0!important;
+  background:transparent!important;
+  color:inherit!important;
+}
+
+/* Aucun contour bleu hérité sur les cellules de la ligne */
+#matchDetail .match-roster-table tr:has(.match-player-name.selected-our-defender) > td{
+  outline:none!important;
+  box-shadow:none!important;
+}
+
+/* Une seule information visuelle : voile bleu discret sur toute la ligne */
+#matchDetail .match-roster-table tr:has(.match-player-name.selected-our-defender) > td{
+  position:relative!important;
+}
+
+#matchDetail .match-roster-table tr:has(.match-player-name.selected-our-defender) > td::after{
+  content:""!important;
+  display:block!important;
+  position:absolute!important;
+  inset:0!important;
+  z-index:20!important;
+  pointer-events:none!important;
+  background:rgba(45,126,208,.16)!important;
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+  border-radius:5px!important;
+}
+
+/* Les badges importants restent au-dessus du voile */
+#matchDetail .our-def-rank,
+#matchDetail .selected-def-shield,
+#matchDetail .pairing-choice-badge,
+#matchDetail .paired-mark{
+  position:relative!important;
+  z-index:30!important;
+}
+
+/* ============================================================
+   Bandeau équipe adverse réduit à une seule action
+   ============================================================ */
+#matchDetail .match-team-strip.match-team-strip-compact{
+  min-height:0!important;
+  height:auto!important;
+  padding:0!important;
+  margin:0 0 5px!important;
+  background:transparent!important;
+  border:0!important;
+  border-left:0!important;
+  box-shadow:none!important;
+  display:flex!important;
+  justify-content:flex-end!important;
+  align-items:center!important;
+}
+
+#matchDetail .match-team-strip.match-team-strip-compact .btn{
+  height:28px!important;
+  min-height:28px!important;
+  padding:4px 10px!important;
+  margin:0!important;
+  background:rgba(16,22,29,.95)!important;
+  color:#fff!important;
+  border:1px solid rgba(238,232,216,.20)!important;
+  border-radius:7px!important;
+  box-shadow:0 3px 8px rgba(0,0,0,.20)!important;
+  font-size:9px!important;
+  font-weight:800!important;
+}
+
+
+/* ============================================================
+   V144 — Défense bleu électrique + équipe adverse dans le titre
+   ============================================================ */
+
+/* Défenseur sélectionné : voile bleu électrique plus franc */
+#matchDetail .match-roster-table tr:has(.match-player-name.selected-our-defender) > td::after{
+  background:rgba(0,153,255,.28)!important;
+  box-shadow:
+    inset 0 0 0 1px rgba(80,200,255,.35),
+    0 0 10px rgba(0,153,255,.16)!important;
+}
+
+/* Le nom du joueur sélectionné ressort légèrement plus */
+#matchDetail .match-roster-table tr:has(.match-player-name.selected-our-defender) .match-player-name{
+  color:#063d67!important;
+  font-weight:900!important;
+}
+
+/* Titre rencontre sur une seule ligne */
+#matchDetail .match-detail-title{
+  display:flex!important;
+  align-items:center!important;
+  gap:3px!important;
+  min-width:0!important;
+  flex-wrap:nowrap!important;
+}
+
+#matchTournamentTitle{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  font-size:20px!important;
+  font-weight:900!important;
+  white-space:nowrap!important;
+}
+
+#matchHeaderOpponentTeam{
+  color:#f0e6d0!important;
+  -webkit-text-fill-color:#f0e6d0!important;
+  font-size:14px!important;
+  font-weight:850!important;
+  white-space:nowrap!important;
+}
+
+#matchMeetingDateTitle{
+  color:#c9c2b4!important;
+  -webkit-text-fill-color:#c9c2b4!important;
+  font-size:13px!important;
+  font-weight:750!important;
+  white-space:nowrap!important;
+}
+
+/* Bouton Modifier équipe directement sur la ligne du titre */
+#matchDetail .match-header-edit-team{
+  height:26px!important;
+  min-height:26px!important;
+  padding:3px 8px!important;
+  margin-left:8px!important;
+  border-radius:6px!important;
+  background:rgba(16,22,29,.92)!important;
+  color:#fff!important;
+  border:1px solid rgba(238,232,216,.22)!important;
+  box-shadow:0 2px 7px rgba(0,0,0,.22)!important;
+  font-size:8px!important;
+  font-weight:800!important;
+  white-space:nowrap!important;
+}
+
+/* Ancien bandeau équipe adverse supprimé */
+#matchDetail .match-team-strip,
+#matchDetail .match-team-strip-compact{
+  display:none!important;
+}
+
+
+/* ============================================================
+   V145 — Titre totalement uniforme + suppression badge défense
+   ============================================================ */
+
+/* Toute la chaîne :
+   Ligue 3 · Rencontre 1 · Équipe adverse · Du ... au ...
+   utilise EXACTEMENT la même police, taille, graisse et couleur. */
+#matchDetail .match-detail-title{
+  display:flex!important;
+  align-items:baseline!important;
+  gap:0!important;
+  flex-wrap:nowrap!important;
+  min-width:0!important;
+}
+
+#matchTournamentTitle,
+#matchHeaderOpponentTeam,
+#matchMeetingDateTitle{
+  display:inline!important;
+  margin:0!important;
+  padding:0!important;
+
+  font-family:"Segoe UI",Inter,Arial,sans-serif!important;
+  font-size:20px!important;
+  font-weight:900!important;
+  line-height:1!important;
+  letter-spacing:-.025em!important;
+
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  opacity:1!important;
+  text-shadow:0 2px 7px rgba(0,0,0,.65)!important;
+
+  white-space:nowrap!important;
+}
+
+/* Un petit espace uniquement avant le bouton */
+#matchDetail .match-header-edit-team{
+  margin-left:10px!important;
+}
+
+/* ------------------------------------------------------------
+   Défense : suppression du petit cercle / badge sur le nom
+   du joueur sélectionné.
+   ------------------------------------------------------------ */
+#matchDetail .match-player-name.selected-our-defender .our-def-rank,
+#matchDetail .match-player-name.selected-our-defender .choice-number,
+#matchDetail .match-player-name.selected-our-defender .defense-number,
+#matchDetail .match-player-name.selected-our-defender .pick-number,
+#matchDetail .match-player-name.selected-our-defender .selected-def-shield{
+  display:none!important;
+}
+
+/* Au cas où ces éléments seraient frères et non enfants */
+#matchDetail tr:has(.match-player-name.selected-our-defender) .our-def-rank,
+#matchDetail tr:has(.match-player-name.selected-our-defender) .selected-def-shield{
+  display:none!important;
+}
+
+/* Le nom redevient propre, sans réserve d'espace à droite */
+#matchDetail .match-player-name.selected-our-defender{
+  padding-right:8px!important;
+}
+
+
+/* ============================================================
+   V146 — Défense simplifiée + étoile stable + charte adverse
+   ============================================================ */
+
+/* Défense : on ne montre plus les choix 2 et 3 */
+#matchDetail .our-def-rank.rank-2,
+#matchDetail .our-def-rank.rank-3{
+  display:none!important;
+}
+
+/* Le choix conseillé reste visible */
+#matchDetail .our-def-rank.rank-1{
+  display:flex!important;
+}
+
+/* ------------------------------------------------------------
+   Étoile de proposition : absolument positionnée, elle ne doit
+   JAMAIS modifier la taille ou décaler la cellule.
+   ------------------------------------------------------------ */
+#matchDetail .match-cell-wrap{
+  position:relative!important;
+}
+
+#matchDetail .pairing-choice-badge.best-for-us{
+  position:absolute!important;
+  top:3px!important;
+  left:3px!important;
+  right:auto!important;
+  bottom:auto!important;
+
+  width:20px!important;
+  min-width:20px!important;
+  max-width:20px!important;
+  height:20px!important;
+  min-height:20px!important;
+
+  margin:0!important;
+  padding:0!important;
+  box-sizing:border-box!important;
+
+  z-index:50!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+
+  border-radius:50%!important;
+  border:2px solid #fff!important;
+  background:#111820!important;
+  color:#ffd21f!important;
+
+  font-size:12px!important;
+  line-height:1!important;
+  font-weight:1000!important;
+
+  box-shadow:0 2px 6px rgba(0,0,0,.35)!important;
+  pointer-events:none!important;
+  transform:none!important;
+}
+
+/* La présence du badge ne doit plus provoquer de transform/scale */
+#matchDetail .match-cell-wrap.pairing-best-choice,
+#matchDetail .match-cell-wrap.pairing-best-choice .simple-match-cell{
+  transform:none!important;
+}
+
+/* ------------------------------------------------------------
+   Défenseur adverse sélectionné :
+   même charte graphite que le reste, accent rouge uniquement.
+   ------------------------------------------------------------ */
+#matchDetail .match-opponent-head.defender-focus{
+  background:
+    linear-gradient(180deg,rgba(30,36,44,.99),rgba(15,20,27,.99))!important;
+  color:#fff!important;
+
+  border:1px solid rgba(238,232,216,.18)!important;
+  border-left:4px solid #d94435!important;
+
+  outline:none!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.05),
+    0 4px 10px rgba(0,0,0,.28)!important;
+}
+
+#matchDetail .match-opponent-head.defender-focus b,
+#matchDetail .match-opponent-head.defender-focus .opp-name,
+#matchDetail .match-opponent-head.defender-focus small,
+#matchDetail .match-opponent-head.defender-focus .opp-army,
+#matchDetail .match-opponent-head.defender-focus .opp-fd{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+
+/* Plus aucun rose/rouge de fond hérité */
+#matchDetail .match-opponent-head.defender-focus::before,
+#matchDetail .match-opponent-head.defender-focus::after{
+  display:none!important;
+  content:none!important;
+}
+
+
+/* ============================================================
+   V147 — Colonne adverse surlignée en mode défense
+   + suppression totale du rose/rouge défense adverse
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1) MODE "QUI METTRE EN DÉFENSE ?"
+   Quand un adversaire est sélectionné/proposé, toute sa colonne
+   reçoit un voile bleu électrique discret.
+   ------------------------------------------------------------ */
+
+/* En-tête adversaire sélectionné en mode notre défense */
+#matchDetail .match-opponent-head.our-defense-offer,
+#matchDetail .match-opponent-head.our-defense-chosen,
+#matchDetail .match-opponent-head.our-defense-other{
+  background:
+    linear-gradient(180deg,rgba(22,36,50,.98),rgba(14,25,36,.98))!important;
+  color:#fff!important;
+  border:1px solid rgba(72,183,255,.55)!important;
+  outline:none!important;
+  box-shadow:
+    inset 0 0 0 1px rgba(0,153,255,.18),
+    0 0 12px rgba(0,153,255,.18)!important;
+}
+
+/* Le choisi recommandé peut être un peu plus lumineux, sans changer de couleur */
+#matchDetail .match-opponent-head.our-defense-chosen{
+  border-color:rgba(80,210,255,.90)!important;
+  box-shadow:
+    inset 0 0 0 1px rgba(80,210,255,.35),
+    0 0 14px rgba(0,153,255,.26)!important;
+}
+
+/* Texte blanc */
+#matchDetail .match-opponent-head.our-defense-offer *,
+#matchDetail .match-opponent-head.our-defense-chosen *,
+#matchDetail .match-opponent-head.our-defense-other *{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+
+/* Colonne sélectionnée : voile bleu sur chaque cellule de la colonne */
+#matchDetail .match-cell-wrap.defense-offer-cell,
+#matchDetail .match-cell-wrap.defense-chosen-cell,
+#matchDetail .match-cell-wrap.defense-other-cell{
+  position:relative!important;
+}
+
+#matchDetail .match-cell-wrap.defense-offer-cell::after,
+#matchDetail .match-cell-wrap.defense-chosen-cell::after,
+#matchDetail .match-cell-wrap.defense-other-cell::after{
+  content:""!important;
+  display:block!important;
+  position:absolute!important;
+  inset:0!important;
+  z-index:25!important;
+  pointer-events:none!important;
+  background:rgba(0,153,255,.16)!important;
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+  border-radius:5px!important;
+}
+
+/* La cellule recommandée reste un peu plus marquée */
+#matchDetail .match-cell-wrap.defense-chosen-cell::after{
+  background:rgba(0,153,255,.24)!important;
+}
+
+/* Supprime les anciens contours jaune/vert/gris des cellules en mode défense */
+#matchDetail .defense-offer-cell .simple-match-cell,
+#matchDetail .defense-chosen-cell .simple-match-cell,
+#matchDetail .defense-other-cell .simple-match-cell{
+  outline:none!important;
+  box-shadow:none!important;
+  transform:none!important;
+}
+
+/* ------------------------------------------------------------
+   2) DÉFENSEUR ADVERSE SÉLECTIONNÉ
+   Plus AUCUN fond rose/rouge.
+   ------------------------------------------------------------ */
+#matchDetail .match-opponent-head.defender-focus{
+  background:
+    linear-gradient(180deg,rgba(31,37,45,.99),rgba(17,22,29,.99))!important;
+  color:#fff!important;
+  border:1px solid rgba(238,232,216,.18)!important;
+  border-bottom:1px solid rgba(238,232,216,.18)!important;
+  border-left:1px solid rgba(238,232,216,.18)!important;
+  outline:none!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.05),
+    0 4px 10px rgba(0,0,0,.27)!important;
+}
+
+/* On signale seulement la sélection par un léger halo ivoire */
+#matchDetail .match-opponent-head.defender-focus{
+  box-shadow:
+    inset 0 0 0 1px rgba(238,232,216,.28),
+    0 4px 10px rgba(0,0,0,.27)!important;
+}
+
+/* Aucun pseudo-élément coloré */
+#matchDetail .match-opponent-head.defender-focus::before,
+#matchDetail .match-opponent-head.defender-focus::after{
+  display:none!important;
+  content:none!important;
+}
+
+/* Texte toujours blanc */
+#matchDetail .match-opponent-head.defender-focus,
+#matchDetail .match-opponent-head.defender-focus *{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+
+/* Neutralise les anciennes règles rouge/rose plus anciennes */
+#matchDetail .match-opponent-head.defender-focus,
+#matchDetail .match-opponent-head.defender-focus:hover{
+  background-color:rgba(17,22,29,.99)!important;
+}
+
+
+/* ============================================================
+   V148 — correction structurelle du mode défense
+   ============================================================ */
+
+/* A. Colonne adverse réellement sélectionnée en mode défense */
+#matchDetail td.match-cell-wrap.our-defense-column-selected{
+  position:relative!important;
+}
+
+/* Voile bleu électrique sur TOUTES les cellules de la colonne */
+#matchDetail td.match-cell-wrap.our-defense-column-selected::after{
+  content:""!important;
+  display:block!important;
+  position:absolute!important;
+  inset:1px!important;
+  z-index:30!important;
+  pointer-events:none!important;
+  background:rgba(0,145,255,.26)!important;
+  border:1px solid rgba(60,195,255,.42)!important;
+  border-radius:5px!important;
+  box-shadow:inset 0 0 9px rgba(0,145,255,.16)!important;
+}
+
+/* Les couleurs originales restent visibles sous le voile */
+#matchDetail td.match-cell-wrap.our-defense-column-selected .simple-match-cell{
+  opacity:1!important;
+  transform:none!important;
+}
+
+/* En-tête de la colonne choisie : bleu électrique, charte sombre */
+#matchDetail th.match-opponent-head.our-defense-offer,
+#matchDetail th.match-opponent-head.our-defense-chosen,
+#matchDetail th.match-opponent-head.our-defense-other{
+  background:linear-gradient(180deg,#183248,#101d29)!important;
+  border:1px solid rgba(55,190,255,.70)!important;
+  outline:none!important;
+  box-shadow:inset 0 0 0 1px rgba(0,153,255,.22),0 0 12px rgba(0,153,255,.20)!important;
+}
+#matchDetail th.match-opponent-head.our-defense-offer .opp-header-button,
+#matchDetail th.match-opponent-head.our-defense-chosen .opp-header-button,
+#matchDetail th.match-opponent-head.our-defense-other .opp-header-button{
+  background:transparent!important;
+  color:#fff!important;
+  outline:none!important;
+  box-shadow:none!important;
+}
+
+/* B. Défenseur adverse sélectionné par appui long :
+      graphite + accent ivoire, ZERO rose / rouge. */
+#matchDetail th.match-opponent-head.defender-focus{
+  background:linear-gradient(180deg,#242b34,#141a21)!important;
+  border:1px solid rgba(238,232,216,.48)!important;
+  outline:none!important;
+  box-shadow:inset 0 0 0 1px rgba(238,232,216,.18),0 0 10px rgba(0,0,0,.28)!important;
+}
+#matchDetail th.match-opponent-head.defender-focus .opp-header-button{
+  background:transparent!important;
+  color:#fff!important;
+  outline:none!important;
+  box-shadow:none!important;
+}
+#matchDetail th.match-opponent-head.defender-focus,
+#matchDetail th.match-opponent-head.defender-focus *,
+#matchDetail th.match-opponent-head.defender-focus .opp-header-button *{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+
+/* Neutralise les anciens états rose/rouge y compris leurs pseudos */
+#matchDetail th.match-opponent-head.defender-focus::before,
+#matchDetail th.match-opponent-head.defender-focus::after,
+#matchDetail th.match-opponent-head.defender-focus .opp-header-button::before,
+#matchDetail th.match-opponent-head.defender-focus .opp-header-button::after{
+  display:none!important;
+  content:none!important;
+}
+
+/* C. Un seul badge de classement défense */
+#matchDetail .our-def-rank.rank-2,
+#matchDetail .our-def-rank.rank-3,
+#matchDetail .selected-def-shield{
+  display:none!important;
+}
+
+
+/* ============================================================
+   V149 — Défense : contour bleu électrique de colonne, sans voile
+   ============================================================ */
+
+/* Supprime totalement le voile bleu de la V148 */
+#matchDetail td.match-cell-wrap.our-defense-column-selected::after{
+  display:none!important;
+  content:none!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+
+/* Les cellules gardent leur couleur d'origine */
+#matchDetail td.match-cell-wrap.our-defense-column-selected .simple-match-cell{
+  opacity:1!important;
+  filter:none!important;
+  transform:none!important;
+}
+
+/* Colonne sélectionnée : contour continu bleu électrique
+   - haut sur l'en-tête
+   - côtés sur toutes les cellules
+   - bas sur la dernière cellule */
+#matchDetail th.match-opponent-head.our-defense-offer,
+#matchDetail th.match-opponent-head.our-defense-chosen,
+#matchDetail th.match-opponent-head.our-defense-other{
+  background:linear-gradient(180deg,rgba(31,37,45,.99),rgba(17,22,29,.99))!important;
+  border-top:3px solid #00a8ff!important;
+  border-left:3px solid #00a8ff!important;
+  border-right:3px solid #00a8ff!important;
+  border-bottom:1px solid rgba(238,232,216,.18)!important;
+  outline:none!important;
+  box-shadow:0 0 10px rgba(0,168,255,.22)!important;
+}
+
+/* Toutes les cellules de la colonne : uniquement les côtés bleus */
+#matchDetail td.match-cell-wrap.our-defense-column-selected{
+  border-left:3px solid #00a8ff!important;
+  border-right:3px solid #00a8ff!important;
+  border-top:0!important;
+  border-bottom:0!important;
+  outline:none!important;
+  box-shadow:none!important;
+  background:transparent!important;
+}
+
+/* Ferme le contour en bas sur la dernière ligne */
+#matchDetail .match-roster-table tbody tr:last-child td.match-cell-wrap.our-defense-column-selected{
+  border-bottom:3px solid #00a8ff!important;
+  border-radius:0 0 6px 6px!important;
+}
+
+/* Premier élément du contour : arrondis en haut */
+#matchDetail th.match-opponent-head.our-defense-offer,
+#matchDetail th.match-opponent-head.our-defense-chosen,
+#matchDetail th.match-opponent-head.our-defense-other{
+  border-radius:7px 7px 0 0!important;
+}
+
+/* Plus aucun fond bleu sur l'en-tête, juste le contour */
+#matchDetail th.match-opponent-head.our-defense-offer *,
+#matchDetail th.match-opponent-head.our-defense-chosen *,
+#matchDetail th.match-opponent-head.our-defense-other *{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+
+
+/* ============================================================
+   V150 — Cadres continus sur toute la colonne
+   Bleu = notre défense / Orange = défense adverse
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   NOTRE DÉFENSE : BLEU ÉLECTRIQUE
+   Le cadre englobe l'en-tête + toutes les cases de la colonne.
+   ------------------------------------------------------------ */
+
+/* En-tête : haut + côtés */
+#matchDetail th.match-opponent-head.our-defense-offer,
+#matchDetail th.match-opponent-head.our-defense-chosen,
+#matchDetail th.match-opponent-head.our-defense-other{
+  background:linear-gradient(180deg,rgba(31,37,45,.99),rgba(17,22,29,.99))!important;
+
+  border-top:3px solid #00a8ff!important;
+  border-left:3px solid #00a8ff!important;
+  border-right:3px solid #00a8ff!important;
+  border-bottom:0!important;
+
+  outline:none!important;
+  box-shadow:
+    0 -1px 0 rgba(0,168,255,.18),
+    0 0 10px rgba(0,168,255,.18)!important;
+
+  border-radius:8px 8px 0 0!important;
+}
+
+/* Cellules : côtés uniquement */
+#matchDetail td.match-cell-wrap.our-defense-column-selected{
+  border-left:3px solid #00a8ff!important;
+  border-right:3px solid #00a8ff!important;
+  border-top:0!important;
+  border-bottom:0!important;
+  outline:none!important;
+  box-shadow:none!important;
+  background:transparent!important;
+}
+
+/* Dernière cellule : ferme le cadre */
+#matchDetail .match-roster-table tbody tr:last-child td.match-cell-wrap.our-defense-column-selected{
+  border-bottom:3px solid #00a8ff!important;
+  border-radius:0 0 7px 7px!important;
+}
+
+/* ------------------------------------------------------------
+   DÉFENSE ADVERSE : ORANGE
+   Même principe que le bleu, mais appliqué à defender-focus.
+   ------------------------------------------------------------ */
+
+/* On marque la colonne du défenseur adverse sélectionné */
+#matchDetail th.match-opponent-head.defender-focus{
+  background:linear-gradient(180deg,rgba(31,37,45,.99),rgba(17,22,29,.99))!important;
+
+  border-top:3px solid #f2a43a!important;
+  border-left:3px solid #f2a43a!important;
+  border-right:3px solid #f2a43a!important;
+  border-bottom:0!important;
+
+  outline:none!important;
+  box-shadow:
+    0 -1px 0 rgba(242,164,58,.18),
+    0 0 10px rgba(242,164,58,.20)!important;
+
+  border-radius:8px 8px 0 0!important;
+}
+
+/* Les cellules de la colonne du défenseur adverse sélectionné */
+#matchDetail td.match-cell-wrap.enemy-defense-column-selected{
+  border-left:3px solid #f2a43a!important;
+  border-right:3px solid #f2a43a!important;
+  border-top:0!important;
+  border-bottom:0!important;
+  outline:none!important;
+  box-shadow:none!important;
+  background:transparent!important;
+}
+
+#matchDetail .match-roster-table tbody tr:last-child td.match-cell-wrap.enemy-defense-column-selected{
+  border-bottom:3px solid #f2a43a!important;
+  border-radius:0 0 7px 7px!important;
+}
+
+/* Texte blanc dans les 2 types d'en-tête */
+#matchDetail th.match-opponent-head.our-defense-offer *,
+#matchDetail th.match-opponent-head.our-defense-chosen *,
+#matchDetail th.match-opponent-head.our-defense-other *,
+#matchDetail th.match-opponent-head.defender-focus *{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+
+
+/* ============================================================
+   V151 — Le contour englobe RÉELLEMENT le titre de colonne
+   ============================================================ */
+
+/* BLEU : notre défense.
+   On dessine le contour SUR le TH lui-même, au-dessus de tous les styles. */
+#matchDetail th.match-opponent-head.our-defense-offer,
+#matchDetail th.match-opponent-head.our-defense-chosen,
+#matchDetail th.match-opponent-head.our-defense-other{
+  position:relative!important;
+  border:0!important;
+  border-radius:8px 8px 0 0!important;
+  overflow:visible!important;
+  box-shadow:none!important;
+}
+
+#matchDetail th.match-opponent-head.our-defense-offer::after,
+#matchDetail th.match-opponent-head.our-defense-chosen::after,
+#matchDetail th.match-opponent-head.our-defense-other::after{
+  content:""!important;
+  display:block!important;
+  position:absolute!important;
+  z-index:999!important;
+  pointer-events:none!important;
+  top:-3px!important;
+  left:-3px!important;
+  right:-3px!important;
+  bottom:-1px!important;
+  border-top:3px solid #00a8ff!important;
+  border-left:3px solid #00a8ff!important;
+  border-right:3px solid #00a8ff!important;
+  border-bottom:0!important;
+  border-radius:9px 9px 0 0!important;
+  background:transparent!important;
+  box-shadow:0 0 9px rgba(0,168,255,.32)!important;
+}
+
+/* ORANGE : défense adverse sélectionnée.
+   Exactement le même principe directement sur le titre. */
+#matchDetail th.match-opponent-head.defender-focus{
+  position:relative!important;
+  border:0!important;
+  border-radius:8px 8px 0 0!important;
+  overflow:visible!important;
+  box-shadow:none!important;
+}
+
+#matchDetail th.match-opponent-head.defender-focus::after{
+  content:""!important;
+  display:block!important;
+  position:absolute!important;
+  z-index:1000!important;
+  pointer-events:none!important;
+  top:-3px!important;
+  left:-3px!important;
+  right:-3px!important;
+  bottom:-1px!important;
+  border-top:3px solid #f2a43a!important;
+  border-left:3px solid #f2a43a!important;
+  border-right:3px solid #f2a43a!important;
+  border-bottom:0!important;
+  border-radius:9px 9px 0 0!important;
+  background:transparent!important;
+  box-shadow:0 0 9px rgba(242,164,58,.30)!important;
+}
+
+/* Le contenu du titre reste au-dessus et ne reçoit aucun autre cadre */
+#matchDetail th.match-opponent-head.our-defense-offer .opp-header-button,
+#matchDetail th.match-opponent-head.our-defense-chosen .opp-header-button,
+#matchDetail th.match-opponent-head.our-defense-other .opp-header-button,
+#matchDetail th.match-opponent-head.defender-focus .opp-header-button{
+  position:relative!important;
+  z-index:2!important;
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+  background:transparent!important;
+}
+
+/* Corps BLEU : continuité avec le cadre du titre */
+#matchDetail td.match-cell-wrap.our-defense-column-selected{
+  border-left:3px solid #00a8ff!important;
+  border-right:3px solid #00a8ff!important;
+}
+
+/* Corps ORANGE : continuité avec le cadre du titre */
+#matchDetail td.match-cell-wrap.enemy-defense-column-selected{
+  border-left:3px solid #f2a43a!important;
+  border-right:3px solid #f2a43a!important;
+}
+
+/* Fermeture en bas */
+#matchDetail .match-roster-table tbody tr:last-child td.match-cell-wrap.our-defense-column-selected{
+  border-bottom:3px solid #00a8ff!important;
+}
+#matchDetail .match-roster-table tbody tr:last-child td.match-cell-wrap.enemy-defense-column-selected{
+  border-bottom:3px solid #f2a43a!important;
+}
+
+
+/* ============================================================
+   V152 — Défense adverse : cadre orange aligné SANS déplacer le titre
+   ============================================================ */
+
+/* TITRE défense adverse :
+   on conserve strictement la mise en forme normale du header. */
+#matchDetail th.match-opponent-head.defender-focus{
+  position:relative!important;
+  box-sizing:border-box!important;
+
+  /* Style initial du titre */
+  background:linear-gradient(
+    180deg,
+    rgba(31,37,45,.98) 0%,
+    rgba(17,22,29,.98) 100%
+  )!important;
+  color:#f4f1e8!important;
+
+  /* Bordure normale de la charte : elle ne change plus de taille */
+  border:1px solid rgba(238,232,216,.18)!important;
+  border-radius:8px!important;
+  outline:none!important;
+
+  /* Cadre ORANGE dessiné à l'intérieur :
+     aucune incidence sur la largeur ou l'alignement. */
+  box-shadow:
+    inset 3px 0 0 #f2a43a,
+    inset -3px 0 0 #f2a43a,
+    inset 0 3px 0 #f2a43a,
+    0 4px 10px rgba(0,0,0,.27)!important;
+
+  overflow:hidden!important;
+}
+
+/* On supprime l'ancien pseudo-cadre V151 qui dépassait du TH. */
+#matchDetail th.match-opponent-head.defender-focus::before,
+#matchDetail th.match-opponent-head.defender-focus::after{
+  display:none!important;
+  content:none!important;
+}
+
+/* Le bouton interne garde exactement la présentation d'origine. */
+#matchDetail th.match-opponent-head.defender-focus .opp-header-button{
+  position:relative!important;
+  z-index:2!important;
+  width:100%!important;
+  height:100%!important;
+  margin:0!important;
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+  background:transparent!important;
+}
+
+/* Texte identique aux autres titres adverses. */
+#matchDetail th.match-opponent-head.defender-focus,
+#matchDetail th.match-opponent-head.defender-focus *,
+#matchDetail th.match-opponent-head.defender-focus .opp-header-button *{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+
+/* COLONNE orange :
+   on remplace les vraies bordures (qui modifient la géométrie)
+   par des traits intérieurs. */
+#matchDetail td.match-cell-wrap.enemy-defense-column-selected{
+  box-sizing:border-box!important;
+  border-left:0!important;
+  border-right:0!important;
+  border-top:0!important;
+  border-bottom:0!important;
+  outline:none!important;
+
+  box-shadow:
+    inset 3px 0 0 #f2a43a,
+    inset -3px 0 0 #f2a43a!important;
+
+  background:transparent!important;
+}
+
+/* Fermeture du cadre orange sous la dernière case. */
+#matchDetail .match-roster-table tbody tr:last-child
+td.match-cell-wrap.enemy-defense-column-selected{
+  box-shadow:
+    inset 3px 0 0 #f2a43a,
+    inset -3px 0 0 #f2a43a,
+    inset 0 -3px 0 #f2a43a!important;
+  border-radius:0 0 7px 7px!important;
+}
+
+/* Les couleurs des matchups restent intactes. */
+#matchDetail td.match-cell-wrap.enemy-defense-column-selected .simple-match-cell{
+  opacity:1!important;
+  filter:none!important;
+  transform:none!important;
+}
+
+/* Important : les propositions jaune/étoile restent au-dessus du cadre. */
+#matchDetail td.match-cell-wrap.enemy-defense-column-selected .pairing-choice-badge{
+  z-index:80!important;
+}
+
+
+/* ============================================================
+   V153 — SUPPRESSION DÉFINITIVE DU FOND ROUGE/ROSE
+   défense adverse : titre NORMAL + contour orange uniquement
+   ============================================================ */
+
+/* Le titre sélectionné garde STRICTEMENT le même fond que les autres titres */
+#matchDetail th.match-opponent-head.defender-focus,
+#matchDetail th.match-opponent-head.defender-focus:hover,
+#matchDetail th.match-opponent-head.defender-focus:focus,
+#matchDetail th.match-opponent-head.defender-focus:active{
+  background:linear-gradient(180deg,#1f252d 0%,#11161d 100%)!important;
+  background-color:#171c23!important;
+  color:#fff!important;
+  border:1px solid rgba(238,232,216,.18)!important;
+  outline:none!important;
+  filter:none!important;
+
+  /* UNIQUEMENT le contour orange, aucun remplissage */
+  box-shadow:
+    inset 3px 0 0 #f2a43a,
+    inset -3px 0 0 #f2a43a,
+    inset 0 3px 0 #f2a43a,
+    0 4px 10px rgba(0,0,0,.27)!important;
+}
+
+/* Neutralisation explicite de tous les fonds hérités du bouton interne */
+#matchDetail th.match-opponent-head.defender-focus .opp-header-button,
+#matchDetail th.match-opponent-head.defender-focus .opp-header-button:hover,
+#matchDetail th.match-opponent-head.defender-focus .opp-header-button:focus,
+#matchDetail th.match-opponent-head.defender-focus .opp-header-button:active{
+  background:transparent!important;
+  background-color:transparent!important;
+  background-image:none!important;
+  color:#fff!important;
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+  filter:none!important;
+}
+
+/* Neutralisation de tout pseudo-élément rose/rouge */
+#matchDetail th.match-opponent-head.defender-focus::before,
+#matchDetail th.match-opponent-head.defender-focus::after,
+#matchDetail th.match-opponent-head.defender-focus .opp-header-button::before,
+#matchDetail th.match-opponent-head.defender-focus .opp-header-button::after{
+  content:none!important;
+  display:none!important;
+  background:none!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+
+/* Texte identique aux autres titres */
+#matchDetail th.match-opponent-head.defender-focus *,
+#matchDetail th.match-opponent-head.defender-focus .opp-header-button *{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  text-shadow:none!important;
+}
+
+
+/* ============================================================
+   V154 — défense adverse : nouvelle classe propre
+   On n'utilise PLUS .defender-focus, donc aucun ancien style rouge.
+   ============================================================ */
+
+#matchDetail th.match-opponent-head.enemy-defense-focus-clean{
+  position:relative!important;
+  box-sizing:border-box!important;
+  overflow:hidden!important;
+
+  /* EXACTEMENT le style normal des autres titres */
+  background:linear-gradient(180deg,#1f252d 0%,#11161d 100%)!important;
+  background-color:#171c23!important;
+  color:#fff!important;
+
+  border:1px solid rgba(238,232,216,.18)!important;
+  border-radius:8px!important;
+  outline:none!important;
+  filter:none!important;
+
+  /* Seulement le contour orange intérieur */
+  box-shadow:
+    inset 3px 0 0 #f2a43a,
+    inset -3px 0 0 #f2a43a,
+    inset 0 3px 0 #f2a43a,
+    0 4px 10px rgba(0,0,0,.27)!important;
+}
+
+/* Bouton interne totalement neutre */
+#matchDetail th.match-opponent-head.enemy-defense-focus-clean .opp-header-button,
+#matchDetail th.match-opponent-head.enemy-defense-focus-clean .opp-header-button:hover,
+#matchDetail th.match-opponent-head.enemy-defense-focus-clean .opp-header-button:focus,
+#matchDetail th.match-opponent-head.enemy-defense-focus-clean .opp-header-button:active{
+  width:100%!important;
+  height:100%!important;
+  margin:0!important;
+  padding:2px 4px 12px!important;
+
+  background:transparent!important;
+  background-color:transparent!important;
+  background-image:none!important;
+
+  color:#fff!important;
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+  filter:none!important;
+}
+
+/* Aucun pseudo-élément parasite */
+#matchDetail th.match-opponent-head.enemy-defense-focus-clean::before,
+#matchDetail th.match-opponent-head.enemy-defense-focus-clean::after,
+#matchDetail th.match-opponent-head.enemy-defense-focus-clean .opp-header-button::before,
+#matchDetail th.match-opponent-head.enemy-defense-focus-clean .opp-header-button::after{
+  content:none!important;
+  display:none!important;
+}
+
+/* Texte strictement identique aux autres adversaires */
+#matchDetail th.match-opponent-head.enemy-defense-focus-clean *,
+#matchDetail th.match-opponent-head.enemy-defense-focus-clean .opp-header-button *{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+
+/* La colonne orange reste pilotée par la classe déjà ajoutée aux cellules */
+#matchDetail td.match-cell-wrap.enemy-defense-column-selected{
+  border:0!important;
+  outline:0!important;
+  background:transparent!important;
+  box-shadow:
+    inset 3px 0 0 #f2a43a,
+    inset -3px 0 0 #f2a43a!important;
+}
+
+#matchDetail .match-roster-table tbody tr:last-child
+td.match-cell-wrap.enemy-defense-column-selected{
+  box-shadow:
+    inset 3px 0 0 #f2a43a,
+    inset -3px 0 0 #f2a43a,
+    inset 0 -3px 0 #f2a43a!important;
+}
+
+
+/* ============================================================
+   V155 — contour orange visible sur le TITRE de colonne adverse
+   ============================================================ */
+
+/* Le cadre orange est dessiné par-dessus le TH avec un pseudo-élément
+   qui ne modifie pas la géométrie du tableau. */
+#matchDetail th.match-opponent-head.enemy-defense-focus-clean{
+  position:relative!important;
+  overflow:visible!important;
+  z-index:5!important;
+  background:linear-gradient(180deg,#1f252d 0%,#11161d 100%)!important;
+  border:1px solid rgba(238,232,216,.18)!important;
+  box-shadow:0 4px 10px rgba(0,0,0,.27)!important;
+}
+
+#matchDetail th.match-opponent-head.enemy-defense-focus-clean::after{
+  content:""!important;
+  display:block!important;
+  position:absolute!important;
+  pointer-events:none!important;
+  z-index:999!important;
+
+  inset:-2px!important;
+
+  border:3px solid #f2a43a!important;
+  border-bottom:0!important;
+  border-radius:9px 9px 0 0!important;
+
+  background:transparent!important;
+  box-shadow:0 0 10px rgba(242,164,58,.35)!important;
+}
+
+/* Le contenu reste au-dessus visuellement */
+#matchDetail th.match-opponent-head.enemy-defense-focus-clean .opp-header-button{
+  position:relative!important;
+  z-index:2!important;
+}
+
+/* Continuité verticale du cadre dans la colonne */
+#matchDetail td.match-cell-wrap.enemy-defense-column-selected{
+  box-shadow:
+    inset 3px 0 0 #f2a43a,
+    inset -3px 0 0 #f2a43a!important;
+}
+
+#matchDetail .match-roster-table tbody tr:last-child
+td.match-cell-wrap.enemy-defense-column-selected{
+  box-shadow:
+    inset 3px 0 0 #f2a43a,
+    inset -3px 0 0 #f2a43a,
+    inset 0 -3px 0 #f2a43a!important;
+}
+
+
+/* ============================================================
+   V156 — Objectif équipe / seuil de victoire
+   ============================================================ */
+#matchDetail .theory-total b,
+#matchDetail .delta-total b{
+  white-space:nowrap!important;
+}
+#matchDetail .delta-total small{
+  white-space:nowrap!important;
+}
+
+
+/* ============================================================
+   V159 — ROSTER HARMONISÉ AVEC LA GRILLE PAIRING
+   ============================================================ */
+
+/* Conteneur roster : même traitement que la grille matchup */
+#roster .table-wrap{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  overflow:visible!important;
+}
+
+/* Tableau : même espacement visuel */
+#roster .roster-table{
+  width:100%!important;
+  table-layout:fixed!important;
+  border-collapse:separate!important;
+  border-spacing:4px 4px!important;
+}
+
+/* -------------------- EN-TÊTES -------------------- */
+#roster .roster-table thead tr{
+  height:54px!important;
+}
+#roster .roster-table thead th{
+  position:relative!important;
+  height:54px!important;
+  min-height:54px!important;
+  max-height:54px!important;
+  box-sizing:border-box!important;
+  padding:8px 6px 6px!important;
+  vertical-align:middle!important;
+  text-align:center!important;
+  overflow:hidden!important;
+
+  background:linear-gradient(180deg,#1f252d 0%,#11161d 100%)!important;
+  color:#f4f1e8!important;
+
+  border:1px solid rgba(238,232,216,.18)!important;
+  border-radius:8px!important;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.05),
+    0 4px 10px rgba(0,0,0,.27)!important;
+
+  font-family:"Segoe UI",Inter,Arial,sans-serif!important;
+  font-size:9px!important;
+  font-weight:850!important;
+  letter-spacing:.055em!important;
+  text-transform:uppercase!important;
+  line-height:1!important;
+}
+
+/* Suppression des anciens accents/mises en forme du roster */
+#roster .roster-table thead th::before,
+#roster .roster-table thead th::after{
+  display:none!important;
+  content:none!important;
+}
+
+/* -------------------- COLONNES IDENTITÉ -------------------- */
+/* Nom / Armée / FD reprennent le fond clair du pairing */
+#roster .roster-table tbody td:nth-child(1),
+#roster .roster-table tbody td:nth-child(2),
+#roster .roster-table tbody td:nth-child(3){
+  background:rgba(239,235,224,.96)!important;
+  color:#20252b!important;
+  border:1px solid rgba(255,255,255,.44)!important;
+  border-radius:7px!important;
+  box-shadow:0 2px 6px rgba(0,0,0,.18)!important;
+}
+
+/* Champs identité intégrés au fond clair */
+#roster .roster-table tbody td:nth-child(1) input,
+#roster .roster-table tbody td:nth-child(2) input,
+#roster .roster-table tbody td:nth-child(3) select{
+  background:transparent!important;
+  color:#20252b!important;
+  border:0!important;
+  box-shadow:none!important;
+  outline:none!important;
+  font-weight:750!important;
+}
+
+/* Nom joueur plus marqué */
+#roster .roster-table tbody td:nth-child(1) input{
+  font-weight:850!important;
+  font-size:11px!important;
+}
+
+/* Bouton suppression intégré et plus discret */
+#roster .player-cell .danger{
+  background:rgba(217,68,53,.10)!important;
+  color:#a83c33!important;
+  border:1px solid rgba(217,68,53,.18)!important;
+  box-shadow:none!important;
+  border-radius:6px!important;
+}
+
+/* -------------------- CELLULES MATCHUP -------------------- */
+/* Même rendu que les cellules de la grille pairing */
+#roster .roster-table .color-cell{
+  border:1px solid rgba(255,255,255,.72)!important;
+  border-radius:6px!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.10),
+    0 3px 7px rgba(0,0,0,.22)!important;
+  overflow:hidden!important;
+}
+
+/* On neutralise tout contour spécifique historique du roster */
+#roster .roster-table .color-cell{
+  outline:none!important;
+}
+
+/* -------------------- LIGNES -------------------- */
+#roster .roster-table tbody td{
+  min-height:34px!important;
+  height:34px!important;
+  padding:2px 4px!important;
+  box-sizing:border-box!important;
+}
+
+/* Même densité que le pairing */
+#roster .roster-table tbody tr{
+  height:34px!important;
+}
+
+/* -------------------- ZONE ACTIONS / LÉGENDE -------------------- */
+#roster .roster-actions{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+
+#roster #legend{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+
+/* Les chips restent les seules zones très colorées */
+#roster #legend span{
+  border:1px solid rgba(255,255,255,.34)!important;
+  box-shadow:0 2px 6px rgba(0,0,0,.20)!important;
+  font-weight:800!important;
+}
+
+/* -------------------- TITRE ROSTER -------------------- */
+#roster .section-title,
+#roster h2{
+  color:#fff!important;
+  font-weight:900!important;
+  text-shadow:0 2px 7px rgba(0,0,0,.60)!important;
+}
+
+
+/* ============================================================
+   V160 — ROSTER : MÊME CHARTE ANTHRACITE QUE LE PAIRING
+   ============================================================ */
+
+/* Bloc global */
+#roster{
+  color:#f4f1e8!important;
+}
+#roster .roster-table-wrap{
+  padding:0!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  overflow:hidden!important;
+}
+
+/* Tableau sans espaces façon "cartes blanches" */
+#roster .roster-table{
+  width:100%!important;
+  border-collapse:separate!important;
+  border-spacing:3px!important;
+  table-layout:fixed!important;
+  background:transparent!important;
+}
+
+/* ===== TITRES : anthracite pairing ===== */
+#roster .roster-table thead th{
+  height:58px!important;
+  padding:7px 5px!important;
+  vertical-align:middle!important;
+
+  background:linear-gradient(180deg,#242b34 0%,#151b22 100%)!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+
+  border:1px solid rgba(238,232,216,.16)!important;
+  border-radius:7px!important;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.045),
+    0 3px 8px rgba(0,0,0,.28)!important;
+
+  font-family:"Segoe UI",Inter,Arial,sans-serif!important;
+  font-size:9px!important;
+  font-weight:850!important;
+  line-height:1.08!important;
+  letter-spacing:.02em!important;
+  text-transform:none!important;
+}
+
+/* ===== TOUTES LES CELLULES DU ROSTER EN ANTHRACITE ===== */
+#roster .roster-table tbody td,
+#roster .roster-table tbody td:nth-child(1),
+#roster .roster-table tbody td:nth-child(2),
+#roster .roster-table tbody td:nth-child(3){
+  height:42px!important;
+  padding:4px!important;
+
+  background:linear-gradient(180deg,#202730 0%,#171d24 100%)!important;
+  color:#f4f1e8!important;
+
+  border:1px solid rgba(238,232,216,.12)!important;
+  border-radius:6px!important;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.025),
+    0 2px 5px rgba(0,0,0,.22)!important;
+}
+
+/* ===== INPUTS : intégrés dans l'anthracite ===== */
+#roster .roster-table input,
+#roster .roster-table select,
+#roster .roster-table tbody td:nth-child(1) input,
+#roster .roster-table tbody td:nth-child(2) input,
+#roster .roster-table tbody td:nth-child(3) select{
+  width:100%!important;
+  height:30px!important;
+  min-height:30px!important;
+  padding:4px 7px!important;
+
+  background:#11171d!important;
+  color:#f4f1e8!important;
+  -webkit-text-fill-color:#f4f1e8!important;
+
+  border:1px solid rgba(238,232,216,.14)!important;
+  border-radius:5px!important;
+  outline:none!important;
+  box-shadow:inset 0 1px 3px rgba(0,0,0,.28)!important;
+
+  font-family:"Segoe UI",Inter,Arial,sans-serif!important;
+  font-size:10px!important;
+  font-weight:700!important;
+}
+
+/* focus discret rouge charte */
+#roster .roster-table input:focus,
+#roster .roster-table select:focus{
+  border-color:rgba(217,68,53,.72)!important;
+  box-shadow:
+    inset 0 1px 3px rgba(0,0,0,.28),
+    0 0 0 1px rgba(217,68,53,.16)!important;
+}
+
+/* Options lisibles */
+#roster .roster-table select option{
+  background:#171d24!important;
+  color:#f4f1e8!important;
+}
+
+/* Joueur légèrement plus fort visuellement */
+#roster .roster-table tbody td:first-child input{
+  font-weight:850!important;
+}
+
+/* ===== CASES MATCHUP ===== */
+#roster .roster-table tbody td:nth-child(n+4){
+  padding:3px!important;
+  background:linear-gradient(180deg,#202730 0%,#171d24 100%)!important;
+}
+
+#roster .roster-table .color-cell{
+  width:100%!important;
+  height:100%!important;
+  min-height:32px!important;
+
+  border:1px solid rgba(255,255,255,.58)!important;
+  border-radius:5px!important;
+  outline:none!important;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.10),
+    0 2px 5px rgba(0,0,0,.20)!important;
+}
+
+/* ===== BOUTON SUPPRIMER ===== */
+#roster .player-cell{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 29px!important;
+  gap:4px!important;
+  align-items:center!important;
+}
+#roster .player-cell .danger{
+  width:29px!important;
+  min-width:29px!important;
+  height:29px!important;
+  min-height:29px!important;
+  padding:0!important;
+
+  background:#151b22!important;
+  color:#d9d3c6!important;
+  border:1px solid rgba(238,232,216,.14)!important;
+  border-radius:5px!important;
+  box-shadow:none!important;
+
+  font-size:15px!important;
+  line-height:1!important;
+}
+#roster .player-cell .danger:hover{
+  background:#d94435!important;
+  color:#fff!important;
+  border-color:#d94435!important;
+}
+
+/* ===== LÉGENDE : intégrée dans la charte ===== */
+#roster > .panel{
+  padding:7px 9px!important;
+  margin-bottom:7px!important;
+
+  background:linear-gradient(180deg,#202730 0%,#171d24 100%)!important;
+  border:1px solid rgba(238,232,216,.12)!important;
+  border-radius:8px!important;
+  box-shadow:0 3px 9px rgba(0,0,0,.22)!important;
+}
+#roster #legend{
+  background:transparent!important;
+  border:0!important;
+  padding:0!important;
+  margin:0!important;
+}
+
+/* ===== ANALYSE CAPITAINE ===== */
+#roster .captain-analysis{
+  margin-top:10px!important;
+  background:linear-gradient(180deg,#202730 0%,#151b22 100%)!important;
+  border:1px solid rgba(238,232,216,.12)!important;
+  border-radius:9px!important;
+  box-shadow:0 4px 12px rgba(0,0,0,.25)!important;
+}
+#roster .captain-analysis h3,
+#roster .captain-analysis p{
+  color:#f4f1e8!important;
+}
+
+/* Titre page */
+#roster .section-title{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+#roster .sub{
+  color:#aeb5bd!important;
+}
+
+
+/* ============================================================
+   V161 — ROSTER = GRILLE PAIRING
+   Les classes du pairing sont désormais réellement réutilisées.
+   ============================================================ */
+
+/* Annule les précédentes tentatives visuelles spécifiques au roster */
+#roster .match-roster-table thead th{
+  background:linear-gradient(180deg,#1f252d 0%,#11161d 100%)!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  border:1px solid rgba(238,232,216,.18)!important;
+  border-radius:8px!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.055),
+    0 4px 10px rgba(0,0,0,.27)!important;
+  height:58px!important;
+  min-height:58px!important;
+  max-height:58px!important;
+  padding:8px 6px 6px!important;
+  font-size:9px!important;
+  font-weight:800!important;
+  text-transform:none!important;
+  letter-spacing:.02em!important;
+}
+
+#roster .match-roster-table tbody td{
+  height:35px!important;
+  padding:2px 4px!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+
+/* Exact même champ anthracite que les infos Joueur/Armée/FD du pairing */
+#roster .match-roster-field{
+  width:100%!important;
+  min-height:31px!important;
+  height:31px!important;
+  box-sizing:border-box!important;
+
+  display:flex!important;
+  align-items:center!important;
+
+  padding:3px 6px!important;
+  border-radius:6px!important;
+
+  background:rgba(239,235,224,.96)!important;
+  color:#20252b!important;
+  border:1px solid rgba(255,255,255,.44)!important;
+  box-shadow:0 2px 6px rgba(0,0,0,.18)!important;
+}
+
+/* Les champs restent éditables mais deviennent visuellement transparents */
+#roster .match-roster-field input,
+#roster .match-roster-field select{
+  width:100%!important;
+  height:25px!important;
+  min-height:25px!important;
+
+  padding:1px 3px!important;
+
+  background:transparent!important;
+  color:#20252b!important;
+  -webkit-text-fill-color:#20252b!important;
+
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+
+  font-size:10px!important;
+  font-weight:750!important;
+}
+
+#roster .match-roster-field select option{
+  background:#f0ece1!important;
+  color:#20252b!important;
+}
+
+/* Nom + bouton supprimer contenus dans le même champ */
+#roster .player-cell{
+  width:100%!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 24px!important;
+  gap:3px!important;
+  align-items:center!important;
+}
+
+#roster .player-cell .danger{
+  width:24px!important;
+  min-width:24px!important;
+  height:24px!important;
+  min-height:24px!important;
+  padding:0!important;
+
+  border-radius:5px!important;
+  background:transparent!important;
+  color:#8a3b34!important;
+  border:1px solid rgba(138,59,52,.22)!important;
+  box-shadow:none!important;
+}
+
+/* Matchups = exactement .simple-match-cell du pairing */
+#roster td.match-cell-wrap{
+  position:relative!important;
+  padding:2px 4px!important;
+  background:transparent!important;
+}
+
+#roster .simple-match-cell.color-cell{
+  width:100%!important;
+  height:31px!important;
+  min-height:31px!important;
+  margin:0!important;
+  border-radius:6px!important;
+
+  border:1px solid rgba(255,255,255,.72)!important;
+  outline:none!important;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.10),
+    0 3px 7px rgba(0,0,0,.22)!important;
+
+  transform:none!important;
+}
+
+/* Wrapper identique à la grille pairing */
+#roster .match-table-wrap{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  overflow:visible!important;
+}
+
+#roster .match-roster-table{
+  border-collapse:separate!important;
+  border-spacing:4px 4px!important;
+}
+
+
+/* ============================================================
+   V162 — Roster : UNE SEULE grille, aucun effet de superposition
+   ============================================================ */
+
+/* Une seule surface visuelle par cellule identité */
+#roster .match-roster-table tbody td.roster-identity-cell{
+  height:35px!important;
+  padding:3px 6px!important;
+  box-sizing:border-box!important;
+
+  background:rgba(239,235,224,.96)!important;
+  color:#20252b!important;
+
+  border:1px solid rgba(255,255,255,.44)!important;
+  border-radius:6px!important;
+  box-shadow:0 2px 6px rgba(0,0,0,.18)!important;
+}
+
+/* Suppression complète de l'ancienne "carte dans la cellule" */
+#roster .match-roster-field{
+  display:contents!important;
+  background:none!important;
+  border:0!important;
+  box-shadow:none!important;
+  padding:0!important;
+  margin:0!important;
+}
+
+/* Les contrôles sont directement intégrés à la cellule */
+#roster td.roster-identity-cell input,
+#roster td.roster-identity-cell select{
+  width:100%!important;
+  height:27px!important;
+  min-height:27px!important;
+  padding:2px 3px!important;
+  margin:0!important;
+
+  background:transparent!important;
+  color:#20252b!important;
+  -webkit-text-fill-color:#20252b!important;
+
+  border:0!important;
+  border-radius:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+
+  font-size:10px!important;
+  font-weight:750!important;
+}
+
+/* Nom + suppression sans créer de second rectangle */
+#roster td.roster-identity-cell .player-cell{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 22px!important;
+  gap:3px!important;
+  width:100%!important;
+  align-items:center!important;
+}
+
+#roster td.roster-identity-cell .player-cell .danger{
+  width:22px!important;
+  min-width:22px!important;
+  height:22px!important;
+  min-height:22px!important;
+  padding:0!important;
+  margin:0!important;
+  background:transparent!important;
+  color:#8a3b34!important;
+  border:0!important;
+  border-radius:4px!important;
+  box-shadow:none!important;
+}
+
+/* Matchups : le TD n'ajoute aucun cadre autour de la case colorée */
+#roster .match-roster-table tbody td.match-cell-wrap{
+  height:35px!important;
+  padding:2px!important;
+  background:transparent!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+}
+
+#roster .match-roster-table tbody td.match-cell-wrap .simple-match-cell{
+  height:31px!important;
+  min-height:31px!important;
+  margin:0!important;
+}
+
+/* Un seul système d'espacement : celui du tableau pairing */
+#roster .match-roster-table{
+  border-collapse:separate!important;
+  border-spacing:4px 4px!important;
+}
+
+
+/* ============================================================
+   V163 — ROSTER = EXACTEMENT LA GRILLE PAIRING
+   seules les colonnes adverses deviennent des Force Dispositions
+   ============================================================ */
+
+/* Même structure/espacement que pairing */
+#roster .match-roster-table{
+  width:100%!important;
+  table-layout:fixed!important;
+  border-collapse:separate!important;
+  border-spacing:4px 4px!important;
+  background:transparent!important;
+}
+
+#roster .match-roster-table thead tr{
+  height:58px!important;
+}
+
+/* 3 premiers titres IDENTIQUES au pairing */
+#roster .match-roster-table thead th:nth-child(-n+3){
+  height:58px!important;
+  min-height:58px!important;
+  max-height:58px!important;
+  padding:8px 6px 6px!important;
+
+  background:linear-gradient(180deg,#1f252d 0%,#11161d 100%)!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+
+  border:1px solid rgba(238,232,216,.18)!important;
+  border-radius:8px!important;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.055),
+    0 4px 10px rgba(0,0,0,.27)!important;
+
+  vertical-align:middle!important;
+  text-align:center!important;
+  font-size:9px!important;
+  font-weight:800!important;
+  letter-spacing:.02em!important;
+  text-transform:none!important;
+}
+
+/* Colonnes FD : exactement le même bloc que les titres adversaires */
+#roster .roster-fd-head{
+  position:relative!important;
+  height:58px!important;
+  min-height:58px!important;
+  max-height:58px!important;
+  padding:7px 5px 5px!important;
+
+  background:linear-gradient(180deg,#1f252d 0%,#11161d 100%)!important;
+  color:#fff!important;
+
+  border:1px solid rgba(238,232,216,.18)!important;
+  border-radius:8px!important;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.055),
+    0 4px 10px rgba(0,0,0,.27)!important;
+
+  vertical-align:middle!important;
+  text-align:center!important;
+  overflow:hidden!important;
+}
+
+#roster .roster-fd-head .opp-header-name{
+  display:block!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  font-size:8.5px!important;
+  line-height:1.05!important;
+  font-weight:850!important;
+  white-space:normal!important;
+  margin:0!important;
+}
+
+#roster .roster-fd-head .opp-header-fd{
+  display:block!important;
+  margin-top:3px!important;
+  color:#b7bec6!important;
+  -webkit-text-fill-color:#b7bec6!important;
+  font-size:6px!important;
+  line-height:1!important;
+  font-weight:700!important;
+}
+
+/* Aucune ancienne barre/ornement du roster */
+#roster .match-roster-table thead th::before,
+#roster .match-roster-table thead th::after{
+  display:none!important;
+  content:none!important;
+}
+
+/* Corps : mêmes cellules claires Joueur/Armée/FD que la grille pairing */
+#roster .match-roster-table tbody td.roster-identity-cell{
+  height:35px!important;
+  padding:3px 6px!important;
+
+  background:rgba(239,235,224,.96)!important;
+  color:#20252b!important;
+
+  border:1px solid rgba(255,255,255,.44)!important;
+  border-radius:6px!important;
+
+  box-shadow:0 2px 6px rgba(0,0,0,.18)!important;
+}
+
+/* Inputs invisibles : on a l'impression de lire la même grille */
+#roster td.roster-identity-cell input,
+#roster td.roster-identity-cell select{
+  width:100%!important;
+  height:27px!important;
+  min-height:27px!important;
+  padding:2px 3px!important;
+  margin:0!important;
+
+  background:transparent!important;
+  color:#20252b!important;
+  -webkit-text-fill-color:#20252b!important;
+
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+
+  font-size:10px!important;
+  font-weight:750!important;
+}
+
+/* Nom joueur = même poids que pairing */
+#roster td.roster-identity-cell:first-child input{
+  font-weight:850!important;
+}
+
+/* Matchups = mêmes dimensions/contours que pairing */
+#roster td.match-cell-wrap{
+  height:35px!important;
+  padding:2px!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+
+#roster td.match-cell-wrap .simple-match-cell{
+  width:100%!important;
+  height:31px!important;
+  min-height:31px!important;
+  margin:0!important;
+  border-radius:6px!important;
+
+  border:1px solid rgba(255,255,255,.72)!important;
+  outline:none!important;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.10),
+    0 3px 7px rgba(0,0,0,.22)!important;
+}
+
+/* Le bouton supprimer reste discret dans la cellule Joueur */
+#roster .player-cell{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 22px!important;
+  gap:3px!important;
+  align-items:center!important;
+  width:100%!important;
+}
+#roster .player-cell .danger{
+  width:22px!important;
+  min-width:22px!important;
+  height:22px!important;
+  min-height:22px!important;
+  padding:0!important;
+  margin:0!important;
+
+  background:transparent!important;
+  color:#8a3b34!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+
+/* Aucun fond de tableau secondaire */
+#roster .roster-table-wrap,
+#roster .match-table-wrap{
+  padding:0!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+
+/* Largeurs adaptées au roster :
+   3 colonnes identité + 5 FD */
+#roster .roster-table col:nth-child(1){width:14%!important}
+#roster .roster-table col:nth-child(2){width:14%!important}
+#roster .roster-table col:nth-child(3){width:16%!important}
+#roster .roster-table col:nth-child(n+4){width:11.2%!important}
+
+
+/* ============================================================
+   V164 — ROSTER = VISUEL STRICT DE LA GRILLE PAIRING
+   Correction des anciens styles qui restaient prioritaires.
+   ============================================================ */
+
+/* ---------- HEADERS : TOUS ANTHRACITE ---------- */
+#roster table.match-roster-table thead th,
+#roster table.match-roster-table thead th.match-opponent-head,
+#roster table.match-roster-table thead th.roster-fd-head,
+#roster table.match-roster-table thead th:nth-child(n){
+  background:linear-gradient(180deg,#1f252d 0%,#11161d 100%)!important;
+  background-color:#171c23!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+
+  border:1px solid rgba(238,232,216,.18)!important;
+  border-radius:8px!important;
+  outline:none!important;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.055),
+    0 4px 10px rgba(0,0,0,.27)!important;
+
+  height:58px!important;
+  min-height:58px!important;
+  max-height:58px!important;
+
+  padding:8px 6px!important;
+  vertical-align:middle!important;
+  text-align:center!important;
+
+  font-family:"Segoe UI",Inter,Arial,sans-serif!important;
+  font-size:9px!important;
+  font-weight:800!important;
+  line-height:1.05!important;
+}
+
+/* Supprime définitivement les anciens fonds verts/beiges sur les 5 FD */
+#roster table.match-roster-table thead th.roster-fd-head *,
+#roster table.match-roster-table thead th.match-opponent-head *{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  background:transparent!important;
+}
+
+/* Nom de FD */
+#roster .roster-fd-head .opp-header-name{
+  display:block!important;
+  font-size:8.5px!important;
+  font-weight:850!important;
+  line-height:1.05!important;
+  color:#fff!important;
+}
+
+/* Abréviation plus discrète */
+#roster .roster-fd-head .opp-header-fd{
+  display:block!important;
+  margin-top:3px!important;
+  font-size:6px!important;
+  font-weight:650!important;
+  color:#aeb5bd!important;
+  -webkit-text-fill-color:#aeb5bd!important;
+}
+
+/* Aucun pseudo décoratif */
+#roster table.match-roster-table thead th::before,
+#roster table.match-roster-table thead th::after{
+  display:none!important;
+  content:none!important;
+}
+
+
+/* ---------- JOUEUR / ARMÉE / FD : EXACT FOND CRÈME PAIRING ---------- */
+#roster table.match-roster-table tbody td.roster-identity-cell,
+#roster table.match-roster-table tbody td:nth-child(1),
+#roster table.match-roster-table tbody td:nth-child(2),
+#roster table.match-roster-table tbody td:nth-child(3){
+  height:35px!important;
+  padding:3px 7px!important;
+
+  background:rgba(239,235,224,.97)!important;
+  background-color:#efebe0!important;
+  color:#20252b!important;
+  -webkit-text-fill-color:#20252b!important;
+
+  border:1px solid rgba(255,255,255,.48)!important;
+  border-radius:6px!important;
+  outline:none!important;
+
+  box-shadow:0 2px 6px rgba(0,0,0,.18)!important;
+}
+
+
+/* Inputs/select deviennent INVISIBLES : la cellule est le visuel */
+#roster table.match-roster-table tbody td.roster-identity-cell input,
+#roster table.match-roster-table tbody td.roster-identity-cell select,
+#roster table.match-roster-table tbody td:nth-child(1) input,
+#roster table.match-roster-table tbody td:nth-child(2) input,
+#roster table.match-roster-table tbody td:nth-child(3) select{
+  display:block!important;
+  width:100%!important;
+  height:27px!important;
+  min-height:27px!important;
+
+  margin:0!important;
+  padding:2px 2px!important;
+
+  background:transparent!important;
+  background-color:transparent!important;
+  background-image:none!important;
+
+  color:#20252b!important;
+  -webkit-text-fill-color:#20252b!important;
+
+  border:0!important;
+  border-radius:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+
+  font-family:"Segoe UI",Inter,Arial,sans-serif!important;
+  font-size:10px!important;
+  font-weight:750!important;
+}
+
+/* Select : garde seulement la petite flèche native */
+#roster table.match-roster-table tbody td:nth-child(3) select{
+  cursor:pointer!important;
+}
+
+/* Options */
+#roster table.match-roster-table select option{
+  background:#efebe0!important;
+  color:#20252b!important;
+}
+
+/* Nom joueur plus fort */
+#roster table.match-roster-table tbody td:nth-child(1) input{
+  font-weight:850!important;
+}
+
+
+/* ---------- SUPPRESSION : PETIT X DISCRET, PAS UNE 2e CASE ---------- */
+#roster table.match-roster-table .player-cell{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 18px!important;
+  gap:2px!important;
+  align-items:center!important;
+  width:100%!important;
+}
+
+#roster table.match-roster-table .player-cell button.danger{
+  width:18px!important;
+  min-width:18px!important;
+  height:18px!important;
+  min-height:18px!important;
+
+  margin:0!important;
+  padding:0!important;
+
+  background:transparent!important;
+  color:#a84940!important;
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+
+  font-size:13px!important;
+  line-height:1!important;
+}
+
+
+/* ---------- MATCHUPS : EXACTEMENT COMME PAIRING ---------- */
+#roster table.match-roster-table tbody td.match-cell-wrap,
+#roster table.match-roster-table tbody td:nth-child(n+4){
+  height:35px!important;
+  padding:2px!important;
+
+  background:transparent!important;
+  background-color:transparent!important;
+
+  border:0!important;
+  border-radius:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+}
+
+#roster table.match-roster-table tbody td.match-cell-wrap .simple-match-cell,
+#roster table.match-roster-table tbody td.match-cell-wrap .color-cell{
+  display:block!important;
+  width:100%!important;
+  height:31px!important;
+  min-height:31px!important;
+
+  margin:0!important;
+  padding:0!important;
+
+  border:1px solid rgba(255,255,255,.72)!important;
+  border-radius:6px!important;
+  outline:none!important;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.10),
+    0 3px 7px rgba(0,0,0,.22)!important;
+
+  transform:none!important;
+}
+
+
+/* ---------- TABLEAU : MÊMES ESPACEMENTS QUE PAIRING ---------- */
+#roster .roster-table-wrap,
+#roster .match-table-wrap{
+  width:100%!important;
+  padding:0!important;
+  margin:0!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+
+#roster table.match-roster-table{
+  width:100%!important;
+  table-layout:fixed!important;
+  border-collapse:separate!important;
+  border-spacing:4px 4px!important;
+  background:transparent!important;
+}
+
+/* Pas de cadre global sous/derrière */
+#roster table.match-roster-table tbody,
+#roster table.match-roster-table tr{
+  background:transparent!important;
+}
+
+
+/* ============================================================
+   V165 — Roster : même gabarit que le pairing
+   ============================================================ */
+
+/* Même largeur générale que la page pairing */
+#roster{
+  max-width:1380px!important;
+  margin:0 auto!important;
+  padding-left:8px!important;
+  padding-right:8px!important;
+  box-sizing:border-box!important;
+}
+
+/* Topbar et légende suivent la même largeur */
+#roster .roster-topbar,
+#roster > .panel,
+#roster .roster-table-wrap,
+#roster .captain-analysis{
+  width:100%!important;
+  max-width:1360px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  box-sizing:border-box!important;
+}
+
+/* Donne de l'air entre le titre/légende et la grille */
+#roster .roster-topbar{
+  margin-bottom:8px!important;
+}
+#roster > .panel{
+  margin-bottom:14px!important;
+}
+
+/* La grille ne démarre plus trop haut */
+#roster .roster-table-wrap{
+  margin-top:0!important;
+  padding-top:0!important;
+}
+
+/* Tableau compact comme le pairing */
+#roster table.match-roster-table{
+  width:100%!important;
+  max-width:1360px!important;
+  margin:0 auto!important;
+  table-layout:fixed!important;
+}
+
+/* Colonnes un peu moins larges pour éviter l'effet étiré */
+#roster .roster-table col:nth-child(1){width:13%!important}
+#roster .roster-table col:nth-child(2){width:13%!important}
+#roster .roster-table col:nth-child(3){width:16%!important}
+#roster .roster-table col:nth-child(n+4){width:11.6%!important}
+
+/* Titre roster bien détaché de la grille */
+#roster .roster-title-wrap{
+  position:relative!important;
+  z-index:2!important;
+}
+#roster .section-title{
+  margin:0!important;
+  line-height:1.05!important;
+}
+#roster .sub{
+  margin-top:3px!important;
+  margin-bottom:0!important;
+}
+
+/* Evite tout chevauchement hérité */
+#roster .roster-table-wrap,
+#roster .roster-table-wrap *{
+  transform:none!important;
+}
+
+
+/* ============================================================
+   V166 — Corrige définitivement le chevauchement du header roster
+   ============================================================ */
+
+/* Le haut du roster reste dans le flux normal de la page */
+#roster .roster-topbar,
+#roster .roster-title-wrap,
+#roster > .panel{
+  position:relative!important;
+  top:auto!important;
+  bottom:auto!important;
+  left:auto!important;
+  right:auto!important;
+  transform:none!important;
+}
+
+/* Réserve explicitement la hauteur du bloc titre + actions */
+#roster .roster-topbar{
+  min-height:44px!important;
+  height:auto!important;
+  display:flex!important;
+  align-items:flex-start!important;
+  margin-bottom:8px!important;
+}
+
+/* La légende occupe elle aussi sa propre ligne */
+#roster > .panel{
+  min-height:32px!important;
+  height:auto!important;
+  display:block!important;
+  margin-top:0!important;
+  margin-bottom:18px!important;
+}
+
+/* La table commence seulement APRÈS les blocs précédents */
+#roster .roster-table-wrap{
+  position:relative!important;
+  clear:both!important;
+  float:none!important;
+  top:auto!important;
+  margin-top:0!important;
+  padding-top:0!important;
+}
+
+/* Sécurité contre les anciennes règles de positionnement */
+#roster .roster-table{
+  position:relative!important;
+  top:auto!important;
+  margin-top:0!important;
+}
+
+/* Le premier joueur ne peut plus remonter sous l'en-tête */
+#roster .roster-table tbody tr:first-child td{
+  position:relative!important;
+  top:auto!important;
+}
+
+
+/* ============================================================
+   V167 — FIX RÉEL : première colonne roster non sticky
+   La règle globale historique th:first-child,td:first-child
+   faisait passer le premier joueur devant le titre JOUEUR.
+   ============================================================ */
+
+/* Le roster n'a pas besoin de colonnes ou headers sticky */
+#roster table.match-roster-table thead th,
+#roster table.match-roster-table tbody td,
+#roster table.roster-table thead th,
+#roster table.roster-table tbody td{
+  position:static!important;
+  top:auto!important;
+  left:auto!important;
+  right:auto!important;
+  bottom:auto!important;
+  z-index:auto!important;
+}
+
+/* Réaffirme explicitement la première colonne */
+#roster table.match-roster-table thead th:first-child,
+#roster table.match-roster-table tbody td:first-child,
+#roster table.roster-table thead th:first-child,
+#roster table.roster-table tbody td:first-child{
+  position:static!important;
+  left:auto!important;
+  top:auto!important;
+  z-index:auto!important;
+}
+
+/* Le thead reste une vraie rangée au-dessus du tbody */
+#roster table.match-roster-table thead{
+  display:table-header-group!important;
+}
+#roster table.match-roster-table thead tr{
+  display:table-row!important;
+}
+#roster table.match-roster-table tbody{
+  display:table-row-group!important;
+}
+#roster table.match-roster-table tbody tr{
+  display:table-row!important;
+}
+
+/* Aucun déplacement du premier joueur */
+#roster #rosterBody tr:first-child,
+#roster #rosterBody tr:first-child td{
+  transform:none!important;
+  translate:none!important;
+  margin-top:0!important;
+  top:auto!important;
+}
+
+
+/* ============================================================
+   V168 — Roster : contours matchup renforcés + actions à gauche
+   ============================================================ */
+
+/* Contour blanc plus épais autour des cases couleur du roster */
+#roster table.match-roster-table tbody td.match-cell-wrap .simple-match-cell,
+#roster table.match-roster-table tbody td.match-cell-wrap .color-cell{
+  border:2px solid rgba(255,255,255,.92)!important;
+  box-sizing:border-box!important;
+}
+
+/* Barre supérieure : titre puis boutons à gauche, comme le pairing */
+#roster .roster-topbar{
+  display:flex!important;
+  flex-direction:row!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  gap:8px!important;
+  width:100%!important;
+}
+
+/* Le bloc titre ne pousse plus les actions à droite */
+#roster .roster-title-wrap{
+  flex:0 0 auto!important;
+  margin-right:6px!important;
+}
+
+/* Tous les conteneurs d'actions éventuels restent à gauche */
+#roster .roster-topbar .actions,
+#roster .roster-topbar .top-actions,
+#roster .roster-topbar .roster-actions{
+  margin-left:0!important;
+  margin-right:0!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  gap:6px!important;
+}
+
+/* Neutralise les anciens auto-margins sur les boutons */
+#roster .roster-topbar button,
+#roster .roster-topbar .btn{
+  margin-left:0!important;
+  margin-right:0!important;
+}
+
 </style>
 
 </head>
@@ -10521,14 +15326,11 @@ html[data-device-mode="phone"]:-webkit-full-screen body{
       </div>
 
       <div class="dashboard-device-row">
-        <span id="deviceModeStatus">Mode PC</span>
-        <button type="button" id="phoneModeToggle" class="dashboard-phone-btn" onclick="togglePhoneMode()">📱 Mode téléphone</button>
-        <button type="button" id="phoneFullscreenBtn" class="dashboard-phone-btn" onclick="enterTeamGridFullscreen()" style="display:none">⛶ Plein écran</button>
         <span id="cloudStatusPill" class="cloud-status-pill syncing">☁ Connexion…</span>
       </div>
     </div>
 
-    <div class="merged-home-version">TEAM GRID · VERSION 11 · V113 AUTO CLOUD</div>
+    <div class="merged-home-version">TEAM GRID · VERSION 11 · V168 PC ONLY</div>
   </div>
 </section>
 
@@ -10549,8 +15351,8 @@ html[data-device-mode="phone"]:-webkit-full-screen body{
       </div>
     </div>
     <div class="panel"><div class="legend" id="legend"></div></div>
-    <div class="table-wrap roster-table-wrap">
-      <table class="roster-table">
+    <div class="table-wrap match-table-wrap roster-table-wrap">
+      <table class="match-table match-roster-table roster-table">
         <colgroup>
           <col style="width:14%">
           <col style="width:14%">
@@ -10563,8 +15365,29 @@ html[data-device-mode="phone"]:-webkit-full-screen body{
         </colgroup>
         <thead>
           <tr>
-            <th>Joueur</th><th>Armée</th><th>FD</th>
-            <th>Prendre & Tenir (PT)</th><th>Éliminez l'Adversaire (EA)</th><th>Perturbation (PE)</th><th>Reconnaissance (RE)</th><th>Atouts Prioritaires (AP)</th>
+            <th>Joueur</th>
+            <th>Armée</th>
+            <th>FD</th>
+            <th class="match-opponent-head roster-fd-head">
+              <span class="opp-header-name">Prendre & Tenir</span>
+              <span class="opp-header-fd">(PT)</span>
+            </th>
+            <th class="match-opponent-head roster-fd-head">
+              <span class="opp-header-name">Éliminez l'Adversaire</span>
+              <span class="opp-header-fd">(EA)</span>
+            </th>
+            <th class="match-opponent-head roster-fd-head">
+              <span class="opp-header-name">Perturbation</span>
+              <span class="opp-header-fd">(PE)</span>
+            </th>
+            <th class="match-opponent-head roster-fd-head">
+              <span class="opp-header-name">Reconnaissance</span>
+              <span class="opp-header-fd">(RE)</span>
+            </th>
+            <th class="match-opponent-head roster-fd-head">
+              <span class="opp-header-name">Atouts Prioritaires</span>
+              <span class="opp-header-fd">(AP)</span>
+            </th>
           </tr>
         </thead>
         <tbody id="rosterBody"></tbody>
@@ -10632,6 +15455,9 @@ html[data-device-mode="phone"]:-webkit-full-screen body{
       <button class="btn" onclick="backToMeetings()">← Rencontres</button>
       <div class="match-detail-title">
         <b id="matchTournamentTitle"></b>
+        <span id="matchHeaderOpponentTeam"></span>
+        <span id="matchMeetingDateTitle"></span>
+        <button type="button" class="btn match-header-edit-team" onclick="editOpponentRoster()">Modifier l'équipe</button>
         <span id="matchOpponentTeamTitle"></span>
       </div>
       <button class="btn danger" onclick="deleteCurrentMeeting()">Supprimer</button>
@@ -10752,11 +15578,11 @@ function renderLegend(){
   const el=document.getElementById('legend');
   if(!el) return;
   const labels={
-    g2:"Très favorable · 15–20 pts",
-    g1:"Favorable · 12–14 pts",
-    o:"Équilibré · 9–11 pts",
-    r:"Défavorable · 0–8 pts",
-    p:"Gamble · 0–20 possible"
+    g2:"Très favorable · 16–20 pts",
+    g1:"Favorable · 12–15 pts",
+    o:"Équilibré · 8–11 pts",
+    r:"Défavorable · 0–7 pts",
+    p:"Gamble · à éviter"
   };
   el.innerHTML=COLORS.map(c=>`<span class="${colorClass(c.id)}">${labels[c.id]}</span>`).join('');
 }
@@ -10782,12 +15608,12 @@ function renderRoster(){
   state.players.forEach((p,pi)=>{
     const tr=document.createElement('tr');
     tr.innerHTML=`
-      <td><div class="player-cell"><input value="${esc(p.name)}" onchange="editPlayer(${pi},'name',this.value)"><button class="btn danger" title="Supprimer" onclick="removePlayer(${pi})">×</button></div></td>
-      <td><input value="${esc(p.army)}" onchange="editPlayer(${pi},'army',this.value)"></td>
-      <td><select onchange="editPlayer(${pi},'fd',this.value)">${FDS.map(fd=>`<option value="${fd.id}" ${p.fd===fd.id?'selected':''}>${fdFullLabel(fd.id)}</option>`).join('')}</select></td>`;
+      <td class="roster-identity-cell"><div class="player-cell"><input value="${esc(p.name)}" onchange="editPlayer(${pi},'name',this.value)"><button class="btn danger" title="Supprimer" onclick="removePlayer(${pi})">×</button></div></td>
+      <td class="roster-identity-cell"><input value="${esc(p.army)}" onchange="editPlayer(${pi},'army',this.value)"></td>
+      <td class="roster-identity-cell"><select onchange="editPlayer(${pi},'fd',this.value)">${FDS.map(fd=>`<option value="${fd.id}" ${p.fd===fd.id?'selected':''}>${fdFullLabel(fd.id)}</option>`).join('')}</select></td>`;
     FDS.forEach(fd=>{
       const c=p.ratings[fd.id] || 'o';
-      tr.innerHTML += `<td><div class="color-cell ${colorClass(c)}" title="${colorObj(c).label}" onclick="cycleRoster(${pi},'${fd.id}')"></div></td>`;
+      tr.innerHTML += `<td class="match-cell-wrap"><div class="simple-match-cell color-cell ${colorClass(c)}" title="${colorObj(c).label}" onclick="cycleRoster(${pi},'${fd.id}')"></div></td>`;
     });
     body.appendChild(tr);
   });
@@ -10846,12 +15672,16 @@ function remainingPairingIndexes(m){
 
 
 function matchupPlanValue(code){
-  // Expected planning value. Gamble is deliberately below an even matchup because it is unreliable.
-  return ({g2:17,g1:13,o:10,r:6,p:8})[code] ?? 10;
+  // V120 — analyse en TENDANCE BASSE, pas en moyenne.
+  // On planifie sur le minimum raisonnable de chaque catégorie.
+  // Gamble n'a pas de plancher fiable : on le pénalise fortement pour
+  // que le moteur ne le choisisse qu'en dernier recours.
+  return ({g2:16,g1:12,o:8,r:0,p:-20})[code] ?? 8;
 }
 function matchupSafetyRank(code){
-  // Used before total score: we prefer avoiding weak/gamble assignments.
-  return ({g2:4,g1:3,o:2,p:1,r:0})[code] ?? 2;
+  // Ordre de sécurité cohérent avec la tendance basse.
+  // Gamble est considéré encore moins fiable qu'un défavorable connu.
+  return ({g2:4,g1:3,o:2,r:1,p:0})[code] ?? 2;
 }
 
 function compareAssignments(a,b){
@@ -10865,6 +15695,12 @@ function compareAssignments(a,b){
   // Départage uniquement à total égal :
   // on préfère alors le plan le moins risqué.
   if(a.minSafety!==b.minSafety) return a.minSafety-b.minSafety;
+
+  // À total égal, un Gamble est à éviter avant même un simple matchup rouge.
+  const aGambles=(a.pairs||[]).filter(x=>x.c==='p').length;
+  const bGambles=(b.pairs||[]).filter(x=>x.c==='p').length;
+  if(aGambles!==bGambles) return bGambles-aGambles;
+
   if(a.risky!==b.risky) return b.risky-a.risky;
   return 0;
 }
@@ -11310,11 +16146,27 @@ function focusedDefenderChoices(m){
   }
   const proposals=bestAttackerProposals(m,Number(pairingDefenderFocusOi));
   if(!proposals.length) return null;
+
   const best=proposals[0];
+
+  // Les DEUX joueurs sont proposés au capitaine adverse.
+  // On indique simplement lequel serait le plus avantageux pour nous
+  // SI l'adversaire décidait de le prendre.
+  const out1=best.a;
+  const out2=best.b;
+  const bestForUs=comparePairingOutcomes(out1,out2)>=0 ? out1 : out2;
+  const other=bestForUs===out1 ? out2 : out1;
+
   return {
     oi:Number(pairingDefenderFocusOi),
     players:[best.p1,best.p2],
-    proposal:best
+    proposal:best,
+    bestForUsPi:bestForUs.pi,
+    otherPi:other.pi,
+    outcomes:{
+      [out1.pi]:out1,
+      [out2.pi]:out2
+    }
   };
 }
 
@@ -11460,7 +16312,7 @@ function renderMatch(){
       const offerSelected=ourDefenderRankingVisible && selectedEnemyOffers.includes(oi);
       const offerChosen=ourDefenseDecision && ourDefenseDecision.chosenOi===oi;
       const offerOther=ourDefenseDecision && ourDefenseDecision.otherOi===oi;
-      return `<th class="match-opponent-head ${locked?'opp-final':''} ${defenderFocus&&defenderFocus.oi===oi?'defender-focus':''} ${offerSelected?'our-defense-offer':''} ${offerChosen?'our-defense-chosen':''} ${offerOther?'our-defense-other':''}">
+      return `<th class="match-opponent-head ${locked?'opp-final':''} ${defenderFocus&&defenderFocus.oi===oi?'enemy-defense-focus-clean':''} ${offerSelected?'our-defense-offer':''} ${offerChosen?'our-defense-chosen':''} ${offerOther?'our-defense-other':''}">
         <button type="button" class="opp-header-button"
           onpointerdown="startDefenderHeaderLongPress(event,${oi})"
           oncontextmenu="event.preventDefault();return false;"
@@ -11488,8 +16340,8 @@ function renderMatch(){
     <td><div class="match-roster-field match-player-name ${defenderRankMap.has(pi)?'defender-ranked':''} ${ourDefenderRankingVisible&&selectedOurDefenderPi===pi?'selected-our-defender':''}"
       ${ourDefenderRankingVisible&&!playerPaired?`onclick="selectOurDefender(${pi})" title="Choisir comme défenseur"`:''}>
       ${esc(p.name)}
-      ${ourDefenderRankingVisible&&selectedOurDefenderPi===pi?'<span class="selected-def-shield">🛡</span>':''}
-      ${defenderRankMap.has(pi)&&defenderRankMap.get(pi)<3?`<span class="our-def-rank rank-${defenderRankMap.get(pi)+1}" title="Pire scénario projeté : ${defenderRanking[defenderRankMap.get(pi)]?.guaranteedTeamTotal ?? '—'} pts équipe">${defenderRankMap.get(pi)+1}</span>`:''}
+
+      ${defenderRankMap.has(pi)&&defenderRankMap.get(pi)===0?`<span class="our-def-rank rank-1" title="Défenseur conseillé">1</span>`:''}
     </div></td>
     <td><div class="match-roster-field">${esc(p.army)}</div></td>
     <td><div class="match-roster-field match-fd-field">${fdFullLabel(p.fd)}</div></td>
@@ -11499,13 +16351,17 @@ function renderMatch(){
       const final=isFinalPair(m,pi,oi);
       const occupied=pairedPlayerOfOpponent(m,oi);
       const unavailable=occupied!==null && occupied!==pi;
-      const recommended=defenderFocus && defenderFocus.oi===oi && defenderFocus.players.includes(pi);
-      const recRank=recommended ? defenderFocus.players.indexOf(pi)+1 : 0;
-      const defenseOfferCell=ourDefenderRankingVisible && selectedOurDefenderPi===pi && selectedEnemyOffers.includes(oi);
+      const enemyDefenseColumnSelected=defenderFocus && defenderFocus.oi===oi;
+      const recommended=enemyDefenseColumnSelected && defenderFocus.players.includes(pi);
+      const recommendedBest=recommended && defenderFocus.bestForUsPi===pi;
+      const recOutcome=recommended ? defenderFocus.outcomes?.[pi] : null;
+      const recTeamTotal=recOutcome?.teamTotal ?? null;
+      const defenseColumnSelected=ourDefenderRankingVisible && selectedEnemyOffers.includes(oi);
+      const defenseOfferCell=defenseColumnSelected && selectedOurDefenderPi===pi;
       const defenseChosenCell=ourDefenseDecision && ourDefenseDecision.defenderPi===pi && ourDefenseDecision.chosenOi===oi;
       const defenseOtherCell=ourDefenseDecision && ourDefenseDecision.defenderPi===pi && ourDefenseDecision.otherOi===oi;
-      return `<td class="match-cell-wrap ${final?'is-final':''} ${unavailable?'is-unavailable':''} ${recommended?'pairing-best-choice':''} ${defenseOfferCell?'defense-offer-cell':''} ${defenseChosenCell?'defense-chosen-cell':''} ${defenseOtherCell?'defense-other-cell':''}">
-        ${recommended?`<span class="pairing-choice-badge">${recRank}</span>`:''}
+      return `<td class="match-cell-wrap ${final?'is-final':''} ${unavailable?'is-unavailable':''} ${recommended?'pairing-best-choice':''} ${enemyDefenseColumnSelected?'enemy-defense-column-selected':''} ${defenseColumnSelected?'our-defense-column-selected':''} ${defenseOfferCell?'defense-offer-cell':''} ${defenseChosenCell?'defense-chosen-cell':''} ${defenseOtherCell?'defense-other-cell':''}">
+        ${recommended?`<span class="pairing-choice-badge ${recommendedBest?'best-for-us':''}" title="${recommendedBest?'Le plus avantageux pour nous si l’adversaire le choisit':'Joueur proposé au capitaine adverse'}">${recommendedBest?'★':''}</span>`:''}
         ${defenseChosenCell?'<span class="defense-cell-choice">CHOIX</span>':''}
         <div class="simple-match-cell ${colorClass(c)}"
           title="${colorObj(c).label}${ov?' — modifié pour cette rencontre':''}"
@@ -11522,20 +16378,13 @@ function renderMatch(){
   }).join('');
 
   content.innerHTML=`
-    <div class="match-team-strip">
-      <span>Équipe adverse</span>
-      <input class="opponent-team-input" value="${esc(m.opponentTeam||"")}" placeholder="Nom de l'équipe adverse"
-        onchange="m.opponentTeam=this.value; save();">
-      <button class="btn" onclick="editOpponentRoster()">Modifier l'équipe adverse</button>
-    </div>
-
     <div class="match-legend-compact">
       <div class="legend">
-        <span class="legend-chip c-g2">Très favorable · 15–20 pts</span>
-        <span class="legend-chip c-g1">Favorable · 12–14 pts</span>
-        <span class="legend-chip c-o">Équilibré · 9–11 pts</span>
-        <span class="legend-chip c-r">Défavorable · 0–8 pts</span>
-        <span class="legend-chip c-p">Gamble · 0–20 possible</span>
+        <span class="legend-chip c-g2">Très favorable · 16–20 pts</span>
+        <span class="legend-chip c-g1">Favorable · 12–15 pts</span>
+        <span class="legend-chip c-o">Équilibré · 8–11 pts</span>
+        <span class="legend-chip c-r">Défavorable · 0–7 pts</span>
+        <span class="legend-chip c-p">Gamble · à éviter</span>
       </div>
       <button type="button" class="defender-rank-btn ${ourDefenderRankingVisible?'active':''}" onclick="toggleOurDefenderRanking()">🛡 ${ourDefenderRankingVisible?'Masquer défense':'Qui mettre en défense ?'}</button>
 
@@ -11558,7 +16407,7 @@ function renderMatch(){
       <div class="final-pairs-head">
         <div>
           <h3>Pairings validés</h3>
-          <p>Projection théorique puis résultat réel de chaque table.</p>
+          <p>Objectif ajustable par joueur, score réel /100 et conversion automatique /20.</p>
         </div>
         <div id="teamTotals" class="team-totals"></div>
       </div>
@@ -11685,6 +16534,195 @@ if(typeof __originalLoadMatchForOptimization === "function"){
 }
 
 
+
+/* ============================================================
+   V121 — OBJECTIFS DYNAMIQUES POUR GAGNER LA RONDE
+   Le moteur de pairing reste prudent (plancher).
+   Une fois TOUS les pairings validés, on calcule des objectifs
+   individuels dont la somme donne la victoire d'équipe minimale.
+   ============================================================ */
+function matchupObjectiveRange(code){
+  return ({
+    g2:{min:16,max:20},
+    g1:{min:12,max:15},
+    o :{min:8,max:11},
+    r :{min:0,max:7},
+    p :{min:0,max:20}
+  })[code] || {min:8,max:11};
+}
+
+function wtcObjectiveRawDiff(pts){
+  // Plus petit différentiel /100 permettant d'atteindre le score /20 demandé
+  // selon la table WTC déjà utilisée dans TEAM GRID.
+  pts=Math.max(0,Math.min(20,Number(pts)||0));
+  if(pts===10) return 0;
+  if(pts>10) return 5*(pts-10)+1;   // 11=>+6, 12=>+11 ... 20=>+51
+  return -(5*(10-pts)+1);           // 9=>-6, 8=>-11 ... 0=>-51
+}
+
+function rawDiffLabel(diff){
+  if(diff===0) return 'écart 0 /100';
+  return `${diff>0?'+':''}${diff} pts /100`;
+}
+
+function computeTeamWinObjectives(m,entries){
+  const tableCount=entries.length;
+  if(!tableCount) return null;
+
+  // Une ronde complète vaut 20 pts par table.
+  // Il faut strictement dépasser 50 % : 61/120 à 6 joueurs.
+  const winTarget=tableCount*10+1;
+
+  const items=entries.map(([piRaw,oiRaw])=>{
+    const pi=Number(piRaw), oi=Number(oiRaw);
+    const code=getMatchRating(m,pi,oi);
+    const range=matchupObjectiveRange(code);
+
+    // Objectif théorique "demandable".
+    // On ne demande jamais 19 ou 20 sur une projection :
+    // un très bon matchup doit contribuer, mais pas porter seul la ronde.
+    const practicalMax={
+      g2:17,
+      g1:15,
+      o:11,
+      r:7,
+      p:12
+    }[code] ?? Math.min(range.max,18);
+
+    return {
+      pi,oi,code,
+      min:range.min,
+      max:range.max,
+      practicalMax:Math.min(range.max,practicalMax),
+      target:range.min,
+      safety:matchupSafetyRank(code)
+    };
+  });
+
+  let total=items.reduce((sum,x)=>sum+x.target,0);
+  let need=Math.max(0,winTarget-total);
+
+  // Ordre de contribution :
+  // les matchups fiables prennent naturellement davantage,
+  // mais l'ajout est réparti tour par tour entre toutes les tables.
+  const priority=[...items].sort((a,b)=>{
+    if(a.code==='p' && b.code!=='p') return 1;
+    if(b.code==='p' && a.code!=='p') return -1;
+    if(a.safety!==b.safety) return b.safety-a.safety;
+    return a.pi-b.pi;
+  });
+
+  // Répartition équilibrée : +1 à chaque table éligible à chaque passage.
+  // Ainsi, on obtient par exemple 17/14/10/... plutôt que 20/12/8/...
+  while(need>0){
+    let progressed=false;
+
+    for(const x of priority){
+      if(need<=0) break;
+      if(x.target < x.practicalMax){
+        x.target++;
+        need--;
+        progressed=true;
+      }
+    }
+
+    if(!progressed) break;
+  }
+
+  total=items.reduce((sum,x)=>sum+x.target,0);
+
+  return {
+    winTarget,
+    total,
+    feasible:total>=winTarget,
+    shortfall:Math.max(0,winTarget-total),
+    byKey:Object.fromEntries(items.map(x=>[`${x.pi}|${x.oi}`,x]))
+  };
+}
+
+
+
+/* ============================================================
+   V123 — Objectifs ajustables en cours de ronde
+   ============================================================ */
+function ensureManualObjectives(m){
+  if(!m.manualObjectives || typeof m.manualObjectives!=='object') m.manualObjectives={};
+}
+function objectiveKey(pi,oi){ return `${pi}|${oi}`; }
+
+function getManualObjective(m,pi,oi,base){
+  ensureManualObjectives(m);
+  const k=objectiveKey(pi,oi);
+  const v=m.manualObjectives[k];
+  if(v===0 || (v!=='' && v!==undefined && v!==null && Number.isFinite(Number(v)))){
+    return Math.max(0,Math.min(20,Number(v)));
+  }
+  return base;
+}
+
+function changeObjective(pi,oi,delta){
+  const m=currentMatch(); if(!m)return;
+  ensureManualObjectives(m);
+
+  const entries=Object.entries(m.finalPairs||{}).sort((a,b)=>Number(a[0])-Number(b[0]));
+  const fullPairingCount=Math.min(matchPlayers(m).length,(m.opponents||[]).length);
+  const objectives=(entries.length===fullPairingCount && fullPairingCount>0)
+    ? computeTeamWinObjectives(m,entries)
+    : null;
+
+  const base=objectives?.byKey?.[objectiveKey(pi,oi)]?.target
+    ?? matchupObjectiveRange(getMatchRating(m,pi,oi)).min;
+
+  const current=getManualObjective(m,pi,oi,base);
+  m.manualObjectives[objectiveKey(pi,oi)]=Math.max(0,Math.min(20,current+delta));
+  save();
+  renderFinalPairs(m);
+}
+
+function resetObjective(pi,oi){
+  const m=currentMatch(); if(!m)return;
+  ensureManualObjectives(m);
+  delete m.manualObjectives[objectiveKey(pi,oi)];
+  save();
+  renderFinalPairs(m);
+}
+
+/* Approximation du différentiel brut /100 correspondant au score /20.
+   On affiche un différentiel cible, pas un score absolu inventé. */
+function objectiveRawEquivalent(pts){
+  pts=Number(pts);
+  if(!Number.isFinite(pts)) return '—';
+  if(pts===10) return 'écart 0';
+  const d=wtcObjectiveRawDiff(pts);
+  return `${d>0?'+':''}${d} pts`;
+}
+
+/* V122 — résultats directement saisis sur 20 */
+function ensureWtcResults(m){
+  if(!m.wtcResults || typeof m.wtcResults!=='object') m.wtcResults={};
+}
+function getWtcResult(m,pi,oi){
+  ensureWtcResults(m);
+  const v=m.wtcResults[`${pi}|${oi}`];
+  return (v===0 || (v!=='' && v!==undefined && v!==null && Number.isFinite(Number(v))))
+    ? Math.max(0,Math.min(20,Number(v)))
+    : '';
+}
+function setWtcResult(m,pi,oi,value){
+  ensureWtcResults(m);
+  if(value==='' || value===null || value===undefined){
+    delete m.wtcResults[`${pi}|${oi}`];
+  }else{
+    m.wtcResults[`${pi}|${oi}`]=Math.max(0,Math.min(20,Number(value)));
+  }
+  save();
+}
+function updateWtcResultAndRender(ev,pi,oi){
+  ev.stopPropagation();
+  const m=currentMatch(); if(!m)return;
+  setWtcResult(m,pi,oi,ev.target.value);
+  renderFinalPairs(m);
+}
 function renderFinalPairs(m){
   const host=document.getElementById('finalPairs');
   const totalsHost=document.getElementById('teamTotals');
@@ -11693,7 +16731,10 @@ function renderFinalPairs(m){
   ensureAdvancedMatch(m);
   ensureRawScores(m);
 
-  const entries=Object.entries(m.finalPairs).sort((a,b)=>Number(a[0])-Number(b[0]));
+  const entries=Object.entries(m.finalPairs||{}).sort((a,b)=>Number(a[0])-Number(b[0]));
+  const fullPairingCount=Math.min(matchPlayers(m).length,(m.opponents||[]).length);
+  const allPairingsDone=entries.length===fullPairingCount && fullPairingCount>0;
+  const autoObjectives=allPairingsDone ? computeTeamWinObjectives(m,entries) : null;
 
   if(!entries.length){
     host.innerHTML='<div class="final-empty">Aucun pairing validé. Fais un appui long sur une case de la grille.</div>';
@@ -11701,17 +16742,20 @@ function renderFinalPairs(m){
     return;
   }
 
-  let theoUs=0, theoOpp=0, realUs=0, realOpp=0, completed=0;
+  let objectiveTotal=0;
+  let completedObjectiveTotal=0;
+  let realUs=0, realOpp=0, completed=0;
 
   host.innerHTML=entries.map(([piRaw,oiRaw])=>{
     const pi=Number(piRaw), oi=Number(oiRaw);
     const p=matchPlayers(m)[pi], o=m.opponents[oi];
-
     const theoryCode=getMatchRating(m,pi,oi);
-    const theoryUs=expectedWtcPoints(theoryCode);
-    const theoryOpp=20-theoryUs;
-    theoUs += theoryUs;
-    theoOpp += theoryOpp;
+
+    const autoBase=autoObjectives?.byKey?.[objectiveKey(pi,oi)]?.target
+      ?? matchupObjectiveRange(theoryCode).min;
+
+    const objectiveUs=autoBase;
+    objectiveTotal += objectiveUs;
 
     const raw=rawPair(m,pi,oi,false);
     const complete=rawScoreComplete(raw);
@@ -11721,10 +16765,9 @@ function renderFinalPairs(m){
     if(complete){
       realUs += real.us;
       realOpp += real.opp;
+      completedObjectiveTotal += objectiveUs;
       completed++;
     }
-
-    const opponentLabel=[o.name,o.army,FDS.find(f=>f.id===o.fd)?.short].filter(Boolean).join(' · ');
 
     return `<article class="validated-pair-card ${complete?colorClass(realCode):'no-result'}">
       <div class="validated-pair-identity">
@@ -11741,15 +16784,15 @@ function renderFinalPairs(m){
         </div>
       </div>
 
-      <div class="validated-pair-data">
-        <div class="theory-box ${colorClass(theoryCode)}">
-          <span>THÉORIQUE</span>
-          <strong>${theoryUs}–${theoryOpp}</strong>
-          <small>${colorObj(theoryCode).label}</small>
+      <div class="validated-pair-data v123-data">
+        <div class="objective-fixed ${colorClass(theoryCode)}">
+          <span>OBJECTIF</span>
+          <strong>${objectiveUs}</strong>
+          <small>/20 · ${objectiveRawEquivalent(objectiveUs)} /100</small>
         </div>
 
         <div class="real100-box">
-          <span>RÉSULTAT /100</span>
+          <span>SCORE RÉEL /100</span>
           <div class="real-input-row">
             <input type="number" min="0" max="100" inputmode="numeric" placeholder="0"
               value="${raw.us}"
@@ -11764,30 +16807,52 @@ function renderFinalPairs(m){
         </div>
 
         <div class="converted20-box ${complete?colorClass(realCode):'blank-result'}">
-          <span>CONVERSION /20</span>
-          <strong>${complete?`${real.us}–${real.opp}`:'—'}</strong>
-          <small>${complete?colorObj(realCode).label:'En attente'}</small>
+          <span>RÉSULTAT /20</span>
+          <strong>${complete?real.us:'—'}</strong>
+          <small>${complete?`${real.us}–${real.opp}`:'En attente'}</small>
         </div>
       </div>
     </article>`;
   }).join('');
 
   if(totalsHost){
-    const realReady = completed===entries.length;
+    const realReady=completed===entries.length;
+    const totalCode = realReady ? codeFromWtcPoints(realUs/entries.length) : null;
+
+    // Seuil de victoire : il faut dépasser la moitié des points disponibles.
+    // 6 joueurs => 120 pts disponibles => 61 pour gagner.
+    const winTarget=entries.length*10+1;
+
+    // Projection dynamique de fin de ronde :
+    // - score réel des tables terminées
+    // - objectifs des tables encore en cours
+    const remainingObjectiveTotal=objectiveTotal-completedObjectiveTotal;
+    const projectedTeamScore=realUs+remainingObjectiveTotal;
+
+    // Delta = marge projetée par rapport au score nécessaire pour gagner.
+    const delta=projectedTeamScore-winTarget;
+    const deltaClass=delta>0 ? 'positive' : delta<0 ? 'negative' : 'neutral';
+    const deltaText=`${delta>0?'+':''}${delta}`;
+
     totalsHost.innerHTML=`
       <div class="total-line theory-total">
-        <span>Projection</span>
-        <b>${theoUs}–${theoOpp}</b>
+        <span>Objectif équipe</span>
+        <b>${objectiveTotal} / ${winTarget}</b>
       </div>
-      <div class="total-line real-total ${realReady?(realUs>realOpp?'win':realUs<realOpp?'loss':'draw'):'pending'}">
+
+      <div class="total-line delta-total ${deltaClass}">
+        <span>Delta victoire</span>
+        <b>${deltaText}</b>
+        <small>${projectedTeamScore} projetés / ${winTarget}</small>
+      </div>
+
+      <div class="total-line real-total ${realReady?colorClass(totalCode):'pending'}">
         <span>Résultat équipe</span>
         <b>${completed?`${realUs}–${realOpp}`:'—'}</b>
         <small>${completed}/${entries.length} tables renseignées</small>
       </div>`;
   }
 }
-
-
 function pairingRemaining(m){
   const players=matchPlayers(m);
   const pairedP=new Set(Object.keys(m.finalPairs||{}).map(Number));
@@ -12068,6 +17133,11 @@ function createMeeting(){
   if(!name) return;
 
   const opponentTeam=prompt("Nom de l'équipe adverse :","Équipe adverse") || "Équipe adverse";
+
+  const dateStart=document.getElementById("newMeetingDateStart")?.value || "";
+  let dateEnd=document.getElementById("newMeetingDateEnd")?.value || "";
+  if(dateStart && dateEnd && dateEnd<dateStart) dateEnd=dateStart;
+
   const opponents=state.players.map((_,i)=>({
     name:`Adversaire ${i+1}`,
     army:"",
@@ -12083,6 +17153,8 @@ function createMeeting(){
     overrides:{},
     finalPairs:{},
     rawScores:{},
+    dateStart,
+    dateEnd,
     rosterSnapshot: JSON.parse(JSON.stringify(state.players))
   };
   if(!t.meetings) t.meetings=[];
@@ -12099,15 +17171,41 @@ function renderMeetingButtons(){
 
   host.innerHTML=(t.meetings||[]).length
     ? t.meetings.map(m=>`
-      <button class="meeting-card" onclick="openMeeting(${m.id})">
-        <span class="meeting-num">⚔️</span>
-        <span class="meeting-info">
-          <b>${esc(m.name)}</b>
-          <small>vs ${esc(m.opponentTeam||"Équipe adverse")}</small>
-        </span>
-        <span class="meeting-arrow">›</span>
-      </button>`).join('')
+      <div class="meeting-card-wrap">
+        <button class="meeting-card" onclick="openMeeting(${m.id})">
+          <span class="meeting-num">⚔️</span>
+          <span class="meeting-info">
+            <b>${esc(m.name)}</b>
+            <small>vs ${esc(m.opponentTeam||"Équipe adverse")}${meetingDateLabel(m)?` · ${esc(meetingDateLabel(m))}`:""}</small>
+          </span>
+          <span class="meeting-arrow">›</span>
+        </button>
+        <button class="meeting-date-edit-btn" onclick="event.stopPropagation();editMeetingDates(${m.id})" title="Modifier les dates">📅</button>
+      </div>`).join('')
     : `<div class="empty-hub">Aucune rencontre dans ce tournoi.</div>`;
+}
+
+
+function editMeetingDates(id){
+  const t=state.tournaments.find(x=>Number(x.id)===Number(selectedTournamentId));
+  if(!t) return;
+  const m=(t.meetings||[]).find(x=>Number(x.id)===Number(id));
+  if(!m) return;
+
+  const start=prompt("Date de début (AAAA-MM-JJ) :",m.dateStart||"");
+  if(start===null) return;
+
+  let end=prompt("Date de fin (AAAA-MM-JJ). Laisse vide pour une seule journée :",m.dateEnd||"");
+  if(end===null) return;
+
+  let cleanStart=String(start||"").trim();
+  let cleanEnd=String(end||"").trim();
+  if(cleanStart && cleanEnd && cleanEnd<cleanStart) cleanEnd=cleanStart;
+
+  m.dateStart=cleanStart;
+  m.dateEnd=cleanEnd;
+  save();
+  renderMeetingButtons();
 }
 
 function openMeeting(id){
@@ -12136,11 +17234,51 @@ function currentMatch(){
   return t?.meetings?.find(m=>Number(m.id)===Number(selectedMeetingId)) || null;
 }
 
+
+function formatMeetingDateISO(iso){
+  if(!iso) return "";
+  const [y,m,d]=String(iso).split("-").map(Number);
+  if(!y||!m||!d) return "";
+  return new Intl.DateTimeFormat("fr-FR",{day:"2-digit",month:"2-digit",year:"numeric"})
+    .format(new Date(y,m-1,d));
+}
+
+function meetingDateLabel(m){
+  if(!m?.dateStart) return "";
+  const a=formatMeetingDateISO(m.dateStart);
+  const b=m.dateEnd && m.dateEnd!==m.dateStart ? formatMeetingDateISO(m.dateEnd) : "";
+  return b ? `Du ${a} au ${b}` : a;
+}
+
+function updateMeetingDates(){
+  const m=currentMatch(); if(!m) return;
+  const start=document.getElementById("meetingDateStart")?.value || "";
+  let end=document.getElementById("meetingDateEnd")?.value || "";
+
+  // Si une fin est antérieure au début, on la ramène au début.
+  if(start && end && end<start) end=start;
+
+  m.dateStart=start;
+  m.dateEnd=end;
+  save();
+  renderMeetingDetail();
+}
+
+function clearMeetingDates(){
+  const m=currentMatch(); if(!m) return;
+  m.dateStart="";
+  m.dateEnd="";
+  save();
+  renderMeetingDetail();
+}
+
 function renderMeetingDetail(){
   const t=currentTournament();
   const m=currentMatch();
   if(!t || !m) return;
-  document.getElementById('matchTournamentTitle').textContent=t.name+" · "+m.name;
+  const dateTxt=meetingDateLabel(m);
+  document.getElementById('matchTournamentTitle').textContent=
+    t.name+" · "+m.name+(dateTxt?" · "+dateTxt:"");
   document.getElementById('matchOpponentTeamTitle').textContent="vs "+(m.opponentTeam||"Équipe adverse");
   renderMatch();
 }
@@ -12307,6 +17445,8 @@ window.createMeeting = function(){
     overrides:{},
     finalPairs:{},
     rawScores:{},
+    dateStart:"",
+    dateEnd:"",
     rosterSnapshot: JSON.parse(JSON.stringify(state.players))
   });
   save();
@@ -12326,11 +17466,11 @@ window.renderMeetingButtons = function(){
         <span class="meeting-num">⚔️</span>
         <span class="meeting-info">
           <b>${esc(m.name)}</b>
-          <small>vs ${esc(m.opponentTeam||"Équipe adverse")}</small>
+          <small>vs ${esc(m.opponentTeam||"Équipe adverse")}${meetingDateLabel(m)?` · ${esc(meetingDateLabel(m))}`:""}</small>
         </span>
         <span class="meeting-arrow">›</span>
       </button>
-      <button type="button" class="meeting-edit" onclick="event.stopPropagation(); renameMeeting(${Number(m.id)})" title="Renommer la rencontre">✎</button>
+      <button type="button" class="meeting-edit" onclick="event.stopPropagation(); renameMeeting(${Number(m.id)})" title="Modifier la rencontre">✎</button>
     </div>`).join('') :
     '<div class="empty-hub">Aucune rencontre dans ce tournoi.</div>';
 };
@@ -12378,9 +17518,16 @@ window.renderMeetingDetail = function(){
   const m=currentMatch();
   if(!t || !m) return;
   const a=document.getElementById('matchTournamentTitle');
+  const d=document.getElementById('matchMeetingDateTitle');
   const b=document.getElementById('matchOpponentTeamTitle');
   if(a) a.textContent=t.name+" · "+m.name;
-  if(b) b.textContent="vs "+(m.opponentTeam||"Équipe adverse");
+  const h=document.getElementById("matchHeaderOpponentTeam");
+  if(h) h.textContent=" · "+(m.opponentTeam||"Équipe adverse");
+  if(d){
+    const label=meetingDateLabel(m);
+    d.textContent=label ? " · "+label : "";
+  }
+  if(b) b.textContent="";
   renderMatch();
 };
 
@@ -12440,13 +17587,76 @@ window.renameMeeting = function(id){
   if(!t) return;
   const m=t.meetings?.find(x=>Number(x.id)===Number(id));
   if(!m) return;
-  const name=prompt("Nouveau nom de la rencontre :",m.name);
-  if(!name || !name.trim()) return;
-  m.name=name.trim();
+
+  const modal=document.getElementById("meetingEditModal");
+  if(!modal) return;
+
+  modal.dataset.meetingId=String(id);
+
+  document.getElementById("meetingEditName").value=m.name||"";
+  document.getElementById("meetingEditOpponent").value=m.opponentTeam||"";
+  document.getElementById("meetingEditDateStart").value=m.dateStart||"";
+  document.getElementById("meetingEditDateEnd").value=m.dateEnd||"";
+  document.getElementById("meetingEditError").textContent="";
+
+  modal.classList.add("open");
+  modal.setAttribute("aria-hidden","false");
+
+  setTimeout(()=>document.getElementById("meetingEditName")?.focus(),50);
+};
+
+window.closeMeetingEditModal = function(){
+  const modal=document.getElementById("meetingEditModal");
+  if(!modal) return;
+  modal.classList.remove("open");
+  modal.setAttribute("aria-hidden","true");
+  delete modal.dataset.meetingId;
+};
+
+window.saveMeetingEditModal = function(){
+  const modal=document.getElementById("meetingEditModal");
+  if(!modal) return;
+
+  const id=Number(modal.dataset.meetingId);
+  const t=currentTournament();
+  if(!t) return;
+  const m=t.meetings?.find(x=>Number(x.id)===id);
+  if(!m) return;
+
+  const name=(document.getElementById("meetingEditName")?.value||"").trim();
+  const opponent=(document.getElementById("meetingEditOpponent")?.value||"").trim();
+  const start=(document.getElementById("meetingEditDateStart")?.value||"").trim();
+  let end=(document.getElementById("meetingEditDateEnd")?.value||"").trim();
+  const error=document.getElementById("meetingEditError");
+
+  if(!name){
+    if(error) error.textContent="Le nom de la rencontre est obligatoire.";
+    return;
+  }
+
+  if(start && end && end<start){
+    if(error) error.textContent="La date de fin ne peut pas être avant la date de début.";
+    return;
+  }
+
+  m.name=name;
+  m.opponentTeam=opponent||"Équipe adverse";
+  m.dateStart=start;
+  m.dateEnd=end;
+
   save();
   renderMeetingButtons();
-  if(Number(__selectedMeetingId)===Number(id)) renderMeetingDetail();
+  if(Number(__selectedMeetingId)===id) renderMeetingDetail();
+  closeMeetingEditModal();
 };
+
+document.addEventListener("keydown",ev=>{
+  if(ev.key==="Escape"){
+    const modal=document.getElementById("meetingEditModal");
+    if(modal?.classList.contains("open")) closeMeetingEditModal();
+  }
+});
+
 
 
 // V34 — navigation Rencontres simplifiée : Tournois + Rencontres sur la même page
@@ -13445,6 +18655,214 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.addEventListener('fullscreenchange',updateFSButton);
   document.addEventListener('webkitfullscreenchange',updateFSButton);
   document.addEventListener('DOMContentLoaded',updateFSButton);
+})();
+</script>
+
+
+<script>
+/* V114 — contrôleur final : PC uniquement */
+(function(){
+  const KEY='40k_device_mode_v1';
+
+  function forcePC(){
+    try{ localStorage.setItem(KEY,'pc'); }catch(e){}
+    document.documentElement.dataset.deviceMode='pc';
+    document.documentElement.classList.remove('tg-require-landscape','tg-phone-portrait');
+
+    try{ document.body?.classList.remove('phone-landscape-fallback'); }catch(e){}
+
+    const vp=document.querySelector('meta[name="viewport"]');
+    if(vp){
+      vp.setAttribute('content','width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=yes');
+    }
+
+    const nodes=[
+      document.querySelector('main'),
+      ...document.querySelectorAll('main > .view')
+    ].filter(Boolean);
+
+    nodes.forEach(n=>{
+      n.style.removeProperty('transform');
+      n.style.removeProperty('transform-origin');
+      n.style.removeProperty('width');
+      n.style.removeProperty('height');
+      n.style.removeProperty('left');
+      n.style.removeProperty('top');
+      n.style.removeProperty('position');
+      n.style.removeProperty('max-width');
+    });
+
+    if(document.body){
+      document.body.style.removeProperty('height');
+      document.body.style.removeProperty('width');
+      document.body.style.removeProperty('overflow');
+      document.body.style.removeProperty('position');
+    }
+  }
+
+  window.togglePhoneMode=async function(){ forcePC(); };
+  window.setDeviceMode=async function(){ forcePC(); };
+  window.forceLandscapeFullscreen=async function(){ forcePC(); };
+  window.TeamGridUpdatePhoneLayout=forcePC;
+  window.enterTeamGridFullscreen=async function(){ forcePC(); };
+
+  document.addEventListener('DOMContentLoaded',()=>{
+    forcePC();
+    setTimeout(forcePC,100);
+    setTimeout(forcePC,600);
+  });
+  window.addEventListener('resize',forcePC);
+})();
+</script>
+
+
+
+
+
+
+
+
+<script>
+/* V125 — nettoyage robuste des badges fantômes d'en-tête */
+(function(){
+  function cleanOpponentHeaders(){
+    document.querySelectorAll('#matchDetail .match-opponent-head').forEach(head=>{
+      [...head.querySelectorAll('*')].forEach(el=>{
+        const txt=(el.textContent||'').trim().toUpperCase();
+        if(txt==='APPAIRÉ' || txt==='✓ APPAIRÉ' || txt==='APPARIE' || txt==='✓ APPARIE'){
+          el.remove();
+        }
+      });
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded',()=>{
+    cleanOpponentHeaders();
+    const host=document.getElementById('matchDetail');
+    if(host){
+      new MutationObserver(cleanOpponentHeaders).observe(host,{subtree:true,childList:true});
+    }
+  });
+})();
+</script>
+
+
+<script>
+/* V126 — repères visuels topbar */
+(function(){
+  function decorate(){
+    const detail=document.getElementById('matchDetail');
+    if(!detail) return;
+
+    /* Titre de rencontre */
+    detail.querySelectorAll('h1,h2,.match-title,.meeting-title').forEach(el=>{
+      const t=(el.textContent||'').trim();
+      if(/Rencontre/i.test(t) || /Ligue/i.test(t)){
+        el.classList.add('meeting-title');
+      }
+    });
+
+    /* Bandeau équipe adverse : conteneur direct de l'input */
+    const inp=detail.querySelector('.opponent-team-input');
+    if(inp){
+      const row=inp.parentElement;
+      if(row) row.classList.add('opponent-team-row');
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded',()=>{
+    decorate();
+    const d=document.getElementById('matchDetail');
+    if(d) new MutationObserver(decorate).observe(d,{childList:true,subtree:true});
+  });
+})();
+</script>
+
+
+<script>
+/* V134 — force le titre visible "Ligue X · Rencontre Y" en blanc */
+(function(){
+  function styleMeetingTitle(){
+    const root=document.getElementById('matchDetail');
+    if(!root) return;
+    root.querySelectorAll('h1,h2,h3,div,span').forEach(el=>{
+      if(el.children.length) return;
+      const t=(el.textContent||'').trim();
+      if(/^.+\s*[·•]\s*Rencontre\s+\d+/i.test(t) || /^Rencontre\s+\d+/i.test(t)){
+        el.classList.add('meeting-title');
+        el.style.setProperty('color','#fff','important');
+        el.style.setProperty('-webkit-text-fill-color','#fff','important');
+      }
+    });
+  }
+  document.addEventListener('DOMContentLoaded',()=>{
+    styleMeetingTitle();
+    const root=document.getElementById('matchDetail');
+    if(root) new MutationObserver(styleMeetingTitle).observe(root,{childList:true,subtree:true});
+  });
+})();
+</script>
+
+
+<div id="meetingEditModal" class="tg-modal" aria-hidden="true">
+  <div class="tg-modal-backdrop" onclick="closeMeetingEditModal()"></div>
+  <div class="tg-modal-card meeting-edit-modal-card" role="dialog" aria-modal="true" aria-labelledby="meetingEditModalTitle">
+    <button type="button" class="tg-modal-close" onclick="closeMeetingEditModal()" aria-label="Fermer">×</button>
+
+    <div class="tg-modal-head">
+      <span class="tg-modal-kicker">RENCONTRE</span>
+      <h3 id="meetingEditModalTitle">Modifier la rencontre</h3>
+      <p>Renseigne les informations générales de la rencontre.</p>
+    </div>
+
+    <div class="meeting-edit-form">
+      <label class="meeting-edit-field meeting-edit-field-wide">
+        <span>Nom de la rencontre</span>
+        <input id="meetingEditName" type="text" placeholder="Rencontre 1">
+      </label>
+
+      <label class="meeting-edit-field meeting-edit-field-wide">
+        <span>Équipe adverse</span>
+        <input id="meetingEditOpponent" type="text" placeholder="Équipe adverse">
+      </label>
+
+      <label class="meeting-edit-field">
+        <span>Date de début</span>
+        <input id="meetingEditDateStart" type="date">
+      </label>
+
+      <label class="meeting-edit-field">
+        <span>Date de fin</span>
+        <input id="meetingEditDateEnd" type="date">
+        <small>Laisse vide pour une rencontre sur une seule journée.</small>
+      </label>
+    </div>
+
+    <div id="meetingEditError" class="meeting-edit-error"></div>
+
+    <div class="tg-modal-actions">
+      <button type="button" class="btn" onclick="closeMeetingEditModal()">Annuler</button>
+      <button type="button" class="btn primary meeting-save-btn" onclick="saveMeetingEditModal()">Enregistrer</button>
+    </div>
+  </div>
+</div>
+
+
+<script>
+/* V146 — nettoyage défense : seul le rang 1 est utile */
+(function(){
+  function cleanDefenseRanks(){
+    document.querySelectorAll('#matchDetail .our-def-rank.rank-2, #matchDetail .our-def-rank.rank-3')
+      .forEach(el=>el.remove());
+  }
+
+  document.addEventListener('DOMContentLoaded',()=>{
+    cleanDefenseRanks();
+    const root=document.getElementById('matchDetail');
+    if(root){
+      new MutationObserver(cleanDefenseRanks).observe(root,{subtree:true,childList:true});
+    }
+  });
 })();
 </script>
 
