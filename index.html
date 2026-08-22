@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no" />
+<meta id="teamgridViewport" name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>40K Team Grid V11</title>
 <style>
 :root{
@@ -2856,7 +2856,7 @@ input,select{
   padding-bottom:54px!important;
 }
 #dashboard::after{
-  content:"TEAM GRID · VERSION 11 · V109 AUTO CLOUD";
+  content:"TEAM GRID · VERSION 11 · V110 AUTO CLOUD";
   position:fixed;
   left:50%;
   bottom:max(14px,env(safe-area-inset-bottom));
@@ -9905,6 +9905,128 @@ html[data-device-mode="phone"] body{overscroll-behavior:none}
 #tgRotatePhone span {font-size:14px;opacity:.8}
 html[data-device-mode="phone"].tg-phone-portrait #tgRotatePhone {display:flex}
 
+
+/* ============================================================
+   V110 — MODE TELEPHONE PROPRE
+   Principe : aucune rotation CSS, aucun scale du MAIN.
+   Le navigateur reçoit un viewport 1280px en paysage et adapte
+   naturellement toute l'interface comme une miniature PC.
+   ============================================================ */
+
+/* Neutralise TOUS les anciens fallbacks téléphone accumulés. */
+html[data-device-mode="phone"] body,
+html[data-device-mode="phone"] body.phone-landscape-fallback{
+  position:static!important;
+  transform:none!important;
+  width:auto!important;
+  height:auto!important;
+  min-width:0!important;
+  min-height:100%!important;
+  overflow-x:hidden!important;
+  overflow-y:auto!important;
+}
+
+html[data-device-mode="phone"] main,
+html[data-device-mode="phone"] body.phone-landscape-fallback main,
+html[data-device-mode="phone"] #app,
+html[data-device-mode="phone"] .app,
+html[data-device-mode="phone"] .app-shell{
+  position:static!important;
+  left:auto!important;
+  top:auto!important;
+  transform:none!important;
+  transform-origin:initial!important;
+  width:100%!important;
+  max-width:none!important;
+  height:auto!important;
+  overflow:visible!important;
+  zoom:1!important;
+}
+
+/* En téléphone paysage, l'interface garde exactement sa logique PC. */
+html[data-device-mode="phone"] .view{
+  width:100%!important;
+  max-width:none!important;
+  box-sizing:border-box!important;
+}
+html[data-device-mode="phone"] #roster,
+html[data-device-mode="phone"] #matchup,
+html[data-device-mode="phone"] #matchDetail{
+  width:100%!important;
+  max-width:none!important;
+  padding:8px!important;
+}
+
+/* La grille ne se replie jamais en cartes ou en colonnes verticales. */
+html[data-device-mode="phone"] .roster-table,
+html[data-device-mode="phone"] .match-roster-table{
+  width:100%!important;
+  min-width:0!important;
+  table-layout:fixed!important;
+}
+html[data-device-mode="phone"] .table-wrap,
+html[data-device-mode="phone"] .roster-table-wrap,
+html[data-device-mode="phone"] .match-table-wrap{
+  width:100%!important;
+  max-width:none!important;
+  overflow:visible!important;
+}
+
+/* Dimensions tactiles sans faire exploser les lignes. */
+html[data-device-mode="phone"] button,
+html[data-device-mode="phone"] input,
+html[data-device-mode="phone"] select{
+  touch-action:manipulation!important;
+}
+html[data-device-mode="phone"] .roster-table input,
+html[data-device-mode="phone"] .roster-table select,
+html[data-device-mode="phone"] .match-roster-field{
+  min-height:30px!important;
+}
+
+/* Le faux écran tourné de V109 n'est plus utilisé. */
+#tgRotatePhone{display:none!important}
+
+/* En portrait : une consigne simple au-dessus de tout.
+   Dès que le téléphone est tourné, elle disparaît. */
+#tgLandscapeRequired{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:999999;
+  background:#080d13;
+  color:#fff;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  font-family:Arial,sans-serif;
+}
+html[data-device-mode="phone"].tg-require-landscape #tgLandscapeRequired{
+  display:flex!important;
+}
+#tgLandscapeRequired .inner{
+  width:min(430px,82vw);
+  padding:26px;
+  border:1px solid rgba(255,255,255,.20);
+  border-radius:16px;
+  background:#111922;
+  box-shadow:0 18px 60px rgba(0,0,0,.5);
+}
+#tgLandscapeRequired .icon{
+  font-size:48px;
+  line-height:1;
+  margin-bottom:12px;
+}
+#tgLandscapeRequired b{
+  display:block;
+  font-size:22px;
+  margin-bottom:7px;
+}
+#tgLandscapeRequired span{
+  font-size:13px;
+  color:#b9c2cb;
+}
+
 </style>
 
 </head>
@@ -9946,7 +10068,7 @@ html[data-device-mode="phone"].tg-phone-portrait #tgRotatePhone {display:flex}
       </div>
     </div>
 
-    <div class="merged-home-version">TEAM GRID · VERSION 11 · V109 AUTO CLOUD</div>
+    <div class="merged-home-version">TEAM GRID · VERSION 11 · V110 AUTO CLOUD</div>
   </div>
 </section>
 
@@ -12803,6 +12925,133 @@ document.addEventListener('DOMContentLoaded',()=>{
       setTimeout(updatePhoneLayout,300);
     }
   });
+})();
+</script>
+
+
+<div id="tgLandscapeRequired">
+  <div class="inner">
+    <div class="icon">📱 ↻</div>
+    <b>Tourne ton téléphone en paysage</b>
+    <span>La grille TEAM GRID s'affichera alors dans les mêmes proportions que sur PC.</span>
+  </div>
+</div>
+
+
+<script>
+/* V110 — contrôleur téléphone unique, exécuté en dernier */
+(function(){
+  const KEY='40k_device_mode_v1';
+  const PHONE_VIEWPORT=1280;
+
+  function viewport(){
+    let v=document.getElementById('teamgridViewport');
+    if(!v){
+      v=document.createElement('meta');
+      v.id='teamgridViewport';
+      v.name='viewport';
+      document.head.appendChild(v);
+    }
+    return v;
+  }
+
+  function isPhoneMode(){
+    return localStorage.getItem(KEY)==='phone';
+  }
+
+  function cleanLegacyPhoneState(){
+    document.body.classList.remove('phone-landscape-fallback');
+    const nodes=[
+      document.querySelector('main'),
+      document.getElementById('app'),
+      document.querySelector('.app'),
+      document.querySelector('.app-shell')
+    ].filter(Boolean);
+    nodes.forEach(n=>{
+      n.style.removeProperty('transform');
+      n.style.removeProperty('transform-origin');
+      n.style.removeProperty('width');
+      n.style.removeProperty('max-width');
+      n.style.removeProperty('height');
+      n.style.removeProperty('position');
+      n.style.removeProperty('left');
+      n.style.removeProperty('top');
+    });
+    document.body.style.removeProperty('height');
+  }
+
+  function apply(){
+    const phone=isPhoneMode();
+    document.documentElement.dataset.deviceMode=phone?'phone':'pc';
+
+    cleanLegacyPhoneState();
+
+    if(phone){
+      /* Le navigateur mobile voit une page de 1280 CSS px et la met
+         automatiquement à l'échelle de la largeur paysage. */
+      viewport().setAttribute(
+        'content',
+        'width='+PHONE_VIEWPORT+', initial-scale=1, minimum-scale=0.1, maximum-scale=5, user-scalable=yes, viewport-fit=cover'
+      );
+    }else{
+      viewport().setAttribute(
+        'content',
+        'width=device-width, initial-scale=1, minimum-scale=1, viewport-fit=cover'
+      );
+    }
+
+    const portrait=phone && window.innerHeight>window.innerWidth;
+    document.documentElement.classList.toggle('tg-require-landscape',portrait);
+
+    const status=document.getElementById('deviceModeStatus');
+    const btn=document.getElementById('phoneModeToggle');
+    if(status) status.textContent=phone?'Mode téléphone actif':'Mode PC';
+    if(btn) btn.textContent=phone?'🖥 Revenir au mode PC':'📱 Mode téléphone';
+  }
+
+  /* Remplace définitivement les anciennes fonctions. */
+  window.togglePhoneMode=async function(){
+    const next=isPhoneMode()?'pc':'phone';
+    localStorage.setItem(KEY,next);
+
+    /* Une tentative native est faite seulement lors du clic utilisateur.
+       Aucun fallback de rotation CSS ne sera utilisé. */
+    if(next==='phone'){
+      try{
+        if(document.documentElement.requestFullscreen && !document.fullscreenElement){
+          await document.documentElement.requestFullscreen({navigationUI:'hide'});
+        }
+      }catch(e){}
+      try{
+        if(screen.orientation?.lock) await screen.orientation.lock('landscape');
+      }catch(e){}
+    }else{
+      try{ if(document.fullscreenElement) await document.exitFullscreen(); }catch(e){}
+      try{ screen.orientation?.unlock?.(); }catch(e){}
+    }
+    apply();
+  };
+
+  window.forceLandscapeFullscreen=async function(){
+    /* Désactivé hors action utilisateur pour éviter les conflits. */
+    apply();
+  };
+
+  window.TeamGridUpdatePhoneLayout=apply;
+
+  document.addEventListener('DOMContentLoaded',()=>{
+    apply();
+    setTimeout(apply,250);
+    setTimeout(apply,900);
+  });
+  window.addEventListener('resize',apply);
+  window.addEventListener('orientationchange',()=>setTimeout(apply,180));
+
+  /* Les anciens scripts ont eux aussi des listeners resize.
+     On repasse après eux pour nettoyer leurs styles inline. */
+  setInterval(()=>{
+    if(isPhoneMode()) cleanLegacyPhoneState();
+  },1200);
 })();
 </script>
 
