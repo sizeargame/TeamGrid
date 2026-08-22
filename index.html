@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8" />
-<meta id="teamgridViewport" name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta id="teamgridViewport" name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=yes">
 <title>40K Team Grid V11</title>
 <style>
 :root{
@@ -2856,7 +2856,7 @@ input,select{
   padding-bottom:54px!important;
 }
 #dashboard::after{
-  content:"TEAM GRID · VERSION 11 · V111 AUTO CLOUD";
+  content:"TEAM GRID · VERSION 11 · V112 AUTO CLOUD";
   position:fixed;
   left:50%;
   bottom:max(14px,env(safe-area-inset-bottom));
@@ -10187,6 +10187,285 @@ html[data-device-mode="phone"] body.phone-landscape-fallback main{
 }
 #tgRotatePhone{display:none!important}
 
+
+/* ============================================================
+   V112 — TELEPHONE RESPONSIVE SIMPLE ET STABLE
+   Pas de scale global. Pas de rotation CSS. Pas de viewport 1280.
+   ============================================================ */
+
+html[data-device-mode="phone"],
+html[data-device-mode="phone"] body{
+  width:100%!important;
+  min-width:0!important;
+  height:auto!important;
+  min-height:100%!important;
+  margin:0!important;
+  padding:0!important;
+  overflow-x:hidden!important;
+  overflow-y:auto!important;
+  position:static!important;
+  transform:none!important;
+}
+
+html[data-device-mode="phone"] main{
+  position:static!important;
+  width:100%!important;
+  max-width:none!important;
+  height:auto!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:6px!important;
+  overflow-x:hidden!important;
+  overflow-y:visible!important;
+  transform:none!important;
+}
+
+html[data-device-mode="phone"] main > .view{
+  position:static!important;
+  width:100%!important;
+  max-width:none!important;
+  height:auto!important;
+  margin:0!important;
+  transform:none!important;
+  overflow:visible!important;
+}
+html[data-device-mode="phone"] main > .view:not(.active){display:none!important}
+
+/* ---- ACCUEIL ---- */
+html[data-device-mode="phone"] #home{
+  width:100%!important;
+}
+html[data-device-mode="phone"] #home .merged-home{
+  width:100%!important;
+  min-height:calc(100dvh - 12px)!important;
+  padding:10px 12px 34px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+html[data-device-mode="phone"] #home .merged-home-inner{
+  width:min(680px,94vw)!important;
+  max-width:680px!important;
+  margin:0 auto!important;
+  align-items:center!important;
+  text-align:center!important;
+}
+html[data-device-mode="phone"] #home .home-app-logo{
+  width:76px!important;
+  height:76px!important;
+  margin:0 auto 7px!important;
+}
+html[data-device-mode="phone"] #home .home-subtitle{
+  font-size:10px!important;
+  margin:0 0 6px!important;
+}
+html[data-device-mode="phone"] #home .home-team-name{
+  font-size:27px!important;
+  margin:0 0 12px!important;
+  white-space:nowrap!important;
+}
+html[data-device-mode="phone"] #home .merged-actions{
+  width:100%!important;
+  margin:0!important;
+  gap:7px!important;
+}
+html[data-device-mode="phone"] #home .merged-actions .dash-card{
+  width:100%!important;
+  min-height:62px!important;
+  padding:7px 14px!important;
+}
+html[data-device-mode="phone"] #home .merged-actions .dash-card b{font-size:15px!important}
+html[data-device-mode="phone"] #home .merged-actions .dash-card small{font-size:8px!important}
+html[data-device-mode="phone"] #home .dashboard-device-row{
+  justify-content:center!important;
+  margin-top:8px!important;
+}
+html[data-device-mode="phone"] #home .merged-home-version{
+  left:50%!important;
+  transform:translateX(-50%)!important;
+}
+
+/* Le logo global en bas des pages gêne la grille sur téléphone. */
+html[data-device-mode="phone"] .teamgrid-page-brand{
+  display:none!important;
+}
+
+/* ---- TOP BARS / MENU ---- */
+html[data-device-mode="phone"] .roster-topbar,
+html[data-device-mode="phone"] .match-topbar,
+html[data-device-mode="phone"] .tournament-topbar,
+html[data-device-mode="phone"] .meeting-topbar{
+  width:100%!important;
+  margin:0 0 5px!important;
+  padding:4px 5px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:5px!important;
+}
+html[data-device-mode="phone"] .roster-actions,
+html[data-device-mode="phone"] .match-actions,
+html[data-device-mode="phone"] .toolbar{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  flex-wrap:nowrap!important;
+  gap:3px!important;
+  margin:0!important;
+}
+html[data-device-mode="phone"] .btn{
+  height:26px!important;
+  min-height:26px!important;
+  padding:2px 6px!important;
+  font-size:8px!important;
+  white-space:nowrap!important;
+}
+html[data-device-mode="phone"] .section-title,
+html[data-device-mode="phone"] h2{
+  font-size:16px!important;
+  line-height:1!important;
+}
+html[data-device-mode="phone"] .sub{display:none!important}
+
+/* ---- LÉGENDE ---- */
+html[data-device-mode="phone"] .panel{
+  margin:3px 0!important;
+  padding:3px 5px!important;
+}
+html[data-device-mode="phone"] .legend,
+html[data-device-mode="phone"] .match-legend-compact{
+  display:flex!important;
+  flex-wrap:nowrap!important;
+  gap:3px!important;
+  align-items:center!important;
+}
+html[data-device-mode="phone"] .legend span,
+html[data-device-mode="phone"] .match-legend-compact span{
+  padding:2px 4px!important;
+  font-size:6.5px!important;
+  white-space:nowrap!important;
+}
+
+/* ---- TABLEAUX : 100% largeur écran, aucun scroll horizontal ---- */
+html[data-device-mode="phone"] .table-wrap,
+html[data-device-mode="phone"] .roster-table-wrap,
+html[data-device-mode="phone"] .match-table-wrap{
+  width:100%!important;
+  max-width:100%!important;
+  overflow-x:hidden!important;
+  overflow-y:visible!important;
+  border:none!important;
+  margin:0!important;
+}
+
+html[data-device-mode="phone"] table,
+html[data-device-mode="phone"] .roster-table,
+html[data-device-mode="phone"] .match-roster-table{
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  table-layout:fixed!important;
+  border-collapse:separate!important;
+  border-spacing:2px 2px!important;
+}
+
+html[data-device-mode="phone"] th,
+html[data-device-mode="phone"] td{
+  position:static!important;
+  height:34px!important;
+  min-height:34px!important;
+  padding:2px!important;
+  font-size:7px!important;
+  line-height:1.05!important;
+}
+
+html[data-device-mode="phone"] .roster-table th,
+html[data-device-mode="phone"] .match-roster-table th{
+  height:33px!important;
+  min-height:33px!important;
+  font-size:6.4px!important;
+  line-height:1.05!important;
+  padding:2px!important;
+}
+
+html[data-device-mode="phone"] .roster-table input,
+html[data-device-mode="phone"] .roster-table select,
+html[data-device-mode="phone"] .match-roster-field,
+html[data-device-mode="phone"] .match-roster-table input,
+html[data-device-mode="phone"] .match-roster-table select{
+  width:100%!important;
+  min-width:0!important;
+  height:28px!important;
+  min-height:28px!important;
+  padding:2px 3px!important;
+  font-size:7.5px!important;
+  line-height:1!important;
+}
+
+html[data-device-mode="phone"] .color-cell,
+html[data-device-mode="phone"] .simple-match-cell{
+  width:100%!important;
+  min-width:0!important;
+  min-height:30px!important;
+  height:30px!important;
+  border-radius:5px!important;
+}
+
+/* Pairing : badges réduits mais encore lisibles */
+html[data-device-mode="phone"] .pairing-choice-badge{
+  width:20px!important;
+  height:20px!important;
+  min-width:20px!important;
+  font-size:10px!important;
+  top:-5px!important;
+  right:-4px!important;
+}
+html[data-device-mode="phone"] .match-cell-wrap.pairing-best-choice::before,
+html[data-device-mode="phone"] .defense-offer-cell::after,
+html[data-device-mode="phone"] .defense-chosen-cell::after,
+html[data-device-mode="phone"] .defense-other-cell::after{
+  font-size:5px!important;
+  padding:2px 3px!important;
+  left:3px!important;
+  top:3px!important;
+}
+
+/* Les sections sous la grille restent accessibles en scroll vertical normal. */
+html[data-device-mode="phone"] .final-pairs-panel,
+html[data-device-mode="phone"] .captain-analysis{
+  width:100%!important;
+  overflow:visible!important;
+}
+
+/* ---- ÉCRAN PORTRAIT : toujours taille téléphone normale ---- */
+#tgLandscapeRequired{
+  display:none!important;
+  position:fixed!important;
+  inset:0!important;
+  z-index:999999!important;
+  width:100vw!important;
+  height:100dvh!important;
+  margin:0!important;
+  padding:20px!important;
+  align-items:center!important;
+  justify-content:center!important;
+  background:#080d13!important;
+  transform:none!important;
+}
+html[data-device-mode="phone"].tg-require-landscape #tgLandscapeRequired{
+  display:flex!important;
+}
+#tgLandscapeRequired .inner{
+  width:min(330px,86vw)!important;
+  max-width:330px!important;
+  padding:20px!important;
+  margin:auto!important;
+  transform:none!important;
+}
+#tgLandscapeRequired .icon{font-size:38px!important}
+#tgLandscapeRequired b{font-size:18px!important}
+#tgLandscapeRequired span{font-size:11px!important}
+
 </style>
 
 </head>
@@ -10228,7 +10507,7 @@ html[data-device-mode="phone"] body.phone-landscape-fallback main{
       </div>
     </div>
 
-    <div class="merged-home-version">TEAM GRID · VERSION 11 · V111 AUTO CLOUD</div>
+    <div class="merged-home-version">TEAM GRID · VERSION 11 · V112 AUTO CLOUD</div>
   </div>
 </section>
 
@@ -12950,50 +13229,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 
 </div>
-<script>
-(function(){
-  const KEY='40k_device_mode_v1';
 
-  async function hardLandscape(){
-    if(localStorage.getItem(KEY)!=='phone'){
-      document.body.classList.remove('phone-landscape-fallback');
-      return;
-    }
-    let locked=false;
-    try{
-      if(!document.fullscreenElement && document.documentElement.requestFullscreen){
-        await document.documentElement.requestFullscreen({navigationUI:'hide'});
-      }
-    }catch(e){}
-    try{
-      if(screen.orientation?.lock){
-        await screen.orientation.lock('landscape');
-        locked=true;
-      }
-    }catch(e){}
-    // Fallback visuel : si après tentative on reste en portrait, rotation CSS.
-    const portrait=window.matchMedia('(orientation: portrait)').matches;
-    document.body.classList.toggle('phone-landscape-fallback',portrait && !locked);
-  }
-
-  const oldToggle=window.togglePhoneMode;
-  window.togglePhoneMode=async function(){
-    if(typeof oldToggle==='function') await oldToggle();
-    await hardLandscape();
-  };
-
-  const oldForce=window.forceLandscapeFullscreen;
-  window.forceLandscapeFullscreen=async function(){
-    try{if(typeof oldForce==='function') await oldForce()}catch(e){}
-    await hardLandscape();
-  };
-
-  window.addEventListener('resize',()=>{if(localStorage.getItem(KEY)==='phone')hardLandscape()});
-  window.addEventListener('orientationchange',()=>setTimeout(hardLandscape,180));
-  document.addEventListener('visibilitychange',()=>{if(!document.hidden)hardLandscape()});
-  document.addEventListener('DOMContentLoaded',()=>setTimeout(hardLandscape,350));
-})();
-</script>
 
 
 <script>
@@ -13019,74 +13255,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 </div>
 
 
-<script>
-(function(){
-  const DESIGN_W = 1280;
 
-  function phoneModeActive(){
-    return document.documentElement.getAttribute('data-device-mode') === 'phone';
-  }
-
-  function appRoot(){
-    return document.querySelector('.app-shell') ||
-           document.getElementById('app') ||
-           document.querySelector('main');
-  }
-
-  function updatePhoneLayout(){
-    if(!phoneModeActive()){
-      document.documentElement.classList.remove('tg-phone-portrait');
-      const root=appRoot();
-      if(root){
-        root.style.transform='';
-        root.style.width='';
-        root.style.maxWidth='';
-      }
-      document.body.style.height='';
-      return;
-    }
-
-    const portrait = window.innerHeight > window.innerWidth;
-    document.documentElement.classList.toggle('tg-phone-portrait', portrait);
-    if(portrait) return;
-
-    const root=appRoot();
-    if(!root) return;
-
-    // Leave a tiny safety margin for mobile browser chrome / rounded screens.
-    const viewportW = Math.max(320, document.documentElement.clientWidth || window.innerWidth);
-    const scale = Math.min(1, (viewportW - 4) / DESIGN_W);
-
-    root.style.width = DESIGN_W + 'px';
-    root.style.maxWidth = DESIGN_W + 'px';
-    root.style.transformOrigin = 'top left';
-    root.style.transform = 'scale(' + scale + ')';
-
-    // Compensate for transform not affecting document flow.
-    requestAnimationFrame(()=>{
-      const naturalH = root.scrollHeight;
-      document.body.style.height = Math.ceil(naturalH * scale) + 'px';
-    });
-  }
-
-  window.TeamGridUpdatePhoneLayout = updatePhoneLayout;
-
-  window.addEventListener('resize', updatePhoneLayout);
-  window.addEventListener('orientationchange', ()=>setTimeout(updatePhoneLayout,180));
-  document.addEventListener('DOMContentLoaded', ()=>setTimeout(updatePhoneLayout,80));
-
-  // Catch the existing PC/phone mode button even if its internal implementation changes.
-  document.addEventListener('click', e=>{
-    const b=e.target.closest('button');
-    if(!b) return;
-    const t=(b.textContent||'').toLowerCase();
-    if(t.includes('téléphone') || t.includes('telephone') || t.includes('mode pc')){
-      setTimeout(updatePhoneLayout,60);
-      setTimeout(updatePhoneLayout,300);
-    }
-  });
-})();
-</script>
 
 
 <div id="tgLandscapeRequired">
@@ -13098,249 +13267,61 @@ document.addEventListener('DOMContentLoaded',()=>{
 </div>
 
 
-<script>
-/* V110 — contrôleur téléphone unique, exécuté en dernier */
-(function(){
-  const KEY='40k_device_mode_v1';
-  const PHONE_VIEWPORT=1280;
 
-  function viewport(){
-    let v=document.getElementById('teamgridViewport');
-    if(!v){
-      v=document.createElement('meta');
-      v.id='teamgridViewport';
-      v.name='viewport';
-      document.head.appendChild(v);
-    }
-    return v;
-  }
 
-  function isPhoneMode(){
-    return localStorage.getItem(KEY)==='phone';
-  }
 
-  function cleanLegacyPhoneState(){
-    document.body.classList.remove('phone-landscape-fallback');
-    const nodes=[
-      document.querySelector('main'),
-      document.getElementById('app'),
-      document.querySelector('.app'),
-      document.querySelector('.app-shell')
-    ].filter(Boolean);
-    nodes.forEach(n=>{
-      n.style.removeProperty('transform');
-      n.style.removeProperty('transform-origin');
-      n.style.removeProperty('width');
-      n.style.removeProperty('max-width');
-      n.style.removeProperty('height');
-      n.style.removeProperty('position');
-      n.style.removeProperty('left');
-      n.style.removeProperty('top');
-    });
-    document.body.style.removeProperty('height');
-  }
 
-  function apply(){
-    const phone=isPhoneMode();
-    document.documentElement.dataset.deviceMode=phone?'phone':'pc';
-
-    cleanLegacyPhoneState();
-
-    if(phone){
-      /* Le navigateur mobile voit une page de 1280 CSS px et la met
-         automatiquement à l'échelle de la largeur paysage. */
-      viewport().setAttribute(
-        'content',
-        'width='+PHONE_VIEWPORT+', initial-scale=1, minimum-scale=0.1, maximum-scale=5, user-scalable=yes, viewport-fit=cover'
-      );
-    }else{
-      viewport().setAttribute(
-        'content',
-        'width=device-width, initial-scale=1, minimum-scale=1, viewport-fit=cover'
-      );
-    }
-
-    const portrait=phone && window.innerHeight>window.innerWidth;
-    document.documentElement.classList.toggle('tg-require-landscape',portrait);
-
-    const status=document.getElementById('deviceModeStatus');
-    const btn=document.getElementById('phoneModeToggle');
-    if(status) status.textContent=phone?'Mode téléphone actif':'Mode PC';
-    if(btn) btn.textContent=phone?'🖥 Revenir au mode PC':'📱 Mode téléphone';
-  }
-
-  /* Remplace définitivement les anciennes fonctions. */
-  window.togglePhoneMode=async function(){
-    const next=isPhoneMode()?'pc':'phone';
-    localStorage.setItem(KEY,next);
-
-    /* Une tentative native est faite seulement lors du clic utilisateur.
-       Aucun fallback de rotation CSS ne sera utilisé. */
-    if(next==='phone'){
-      try{
-        if(document.documentElement.requestFullscreen && !document.fullscreenElement){
-          await document.documentElement.requestFullscreen({navigationUI:'hide'});
-        }
-      }catch(e){}
-      try{
-        if(screen.orientation?.lock) await screen.orientation.lock('landscape');
-      }catch(e){}
-    }else{
-      try{ if(document.fullscreenElement) await document.exitFullscreen(); }catch(e){}
-      try{ screen.orientation?.unlock?.(); }catch(e){}
-    }
-    apply();
-  };
-
-  window.forceLandscapeFullscreen=async function(){
-    /* Désactivé hors action utilisateur pour éviter les conflits. */
-    apply();
-  };
-
-  window.TeamGridUpdatePhoneLayout=apply;
-
-  document.addEventListener('DOMContentLoaded',()=>{
-    apply();
-    setTimeout(apply,250);
-    setTimeout(apply,900);
-  });
-  window.addEventListener('resize',apply);
-  window.addEventListener('orientationchange',()=>setTimeout(apply,180));
-
-  /* Les anciens scripts ont eux aussi des listeners resize.
-     On repasse après eux pour nettoyer leurs styles inline. */
-  setInterval(()=>{
-    if(isPhoneMode()) cleanLegacyPhoneState();
-  },1200);
-})();
-</script>
 
 
 <script>
-/* ============================================================
-   V111 — contrôleur téléphone "FIT TO SCREEN"
-   ============================================================ */
+/* V112 — unique phone controller */
 (function(){
   const KEY='40k_device_mode_v1';
-  let raf=0;
 
   function phone(){
     return localStorage.getItem(KEY)==='phone';
   }
 
-  function viewportSize(){
-    const vv=window.visualViewport;
-    return {
-      w: Math.max(1, vv ? vv.width : window.innerWidth),
-      h: Math.max(1, vv ? vv.height : window.innerHeight)
-    };
-  }
+  function apply(){
+    const isPhone=phone();
+    document.documentElement.dataset.deviceMode=isPhone?'phone':'pc';
 
-  function activeView(){
-    return document.querySelector('main > .view.active');
-  }
+    const vp=document.getElementById('teamgridViewport');
+    if(vp){
+      vp.content='width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=yes';
+    }
 
-  function clearFit(){
-    document.documentElement.classList.remove('tg-require-landscape');
-    const views=document.querySelectorAll('main > .view');
-    views.forEach(v=>{
-      v.style.removeProperty('transform');
-      v.style.removeProperty('width');
-      v.style.removeProperty('height');
-      v.style.removeProperty('left');
-      v.style.removeProperty('top');
+    document.body.classList.remove('phone-landscape-fallback');
+
+    // Supprime tous les styles inline de scale/rotation laissés par les anciennes versions.
+    const nodes=[
+      document.querySelector('main'),
+      ...document.querySelectorAll('main > .view')
+    ].filter(Boolean);
+    nodes.forEach(n=>{
+      n.style.removeProperty('transform');
+      n.style.removeProperty('transform-origin');
+      n.style.removeProperty('width');
+      n.style.removeProperty('height');
+      n.style.removeProperty('left');
+      n.style.removeProperty('top');
+      n.style.removeProperty('position');
     });
-  }
+    document.body.style.removeProperty('height');
 
-  function measureNatural(view){
-    // Largeur de conception : assez grande pour conserver les 6x6 pairings lisibles.
-    // Accueil plus étroit ; roster/rencontre restent en largeur PC.
-    let designW = view.id==='home' ? 760 : 1420;
-
-    view.style.width=designW+'px';
-    view.style.height='auto';
-    view.style.transform='none';
-    view.style.left='0px';
-    view.style.top='0px';
-
-    // Force layout after dynamic render.
-    const naturalW=Math.max(designW, view.scrollWidth);
-    const naturalH=Math.max(1, view.scrollHeight);
-
-    return {w:naturalW,h:naturalH};
-  }
-
-  function fit(){
-    cancelAnimationFrame(raf);
-    raf=requestAnimationFrame(()=>{
-      if(!phone()){
-        clearFit();
-        return;
-      }
-
-      // On exige physiquement le paysage ; pas de rotation CSS.
-      const vp=viewportSize();
-      const portrait=vp.h > vp.w;
-      document.documentElement.classList.toggle('tg-require-landscape',portrait);
-      if(portrait) return;
-
-      const view=activeView();
-      if(!view) return;
-
-      const natural=measureNatural(view);
-
-      // Marges de sécurité pour barres navigateur / coins arrondis.
-      const marginX=6;
-      const marginY=5;
-      const availW=Math.max(1,vp.w-marginX*2);
-      const availH=Math.max(1,vp.h-marginY*2);
-
-      // Toute la vue doit rentrer : largeur ET hauteur.
-      const scale=Math.min(
-        1,
-        availW/natural.w,
-        availH/natural.h
-      );
-
-      const shownW=natural.w*scale;
-      const shownH=natural.h*scale;
-
-      // Centrage dans l'écran.
-      const left=Math.max(marginX,(vp.w-shownW)/2);
-      const top=Math.max(marginY,(vp.h-shownH)/2);
-
-      view.style.width=natural.w+'px';
-      view.style.height=natural.h+'px';
-      view.style.left=left+'px';
-      view.style.top=top+'px';
-      view.style.transform='scale('+scale+')';
-      view.style.transformOrigin='top left';
-    });
-  }
-
-  function fitRepeated(){
-    fit();
-    setTimeout(fit,60);
-    setTimeout(fit,180);
-    setTimeout(fit,450);
-  }
-
-  // Remplace le contrôleur V110 en dernier.
-  window.TeamGridUpdatePhoneLayout=fitRepeated;
-  window.forceLandscapeFullscreen=async function(){
-    if(phone()) fitRepeated();
-  };
-
-  // Le bouton téléphone : plein écran + tentative native de verrouillage paysage.
-  window.togglePhoneMode=async function(){
-    const next=phone()?'pc':'phone';
-    localStorage.setItem(KEY,next);
-    document.documentElement.dataset.deviceMode=next;
+    const portrait=isPhone && window.innerHeight>window.innerWidth;
+    document.documentElement.classList.toggle('tg-require-landscape',portrait);
 
     const status=document.getElementById('deviceModeStatus');
     const btn=document.getElementById('phoneModeToggle');
-    if(status) status.textContent=next==='phone'?'Mode téléphone actif':'Mode PC';
-    if(btn) btn.textContent=next==='phone'?'🖥 Revenir au mode PC':'📱 Mode téléphone';
+    if(status) status.textContent=isPhone?'Mode téléphone actif':'Mode PC';
+    if(btn) btn.textContent=isPhone?'🖥 Revenir au mode PC':'📱 Mode téléphone';
+  }
+
+  window.togglePhoneMode=async function(){
+    const next=phone()?'pc':'phone';
+    localStorage.setItem(KEY,next);
+    apply();
 
     if(next==='phone'){
       try{
@@ -13352,38 +13333,26 @@ document.addEventListener('DOMContentLoaded',()=>{
         if(screen.orientation?.lock) await screen.orientation.lock('landscape');
       }catch(e){}
     }else{
-      try{ if(document.fullscreenElement) await document.exitFullscreen(); }catch(e){}
-      try{ screen.orientation?.unlock?.(); }catch(e){}
-      clearFit();
+      try{if(document.fullscreenElement) await document.exitFullscreen()}catch(e){}
+      try{screen.orientation?.unlock?.()}catch(e){}
     }
-    fitRepeated();
+    setTimeout(apply,100);
   };
 
-  // Après chaque navigation/rendu, on recalcule automatiquement.
-  const oldShowView=window.showView;
-  if(typeof oldShowView==='function'){
-    window.showView=function(id){
-      const r=oldShowView.apply(this,arguments);
-      fitRepeated();
-      return r;
-    };
-  }
+  window.forceLandscapeFullscreen=async function(){ apply(); };
+  window.TeamGridUpdatePhoneLayout=apply;
 
-  document.addEventListener('DOMContentLoaded',fitRepeated);
-  window.addEventListener('resize',fitRepeated);
-  window.addEventListener('orientationchange',()=>setTimeout(fitRepeated,150));
-  if(window.visualViewport){
-    window.visualViewport.addEventListener('resize',fitRepeated);
-  }
-
-  // Les grilles sont générées dynamiquement : chaque changement DOM recalcule le fit.
-  const obs=new MutationObserver(()=>{
-    if(phone()) fit();
-  });
   document.addEventListener('DOMContentLoaded',()=>{
-    const main=document.querySelector('main');
-    if(main) obs.observe(main,{subtree:true,childList:true,characterData:true});
+    apply();
+    setTimeout(apply,250);
   });
+  window.addEventListener('resize',apply);
+  window.addEventListener('orientationchange',()=>setTimeout(apply,150));
+
+  // Nettoyage périodique des vieux scripts encore présents dans l'historique du fichier.
+  setInterval(()=>{
+    if(phone()) apply();
+  },1500);
 })();
 </script>
 
