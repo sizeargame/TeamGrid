@@ -2856,7 +2856,7 @@ input,select{
   padding-bottom:54px!important;
 }
 #dashboard::after{
-  content:"TEAM GRID · VERSION 11 · V112 AUTO CLOUD";
+  content:"TEAM GRID · VERSION 11 · V113 AUTO CLOUD";
   position:fixed;
   left:50%;
   bottom:max(14px,env(safe-area-inset-bottom));
@@ -10466,6 +10466,26 @@ html[data-device-mode="phone"].tg-require-landscape #tgLandscapeRequired{
 #tgLandscapeRequired b{font-size:18px!important}
 #tgLandscapeRequired span{font-size:11px!important}
 
+
+/* V113 — plein écran téléphone explicite */
+html[data-device-mode="phone"] #phoneFullscreenBtn{display:inline-flex!important}
+html[data-device-mode="pc"] #phoneFullscreenBtn{display:none!important}
+html[data-device-mode="phone"] body{
+  min-height:100dvh!important;
+}
+html[data-device-mode="phone"]:fullscreen,
+html[data-device-mode="phone"]:-webkit-full-screen{
+  width:100vw!important;
+  height:100vh!important;
+  background:#000!important;
+}
+html[data-device-mode="phone"]:fullscreen body,
+html[data-device-mode="phone"]:-webkit-full-screen body{
+  width:100vw!important;
+  min-height:100vh!important;
+  margin:0!important;
+}
+
 </style>
 
 </head>
@@ -10503,11 +10523,12 @@ html[data-device-mode="phone"].tg-require-landscape #tgLandscapeRequired{
       <div class="dashboard-device-row">
         <span id="deviceModeStatus">Mode PC</span>
         <button type="button" id="phoneModeToggle" class="dashboard-phone-btn" onclick="togglePhoneMode()">📱 Mode téléphone</button>
+        <button type="button" id="phoneFullscreenBtn" class="dashboard-phone-btn" onclick="enterTeamGridFullscreen()" style="display:none">⛶ Plein écran</button>
         <span id="cloudStatusPill" class="cloud-status-pill syncing">☁ Connexion…</span>
       </div>
     </div>
 
-    <div class="merged-home-version">TEAM GRID · VERSION 11 · V112 AUTO CLOUD</div>
+    <div class="merged-home-version">TEAM GRID · VERSION 11 · V113 AUTO CLOUD</div>
   </div>
 </section>
 
@@ -13353,6 +13374,77 @@ document.addEventListener('DOMContentLoaded',()=>{
   setInterval(()=>{
     if(phone()) apply();
   },1500);
+})();
+</script>
+
+
+<script>
+/* V113 — Fullscreen API doit être appelée depuis un clic utilisateur */
+(function(){
+  async function requestFS(){
+    const root=document.documentElement;
+    try{
+      if(document.fullscreenElement || document.webkitFullscreenElement) return true;
+      if(root.requestFullscreen){
+        await root.requestFullscreen({navigationUI:'hide'});
+        return true;
+      }
+      if(root.webkitRequestFullscreen){
+        root.webkitRequestFullscreen();
+        return true;
+      }
+    }catch(e){
+      console.warn('Plein écran refusé par le navigateur',e);
+    }
+    return false;
+  }
+
+  window.enterTeamGridFullscreen=async function(){
+    const ok=await requestFS();
+    if(ok){
+      try{
+        if(screen.orientation?.lock) await screen.orientation.lock('landscape');
+      }catch(e){}
+    }
+    setTimeout(()=>window.TeamGridUpdatePhoneLayout?.(),120);
+  };
+
+  // Override final du bouton téléphone : le clic sert directement de geste
+  // autorisant le plein écran.
+  window.togglePhoneMode=async function(){
+    const KEY='40k_device_mode_v1';
+    const current=localStorage.getItem(KEY)==='phone';
+    const next=current?'pc':'phone';
+    localStorage.setItem(KEY,next);
+    document.documentElement.dataset.deviceMode=next;
+
+    const status=document.getElementById('deviceModeStatus');
+    const btn=document.getElementById('phoneModeToggle');
+    if(status) status.textContent=next==='phone'?'Mode téléphone actif':'Mode PC';
+    if(btn) btn.textContent=next==='phone'?'🖥 Revenir au mode PC':'📱 Mode téléphone';
+
+    if(next==='phone'){
+      await window.enterTeamGridFullscreen();
+    }else{
+      try{
+        if(document.fullscreenElement) await document.exitFullscreen();
+        else if(document.webkitFullscreenElement && document.webkitExitFullscreen) document.webkitExitFullscreen();
+      }catch(e){}
+      try{screen.orientation?.unlock?.()}catch(e){}
+    }
+
+    window.TeamGridUpdatePhoneLayout?.();
+  };
+
+  function updateFSButton(){
+    const b=document.getElementById('phoneFullscreenBtn');
+    if(!b)return;
+    const fs=!!(document.fullscreenElement||document.webkitFullscreenElement);
+    b.textContent=fs?'✓ Plein écran':'⛶ Plein écran';
+  }
+  document.addEventListener('fullscreenchange',updateFSButton);
+  document.addEventListener('webkitfullscreenchange',updateFSButton);
+  document.addEventListener('DOMContentLoaded',updateFSButton);
 })();
 </script>
 
