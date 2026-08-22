@@ -2856,7 +2856,7 @@ input,select{
   padding-bottom:54px!important;
 }
 #dashboard::after{
-  content:"TEAM GRID · VERSION 11 · V168 PC ONLY";
+  content:"TEAM GRID · VERSION 11 · V184 TRI ALPHABÉTIQUE";
   position:fixed;
   left:50%;
   bottom:max(14px,env(safe-area-inset-bottom));
@@ -15291,6 +15291,1904 @@ td.match-cell-wrap.enemy-defense-column-selected{
   margin-right:0!important;
 }
 
+
+/* ============================================================
+   V169 — JOUEURS / matrices individuelles
+   ============================================================ */
+
+/* Accueil : 3 boutons */
+#home .dashboard-actions.merged-actions{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  max-width:980px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+#home .dashboard-actions.merged-actions .dash-card{
+  min-width:0!important;
+}
+
+/* Vue joueurs */
+#players{
+  max-width:1420px!important;
+  margin:0 auto!important;
+  padding:8px 12px 40px!important;
+}
+.players-toolbar,
+.player-matrix-toolbar{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  gap:7px!important;
+  margin-bottom:10px!important;
+}
+.players-page-title{
+  margin:8px 0 16px!important;
+}
+.players-page-title h2{
+  color:#fff!important;
+  margin:0!important;
+}
+.players-page-title p{
+  color:#b7bdc5!important;
+  margin:3px 0 0!important;
+  font-size:10px!important;
+}
+
+.player-profile-cards{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:9px!important;
+}
+.player-profile-card-wrap{
+  position:relative!important;
+}
+.player-profile-card{
+  width:100%!important;
+  min-height:78px!important;
+  display:grid!important;
+  grid-template-columns:38px minmax(0,1fr) auto 16px!important;
+  align-items:center!important;
+  gap:9px!important;
+  padding:9px 40px 9px 10px!important;
+  text-align:left!important;
+  border-radius:9px!important;
+  background:linear-gradient(180deg,#202730,#151b22)!important;
+  color:#f4f1e8!important;
+  border:1px solid rgba(238,232,216,.16)!important;
+  box-shadow:0 4px 12px rgba(0,0,0,.24)!important;
+}
+.player-profile-token{
+  width:34px!important;
+  height:34px!important;
+  border-radius:50%!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  background:#d94435!important;
+  color:#fff!important;
+  font-size:15px!important;
+  font-weight:900!important;
+}
+.player-profile-info{min-width:0!important}
+.player-profile-info b{
+  display:block!important;
+  font-size:12px!important;
+}
+.player-profile-info small,
+.player-profile-info em{
+  display:block!important;
+  margin-top:2px!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+.player-profile-info small{font-size:8px!important;color:#c5c9cf!important}
+.player-profile-info em{font-size:7px!important;color:#858e98!important;font-style:normal!important}
+.player-profile-progress{
+  min-width:48px!important;
+  text-align:center!important;
+  padding:5px 6px!important;
+  border-radius:6px!important;
+  background:#11171d!important;
+  color:#cdd3d9!important;
+  font-size:8px!important;
+  font-weight:850!important;
+}
+.player-profile-edit{
+  position:absolute!important;
+  right:9px!important;
+  top:50%!important;
+  transform:translateY(-50%)!important;
+}
+.players-empty{
+  grid-column:1/-1!important;
+  min-height:140px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:5px!important;
+  border:1px dashed rgba(238,232,216,.25)!important;
+  border-radius:10px!important;
+  background:rgba(17,23,30,.75)!important;
+  color:#f4f1e8!important;
+}
+.players-empty b{font-size:14px!important}
+.players-empty span{font-size:9px!important;color:#9da5ae!important}
+
+/* Titre joueur */
+.player-matrix-title{
+  display:flex!important;
+  flex-direction:column!important;
+  min-width:0!important;
+  margin-right:5px!important;
+}
+.player-matrix-title b{
+  color:#fff!important;
+  font-size:17px!important;
+  line-height:1!important;
+}
+.player-matrix-title span{
+  margin-top:3px!important;
+  color:#bcc2c9!important;
+  font-size:8px!important;
+}
+
+.player-matrix-help{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:12px!important;
+  margin:4px 0 7px!important;
+  padding:8px 10px!important;
+  border-left:4px solid #d94435!important;
+  border-radius:7px!important;
+  background:rgba(17,23,30,.93)!important;
+  color:#f4f1e8!important;
+}
+.player-matrix-help strong{
+  display:block!important;
+  font-size:11px!important;
+}
+.player-matrix-help span{
+  display:block!important;
+  margin-top:2px!important;
+  color:#aeb5bd!important;
+  font-size:7px!important;
+}
+
+.player-matrix-legend{
+  display:flex!important;
+  gap:5px!important;
+  align-items:center!important;
+  margin:6px 0!important;
+}
+.pm-chip{
+  padding:4px 7px!important;
+  border-radius:5px!important;
+  font-size:7px!important;
+  font-weight:850!important;
+  border:1px solid rgba(255,255,255,.35)!important;
+}
+.pm-g2{background:#11804a!important;color:#fff!important}
+.pm-g1{background:#7bc970!important;color:#17331a!important}
+.pm-o{background:#f2a43a!important;color:#442d07!important}
+.pm-r{background:#df4b4d!important;color:#fff!important}
+.pm-p{background:#7b55ad!important;color:#fff!important}
+.pm-empty{background:#202730!important;color:#aeb5bd!important}
+
+/* Matrice */
+.player-matrix-wrap{
+  width:100%!important;
+  overflow:visible!important;
+}
+.player-matrix-table{
+  width:100%!important;
+  table-layout:fixed!important;
+  border-collapse:separate!important;
+  border-spacing:4px!important;
+  min-width:0!important;
+  background:transparent!important;
+}
+.player-matrix-table th{
+  position:static!important;
+  height:55px!important;
+  padding:6px!important;
+  background:linear-gradient(180deg,#1f252d,#11161d)!important;
+  color:#fff!important;
+  border:1px solid rgba(238,232,216,.18)!important;
+  border-radius:8px!important;
+  box-shadow:0 4px 10px rgba(0,0,0,.26)!important;
+  font-size:8px!important;
+  line-height:1.1!important;
+  text-transform:none!important;
+}
+.player-matrix-table th small{
+  display:block!important;
+  margin-top:2px!important;
+  color:#9fa7b0!important;
+  font-size:6px!important;
+}
+.player-matrix-table td{
+  position:static!important;
+  height:44px!important;
+  padding:0!important;
+  background:transparent!important;
+  border:0!important;
+}
+.pm-opponent-name{
+  width:100%!important;
+  height:40px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:flex-start!important;
+  justify-content:center!important;
+  padding:5px 8px!important;
+  border-radius:6px!important;
+  border:1px solid rgba(255,255,255,.45)!important;
+  background:rgba(239,235,224,.97)!important;
+  color:#20252b!important;
+  text-align:left!important;
+  box-shadow:0 2px 6px rgba(0,0,0,.18)!important;
+}
+.pm-opponent-name b{
+  font-size:9px!important;
+  line-height:1!important;
+}
+.pm-opponent-name small{
+  margin-top:2px!important;
+  font-size:6.5px!important;
+  color:#666d75!important;
+}
+.pm-cell-wrap{padding:0!important}
+.pm-cell{
+  width:100%!important;
+  height:40px!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  grid-template-rows:auto auto!important;
+  align-items:center!important;
+  gap:1px 5px!important;
+  padding:4px 7px!important;
+  border-radius:6px!important;
+  border:2px solid rgba(255,255,255,.88)!important;
+  box-shadow:0 3px 7px rgba(0,0,0,.22)!important;
+  text-align:left!important;
+}
+.pm-cell-rating{
+  grid-column:1!important;
+  font-size:6.5px!important;
+  font-weight:850!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+.pm-cell b{
+  grid-column:2!important;
+  grid-row:1/3!important;
+  font-size:13px!important;
+  line-height:1!important;
+}
+.pm-cell small{
+  grid-column:1!important;
+  font-size:5.5px!important;
+  opacity:.78!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+.pm-cell.pm-g2{background:#11804a!important;color:#fff!important}
+.pm-cell.pm-g1{background:#7bc970!important;color:#17331a!important}
+.pm-cell.pm-o{background:#f2a43a!important;color:#442d07!important}
+.pm-cell.pm-r{background:#df4b4d!important;color:#fff!important}
+.pm-cell.pm-p{background:#7b55ad!important;color:#fff!important}
+.pm-cell.pm-empty-cell{
+  background:rgba(24,31,39,.86)!important;
+  color:#8e98a2!important;
+  border-color:rgba(255,255,255,.22)!important;
+}
+.pm-cell.pm-empty-cell b{font-size:15px!important}
+
+/* Formulaires modales */
+.player-profile-form,
+.opponent-row-form,
+.player-matchup-form{
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+  gap:10px!important;
+}
+.player-profile-form label,
+.opponent-row-form label,
+.player-matchup-form label{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:5px!important;
+}
+.player-profile-form label.wide,
+.player-matchup-form label.wide{
+  grid-column:1/-1!important;
+}
+.player-profile-form label>span,
+.opponent-row-form label>span,
+.player-matchup-form label>span{
+  color:#c9c3b6!important;
+  font-size:8px!important;
+  font-weight:850!important;
+}
+.player-profile-form input,
+.player-profile-form select,
+.player-profile-form textarea,
+.opponent-row-form input,
+.player-matchup-form input,
+.player-matchup-form select,
+.player-matchup-form textarea{
+  width:100%!important;
+  box-sizing:border-box!important;
+  background:#eee8d8!important;
+  color:#171b20!important;
+  border:1px solid rgba(0,0,0,.22)!important;
+  border-radius:7px!important;
+  padding:7px 8px!important;
+  font-size:10px!important;
+  font-weight:700!important;
+}
+.player-profile-form textarea,
+.player-matchup-form textarea{resize:vertical!important}
+
+.pm-central-preview{
+  display:flex!important;
+  justify-content:space-between!important;
+  align-items:center!important;
+  margin-top:10px!important;
+  padding:8px 10px!important;
+  border-radius:7px!important;
+  background:#11171d!important;
+  border:1px solid rgba(238,232,216,.16)!important;
+  color:#aeb5bd!important;
+}
+.pm-central-preview span{font-size:8px!important;font-weight:800!important}
+.pm-central-preview b{font-size:17px!important;color:#fff!important}
+
+@media(max-width:1050px){
+  #home .dashboard-actions.merged-actions{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:9px!important}
+  #home .dashboard-actions.merged-actions .dash-card{min-height:115px!important}
+  .player-profile-cards{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+
+
+/* ============================================================
+   V170 — Historique réel + analyse automatique joueurs
+   ============================================================ */
+
+/* Matrix cells richer */
+.player-matrix-table td{height:62px!important}
+.pm-opponent-name{height:58px!important}
+.pm-cell{
+  height:58px!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  grid-template-rows:auto auto auto!important;
+  gap:1px 5px!important;
+  padding:4px 6px!important;
+}
+.pm-cell-rating{
+  grid-column:1!important;
+  grid-row:1!important;
+  font-size:6.5px!important;
+}
+.pm-theory-score{
+  grid-column:2!important;
+  grid-row:1!important;
+  font-size:12px!important;
+}
+.pm-record{
+  grid-column:1!important;
+  grid-row:2!important;
+  font-size:7px!important;
+  font-weight:900!important;
+  white-space:nowrap!important;
+}
+.pm-average{
+  grid-column:2!important;
+  grid-row:2!important;
+  font-size:7px!important;
+  font-weight:850!important;
+  text-align:right!important;
+}
+.pm-score-history{
+  grid-column:1 / -1!important;
+  grid-row:3!important;
+  font-size:5.8px!important;
+  opacity:.84!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+.pm-cell.has-results{
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.10),
+    0 3px 8px rgba(0,0,0,.27)!important;
+}
+
+/* History in matchup modal */
+.pm-history-section{
+  margin-top:10px!important;
+  padding:10px!important;
+  border-radius:9px!important;
+  background:#11171d!important;
+  border:1px solid rgba(238,232,216,.16)!important;
+}
+.pm-history-head{
+  display:flex!important;
+  justify-content:space-between!important;
+  align-items:flex-start!important;
+  gap:12px!important;
+  margin-bottom:8px!important;
+}
+.pm-history-head strong{
+  display:block!important;
+  color:#fff!important;
+  font-size:10px!important;
+}
+.pm-history-head small{
+  display:block!important;
+  margin-top:2px!important;
+  color:#88919b!important;
+  font-size:6.5px!important;
+}
+.pm-history-summary{
+  flex:0 0 auto!important;
+  padding:4px 7px!important;
+  border-radius:5px!important;
+  background:#242c35!important;
+  color:#fff!important;
+  font-size:7px!important;
+  font-weight:850!important;
+}
+.pm-new-game{
+  display:grid!important;
+  grid-template-columns:105px 90px 90px minmax(150px,1fr) auto!important;
+  align-items:end!important;
+  gap:6px!important;
+}
+.pm-new-game label{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:3px!important;
+}
+.pm-new-game label span{
+  color:#aeb5bd!important;
+  font-size:6.5px!important;
+  font-weight:800!important;
+}
+.pm-new-game input{
+  width:100%!important;
+  height:29px!important;
+  min-height:29px!important;
+  padding:4px 6px!important;
+  background:#eee8d8!important;
+  color:#171b20!important;
+  border:1px solid rgba(0,0,0,.22)!important;
+  border-radius:6px!important;
+  font-size:8px!important;
+  font-weight:750!important;
+}
+.pm-add-game-btn{
+  height:29px!important;
+  min-height:29px!important;
+  white-space:nowrap!important;
+}
+.pm-game-error{
+  min-height:12px!important;
+  margin-top:4px!important;
+  color:#ff8c82!important;
+  font-size:7px!important;
+  font-weight:800!important;
+}
+.pm-game-history{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:3px!important;
+  max-height:150px!important;
+  overflow-y:auto!important;
+}
+.pm-history-empty{
+  padding:8px!important;
+  text-align:center!important;
+  color:#7f8994!important;
+  font-size:7px!important;
+  border:1px dashed rgba(255,255,255,.12)!important;
+  border-radius:6px!important;
+}
+.pm-game-row{
+  display:grid!important;
+  grid-template-columns:54px 46px 86px minmax(0,1fr) 20px!important;
+  align-items:center!important;
+  gap:5px!important;
+  min-height:27px!important;
+  padding:3px 5px!important;
+  border-radius:6px!important;
+  background:#1b232b!important;
+  border-left:3px solid #87919c!important;
+  color:#dce1e5!important;
+}
+.pm-game-row.win{border-left-color:#39b86a!important}
+.pm-game-row.loss{border-left-color:#e35b5d!important}
+.pm-game-row.draw{border-left-color:#e3aa43!important}
+.pm-game-row span{font-size:6.5px!important}
+.pm-game-row b{font-size:9px!important;color:#fff!important}
+.pm-game-result{font-weight:900!important}
+.pm-game-mission{
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  color:#9da6af!important;
+}
+.pm-game-row button{
+  width:18px!important;
+  height:18px!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:4px!important;
+  background:rgba(255,255,255,.06)!important;
+  color:#bfc6cc!important;
+  font-size:11px!important;
+}
+
+/* Automatic analysis */
+.player-performance-analysis{
+  margin:8px 0 10px!important;
+}
+.ppa-empty{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:3px!important;
+  padding:10px!important;
+  border-radius:8px!important;
+  background:rgba(17,23,30,.92)!important;
+  border:1px dashed rgba(238,232,216,.20)!important;
+}
+.ppa-empty b{font-size:10px!important;color:#fff!important}
+.ppa-empty span{font-size:7px!important;color:#9ba4ad!important}
+
+.ppa-head{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  margin-bottom:6px!important;
+}
+.ppa-kicker{
+  display:block!important;
+  color:#d94435!important;
+  font-size:6px!important;
+  font-weight:950!important;
+  letter-spacing:.11em!important;
+}
+.ppa-head h3{
+  margin:1px 0 0!important;
+  color:#fff!important;
+  font-size:14px!important;
+}
+.ppa-confidence{
+  padding:4px 7px!important;
+  border-radius:999px!important;
+  font-size:6.5px!important;
+  font-weight:850!important;
+  border:1px solid rgba(255,255,255,.14)!important;
+}
+.ppa-confidence.light{background:#342723!important;color:#e8b7a9!important}
+.ppa-confidence.medium{background:#33301f!important;color:#e5d08b!important}
+.ppa-confidence.solid{background:#183227!important;color:#9de0b7!important}
+
+.ppa-kpis{
+  display:grid!important;
+  grid-template-columns:repeat(3,1fr)!important;
+  gap:5px!important;
+}
+.ppa-kpi{
+  padding:7px 8px!important;
+  border-radius:7px!important;
+  background:linear-gradient(180deg,#202730,#151b22)!important;
+  border:1px solid rgba(238,232,216,.14)!important;
+  box-shadow:0 3px 8px rgba(0,0,0,.20)!important;
+}
+.ppa-kpi span{
+  display:block!important;
+  color:#9da6af!important;
+  font-size:6px!important;
+  font-weight:850!important;
+  text-transform:uppercase!important;
+}
+.ppa-kpi b{
+  display:block!important;
+  margin-top:2px!important;
+  color:#fff!important;
+  font-size:17px!important;
+  line-height:1!important;
+}
+.ppa-kpi small{
+  display:block!important;
+  margin-top:2px!important;
+  color:#8b949e!important;
+  font-size:6px!important;
+}
+
+.ppa-section-title{
+  margin:7px 0 4px!important;
+  color:#c8ced4!important;
+  font-size:7px!important;
+  font-weight:900!important;
+  text-transform:uppercase!important;
+  letter-spacing:.05em!important;
+}
+.ppa-fd-grid{
+  display:grid!important;
+  grid-template-columns:repeat(5,1fr)!important;
+  gap:4px!important;
+}
+.ppa-fd-card{
+  display:grid!important;
+  grid-template-columns:auto 1fr!important;
+  grid-template-rows:auto auto!important;
+  gap:1px 5px!important;
+  padding:5px 6px!important;
+  border-radius:6px!important;
+  background:#151b22!important;
+  border:1px solid rgba(238,232,216,.10)!important;
+  color:#737e88!important;
+}
+.ppa-fd-card.active{color:#fff!important;border-color:rgba(238,232,216,.18)!important}
+.ppa-fd-card strong{
+  grid-row:1/3!important;
+  align-self:center!important;
+  font-size:10px!important;
+}
+.ppa-fd-card b{font-size:10px!important}
+.ppa-fd-card span,.ppa-fd-card small{font-size:5.5px!important;color:#9da6af!important}
+
+.ppa-two-cols{
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+  gap:5px!important;
+  margin-top:7px!important;
+}
+.ppa-panel{
+  padding:6px!important;
+  border-radius:7px!important;
+  background:#151b22!important;
+  border:1px solid rgba(238,232,216,.11)!important;
+}
+.ppa-panel-title{
+  margin-bottom:4px!important;
+  padding-bottom:4px!important;
+  border-bottom:1px solid rgba(255,255,255,.08)!important;
+  font-size:7px!important;
+  font-weight:900!important;
+  text-transform:uppercase!important;
+}
+.ppa-panel-title.strong{color:#66d38d!important}
+.ppa-panel-title.weak{color:#f07a7c!important}
+.ppa-matchup-row{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 40px 78px!important;
+  align-items:center!important;
+  gap:5px!important;
+  padding:4px 5px!important;
+  margin-top:3px!important;
+  border-radius:5px!important;
+  background:#1d252e!important;
+  border-left:3px solid #777!important;
+}
+.ppa-matchup-row.strong{border-left-color:#39b86a!important}
+.ppa-matchup-row.weak{border-left-color:#e35b5d!important}
+.ppa-matchup-row div{min-width:0!important}
+.ppa-matchup-row b{
+  display:block!important;
+  color:#fff!important;
+  font-size:7px!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+.ppa-matchup-row small{
+  display:block!important;
+  margin-top:1px!important;
+  color:#89939d!important;
+  font-size:5.5px!important;
+}
+.ppa-matchup-row strong{
+  color:#fff!important;
+  font-size:10px!important;
+  text-align:center!important;
+}
+.ppa-matchup-row>span{
+  color:#9da6af!important;
+  font-size:6px!important;
+  text-align:right!important;
+}
+.ppa-none{
+  color:#737e88!important;
+  font-size:6.5px!important;
+  padding:4px!important;
+}
+
+.ppa-recalibration{
+  margin-top:6px!important;
+}
+.ppa-recalibration p{
+  margin:0 0 4px!important;
+  color:#89939d!important;
+  font-size:6px!important;
+}
+.ppa-alert-grid{
+  display:grid!important;
+  grid-template-columns:repeat(3,1fr)!important;
+  gap:4px!important;
+}
+.ppa-alert{
+  padding:5px 6px!important;
+  border-radius:5px!important;
+  background:#26221a!important;
+  border:1px solid rgba(227,170,67,.25)!important;
+}
+.ppa-alert b{
+  display:block!important;
+  color:#f2d48c!important;
+  font-size:6.5px!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+.ppa-alert span{
+  display:block!important;
+  margin-top:2px!important;
+  color:#b7a574!important;
+  font-size:5.5px!important;
+}
+
+
+/* ============================================================
+   V171 — Saisie ultra simple : résultat brut /100 uniquement
+   ============================================================ */
+.pm-simple-result-form{
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+  gap:10px!important;
+}
+.pm-simple-result-form label{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:5px!important;
+}
+.pm-simple-result-form label span{
+  color:#c9c3b6!important;
+  font-size:8px!important;
+  font-weight:850!important;
+}
+.pm-simple-result-form input{
+  width:100%!important;
+  height:42px!important;
+  padding:5px 9px!important;
+  background:#eee8d8!important;
+  color:#171b20!important;
+  border:1px solid rgba(0,0,0,.22)!important;
+  border-radius:7px!important;
+  font-size:18px!important;
+  font-weight:900!important;
+  text-align:center!important;
+}
+.pm-conversion-preview{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  margin-top:10px!important;
+  padding:9px 11px!important;
+  border-radius:7px!important;
+  background:#11171d!important;
+  border:1px solid rgba(238,232,216,.16)!important;
+}
+.pm-conversion-preview span{
+  color:#9da6af!important;
+  font-size:8px!important;
+  font-weight:850!important;
+}
+.pm-conversion-preview b{
+  color:#fff!important;
+  font-size:20px!important;
+  line-height:1!important;
+}
+
+
+/* ============================================================
+   V172 — Lecture directe dans la grille joueur
+   ============================================================ */
+
+/* Performance FD directement dans les titres */
+.player-matrix-table th.pm-fd-head{
+  padding:5px 5px 4px!important;
+}
+.pm-fd-head-name{
+  display:block!important;
+  line-height:1.05!important;
+}
+.pm-fd-head-name small{
+  display:block!important;
+  margin-top:2px!important;
+}
+.pm-fd-head-stats{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  margin-top:5px!important;
+  padding-top:4px!important;
+  border-top:1px solid rgba(255,255,255,.12)!important;
+  line-height:1!important;
+}
+.pm-fd-head-stats b{
+  color:#fff!important;
+  font-size:12px!important;
+  font-weight:950!important;
+}
+.pm-fd-head-stats small{
+  margin-top:2px!important;
+  color:#9ea7b0!important;
+  font-size:5.5px!important;
+  font-weight:750!important;
+  white-space:nowrap!important;
+}
+
+/* Cases : seulement data utile */
+.pm-cell{
+  height:58px!important;
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  grid-template-rows:auto auto 1fr!important;
+  gap:2px!important;
+  padding:5px 6px!important;
+  text-align:left!important;
+}
+.pm-cell-rating{
+  font-size:6.5px!important;
+  font-weight:850!important;
+}
+.pm-record{
+  font-size:7px!important;
+  font-weight:900!important;
+}
+.pm-extremes{
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+  gap:4px!important;
+  align-items:end!important;
+  margin-top:2px!important;
+}
+.pm-extremes span{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:3px!important;
+  padding:3px 4px!important;
+  border-radius:4px!important;
+  background:rgba(255,255,255,.16)!important;
+  font-size:5.8px!important;
+  font-weight:800!important;
+}
+.pm-extremes b{
+  font-size:8px!important;
+  line-height:1!important;
+}
+
+/* Analyse globale uniquement */
+.ppa-kpis-compact{
+  grid-template-columns:repeat(3,1fr)!important;
+}
+.ppa-fd-grid,
+.ppa-two-cols,
+.ppa-recalibration{
+  display:none!important;
+}
+
+
+/* ============================================================
+   V173 — lisibilité joueur + perf FD + score /100 et /20
+   ============================================================ */
+
+/* Global player page typography larger */
+#players{
+  font-size:12px!important;
+}
+.players-page-title h2,
+.player-matrix-title b{
+  font-size:20px!important;
+}
+.players-page-title p,
+.player-matrix-title span{
+  font-size:10px!important;
+}
+
+/* Compact action row */
+.player-matrix-actions{
+  display:flex!important;
+  justify-content:flex-start!important;
+  margin:7px 0 6px!important;
+}
+
+/* Analysis less busy and larger */
+.ppa-head h3{
+  font-size:16px!important;
+}
+.ppa-kicker{
+  font-size:7px!important;
+}
+.ppa-confidence{
+  font-size:7.5px!important;
+}
+.ppa-kpis-compact{
+  grid-template-columns:repeat(2,1fr)!important;
+}
+.ppa-kpi span{
+  font-size:7px!important;
+}
+.ppa-kpi b{
+  font-size:22px!important;
+}
+.ppa-kpi small{
+  font-size:7px!important;
+}
+
+/* FD headers: larger and color-coded by performance */
+.player-matrix-table th.pm-fd-head{
+  height:72px!important;
+  padding:6px!important;
+  transition:none!important;
+}
+.pm-fd-head-name{
+  font-size:9px!important;
+  font-weight:850!important;
+}
+.pm-fd-head-name small{
+  font-size:7px!important;
+}
+.pm-fd-head-stats{
+  margin-top:6px!important;
+  padding-top:5px!important;
+}
+.pm-fd-head-stats b{
+  font-size:16px!important;
+}
+.pm-fd-head-stats small{
+  font-size:6.5px!important;
+}
+
+/* performance colors in FD headers */
+.player-matrix-table th.pm-fd-head.fd-perf-g2{
+  background:linear-gradient(180deg,#166b45,#0e3b2a)!important;
+  border-color:#35b978!important;
+}
+.player-matrix-table th.pm-fd-head.fd-perf-g1{
+  background:linear-gradient(180deg,#536f3d,#2e4125)!important;
+  border-color:#84c96b!important;
+}
+.player-matrix-table th.pm-fd-head.fd-perf-o{
+  background:linear-gradient(180deg,#735321,#453113)!important;
+  border-color:#e4a53b!important;
+}
+.player-matrix-table th.pm-fd-head.fd-perf-r{
+  background:linear-gradient(180deg,#6a3032,#401c1e)!important;
+  border-color:#dd5b5d!important;
+}
+
+/* Matrix cells bigger and more readable */
+.player-matrix-table td{
+  height:74px!important;
+}
+.pm-opponent-name{
+  height:70px!important;
+}
+.pm-opponent-name b{
+  font-size:11px!important;
+}
+.pm-opponent-name small{
+  font-size:8px!important;
+}
+.pm-cell{
+  height:70px!important;
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  grid-template-rows:auto auto 1fr!important;
+  gap:4px!important;
+  padding:7px 8px!important;
+  text-align:center!important;
+}
+.pm-winrate{
+  font-size:20px!important;
+  font-weight:950!important;
+  line-height:1!important;
+}
+.pm-record{
+  font-size:8px!important;
+  font-weight:900!important;
+}
+.pm-score-bands{
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+  gap:5px!important;
+}
+.pm-score-bands span{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  padding:4px 5px!important;
+  border-radius:5px!important;
+  background:rgba(255,255,255,.16)!important;
+}
+.pm-score-bands small{
+  font-size:6px!important;
+  opacity:.82!important;
+}
+.pm-score-bands b{
+  margin-top:1px!important;
+  font-size:10px!important;
+}
+
+/* Legend readable */
+.player-matrix-legend{
+  gap:7px!important;
+}
+.pm-chip{
+  font-size:8px!important;
+  padding:5px 8px!important;
+}
+
+/* Match result modal much larger typography */
+.player-matchup-modal-card{
+  max-width:720px!important;
+}
+.player-matchup-modal-card .tg-modal-kicker{
+  font-size:8px!important;
+}
+.player-matchup-modal-card .tg-modal-head h3{
+  font-size:20px!important;
+}
+.player-matchup-modal-card .tg-modal-head p{
+  font-size:10px!important;
+}
+.pm-simple-result-form label span{
+  font-size:10px!important;
+}
+.pm-simple-result-form input{
+  height:50px!important;
+  font-size:22px!important;
+}
+.pm-conversion-preview{
+  padding:11px 13px!important;
+}
+.pm-conversion-preview span{
+  font-size:10px!important;
+}
+.pm-conversion-preview b{
+  font-size:24px!important;
+}
+.pm-history-head strong{
+  font-size:12px!important;
+}
+.pm-history-head small{
+  font-size:8px!important;
+}
+.pm-history-summary{
+  font-size:8px!important;
+}
+.pm-game-row{
+  grid-template-columns:70px 58px 100px minmax(0,1fr) 24px!important;
+  min-height:34px!important;
+}
+.pm-game-row span{
+  font-size:8px!important;
+}
+.pm-game-row b{
+  font-size:11px!important;
+}
+.pm-history-empty{
+  font-size:8px!important;
+}
+.pm-game-error{
+  font-size:8px!important;
+}
+
+
+/* ============================================================
+   V175 — Cases compactes et lisibles
+   ============================================================ */
+
+/* Lignes moins hautes */
+.player-matrix-table td{
+  height:56px!important;
+}
+.pm-opponent-name{
+  height:52px!important;
+}
+
+/* Cases compactes */
+.pm-cell{
+  height:52px!important;
+  display:grid!important;
+  grid-template-columns:48px minmax(0,1fr)!important;
+  grid-template-rows:auto auto!important;
+  gap:2px 6px!important;
+  padding:5px 6px!important;
+  text-align:left!important;
+  overflow:hidden!important;
+}
+
+/* % victoire bien visible à gauche */
+.pm-winrate{
+  grid-column:1!important;
+  grid-row:1 / 3!important;
+  align-self:center!important;
+  justify-self:center!important;
+  font-size:16px!important;
+  font-weight:950!important;
+  line-height:1!important;
+  white-space:nowrap!important;
+}
+
+/* bilan sur une ligne */
+.pm-record{
+  grid-column:2!important;
+  grid-row:1!important;
+  align-self:end!important;
+  font-size:7px!important;
+  font-weight:900!important;
+  line-height:1!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+
+/* min/max sur une seule ligne */
+.pm-extreme-line{
+  grid-column:2!important;
+  grid-row:2!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:8px!important;
+  min-width:0!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+}
+
+.pm-extreme-line span{
+  display:flex!important;
+  align-items:center!important;
+  gap:3px!important;
+  min-width:0!important;
+  font-size:6px!important;
+  font-weight:800!important;
+  line-height:1!important;
+}
+
+.pm-extreme-line b{
+  font-size:7px!important;
+  font-weight:950!important;
+  line-height:1!important;
+}
+
+/* titres FD restent lisibles malgré lignes plus compactes */
+.player-matrix-table th.pm-fd-head{
+  height:66px!important;
+}
+
+/* Colonne adversaire légèrement compacte */
+.pm-opponent-name b{
+  font-size:10px!important;
+}
+.pm-opponent-name small{
+  font-size:7px!important;
+}
+
+/* Au cas où d'anciens styles seraient encore présents */
+.pm-score-bands,
+.pm-average,
+.pm-theory-score,
+.pm-extremes{
+  display:none!important;
+}
+
+
+/* ============================================================
+   V176 — Matrice joueurs : plus lisible, plus dense, moins de marges
+   ============================================================ */
+
+/* Réduit les marges globales de la page joueurs */
+#players{
+  padding:4px 6px 28px!important;
+}
+.player-matrix-toolbar{
+  margin-bottom:5px!important;
+  gap:5px!important;
+}
+.player-performance-analysis{
+  margin:4px 0 5px!important;
+}
+.player-matrix-legend{
+  margin:4px 0 5px!important;
+}
+
+/* Réduit l'espace entre les cellules */
+.player-matrix-table{
+  border-spacing:2px!important;
+}
+.player-matrix-table th{
+  padding:4px!important;
+}
+.player-matrix-table td{
+  height:58px!important;
+}
+
+/* Colonne adversaire */
+.pm-opponent-name{
+  height:56px!important;
+  padding:4px 6px!important;
+}
+.pm-opponent-name b{
+  font-size:11px!important;
+}
+.pm-opponent-name small{
+  font-size:8px!important;
+}
+
+/* Cases : exploite toute la surface */
+.pm-cell{
+  height:56px!important;
+  display:grid!important;
+  grid-template-columns:44px minmax(0,1fr)!important;
+  grid-template-rows:16px 1fr!important;
+  column-gap:5px!important;
+  row-gap:2px!important;
+  padding:4px 5px!important;
+}
+
+/* % victoire encore plus lisible */
+.pm-winrate{
+  grid-column:1!important;
+  grid-row:1 / 3!important;
+  align-self:center!important;
+  justify-self:center!important;
+  font-size:17px!important;
+  font-weight:950!important;
+}
+
+/* Bilan plus gros */
+.pm-record{
+  grid-column:2!important;
+  grid-row:1!important;
+  align-self:center!important;
+  font-size:8px!important;
+  font-weight:900!important;
+  line-height:1!important;
+  white-space:nowrap!important;
+}
+
+/* Min / Max sur DEUX lignes */
+.pm-extreme-line{
+  grid-column:2!important;
+  grid-row:2!important;
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  grid-template-rows:1fr 1fr!important;
+  gap:2px!important;
+  align-content:center!important;
+  overflow:visible!important;
+}
+
+.pm-extreme-line span{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  gap:4px!important;
+  min-width:0!important;
+  font-size:7.5px!important;
+  font-weight:850!important;
+  line-height:1.05!important;
+}
+
+.pm-extreme-line b{
+  font-size:8.5px!important;
+  font-weight:950!important;
+  line-height:1!important;
+}
+
+/* Headers FD : un peu plus compacts mais texte plus grand */
+.player-matrix-table th.pm-fd-head{
+  height:62px!important;
+  padding:4px 5px!important;
+}
+.pm-fd-head-name{
+  font-size:9.5px!important;
+}
+.pm-fd-head-name small{
+  font-size:7.5px!important;
+}
+.pm-fd-head-stats{
+  margin-top:4px!important;
+  padding-top:4px!important;
+}
+.pm-fd-head-stats b{
+  font-size:15px!important;
+}
+.pm-fd-head-stats small{
+  font-size:6.5px!important;
+}
+
+/* KPI globaux plus denses */
+.ppa-head{
+  margin-bottom:4px!important;
+}
+.ppa-kpis{
+  gap:3px!important;
+}
+.ppa-kpi{
+  padding:5px 7px!important;
+}
+.ppa-kpi span{
+  font-size:7px!important;
+}
+.ppa-kpi b{
+  font-size:20px!important;
+}
+.ppa-kpi small{
+  font-size:7px!important;
+}
+
+/* Légende compacte */
+.pm-chip{
+  padding:4px 6px!important;
+  font-size:8px!important;
+}
+
+/* Modale ajout de game : plus lisible et moins d'espaces morts */
+.player-matchup-modal-card{
+  max-width:680px!important;
+  padding:14px!important;
+}
+.player-matchup-modal-card .tg-modal-head{
+  margin-bottom:8px!important;
+}
+.player-matchup-modal-card .tg-modal-head h3{
+  font-size:20px!important;
+}
+.player-matchup-modal-card .tg-modal-head p{
+  font-size:10px!important;
+}
+.pm-simple-result-form{
+  gap:6px!important;
+}
+.pm-simple-result-form label span{
+  font-size:10px!important;
+}
+.pm-simple-result-form input{
+  height:46px!important;
+  font-size:21px!important;
+}
+.pm-conversion-preview{
+  margin-top:6px!important;
+  padding:8px 10px!important;
+}
+.pm-conversion-preview span{
+  font-size:10px!important;
+}
+.pm-conversion-preview b{
+  font-size:22px!important;
+}
+.pm-history-section{
+  margin-top:7px!important;
+  padding:7px!important;
+}
+.pm-history-head{
+  margin-bottom:5px!important;
+}
+.pm-history-head strong{
+  font-size:11px!important;
+}
+.pm-history-head small{
+  font-size:8px!important;
+}
+.pm-game-history{
+  gap:2px!important;
+}
+.pm-game-row{
+  min-height:30px!important;
+  padding:3px 4px!important;
+}
+.pm-game-row span{
+  font-size:8px!important;
+}
+.pm-game-row b{
+  font-size:11px!important;
+}
+
+/* Supprime tout espace résiduel lié à l'ancien bouton */
+.player-matrix-actions{
+  display:none!important;
+}
+
+
+/* ============================================================
+   V177 — + Armée + nom adversaire dans chaque game
+   ============================================================ */
+.player-matrix-actions{
+  display:flex!important;
+  justify-content:flex-start!important;
+  margin:4px 0 5px!important;
+}
+
+.opponent-row-form.single{
+  grid-template-columns:1fr!important;
+}
+
+.pm-simple-result-form{
+  grid-template-columns:1fr 1fr!important;
+}
+.pm-simple-result-form .pm-opponent-player-field{
+  grid-column:1/-1!important;
+}
+.pm-simple-result-form .pm-opponent-player-field input{
+  height:38px!important;
+  font-size:14px!important;
+  text-align:left!important;
+}
+
+/* History gives more room to opponent name */
+.pm-game-row{
+  grid-template-columns:70px 58px 100px minmax(120px,1fr) 24px!important;
+}
+
+
+/* ============================================================
+   V178 — contraste modal résultat + historique modifiable
+   ============================================================ */
+
+/* Nom de l'armée / matchup bien lisible */
+.player-matchup-modal-card .tg-modal-head h3,
+#playerMatchupModalTitle{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  opacity:1!important;
+  text-shadow:0 1px 2px rgba(0,0,0,.45)!important;
+}
+
+/* Sous-titre plus lisible également */
+#playerMatchupModalSub{
+  color:#c8cdd2!important;
+  opacity:1!important;
+}
+
+/* Deux boutons dans l'historique : modifier + supprimer */
+.pm-game-row{
+  grid-template-columns:70px 58px 100px minmax(120px,1fr) 48px!important;
+}
+
+.pm-game-actions{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  gap:3px!important;
+}
+
+.pm-game-actions button{
+  width:21px!important;
+  min-width:21px!important;
+  height:21px!important;
+  min-height:21px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:4px!important;
+  background:rgba(255,255,255,.07)!important;
+  color:#cdd3d8!important;
+  font-size:11px!important;
+  line-height:1!important;
+}
+
+.pm-game-actions .pm-game-edit{
+  color:#f1d36b!important;
+}
+
+.pm-game-actions button:hover{
+  background:rgba(255,255,255,.14)!important;
+  color:#fff!important;
+}
+
+
+/* V179 — taux de victoire global sur une seule ligne */
+.ppa-winrate-line{
+  display:flex!important;
+  align-items:baseline!important;
+  gap:10px!important;
+  margin-top:2px!important;
+  white-space:nowrap!important;
+}
+.ppa-winrate-line b{
+  margin:0!important;
+  font-size:22px!important;
+  line-height:1!important;
+}
+.ppa-winrate-line small{
+  margin:0!important;
+  font-size:9px!important;
+  font-weight:850!important;
+  line-height:1!important;
+  color:#cbd1d6!important;
+}
+
+
+/* ============================================================
+   V180 — Scores par round T1 à T5 + moyenne par FD
+   ============================================================ */
+
+.pm-round-scores{
+  margin-top:8px!important;
+  padding:8px 10px!important;
+  border-radius:7px!important;
+  background:#151c23!important;
+  border:1px solid rgba(238,232,216,.13)!important;
+}
+
+.pm-round-scores-head{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  margin-bottom:6px!important;
+}
+
+.pm-round-scores-head strong{
+  color:#fff!important;
+  font-size:10px!important;
+  font-weight:900!important;
+}
+
+.pm-round-scores-head span{
+  color:#8f99a3!important;
+  font-size:8px!important;
+  font-weight:750!important;
+}
+
+.pm-round-score-grid{
+  display:grid!important;
+  grid-template-columns:repeat(5,1fr)!important;
+  gap:6px!important;
+}
+
+.pm-round-score-grid label{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:3px!important;
+}
+
+.pm-round-score-grid label span{
+  color:#b9c0c7!important;
+  font-size:9px!important;
+  font-weight:900!important;
+  text-align:center!important;
+}
+
+.pm-round-score-grid input{
+  width:100%!important;
+  height:36px!important;
+  min-height:36px!important;
+  padding:4px!important;
+  box-sizing:border-box!important;
+  border-radius:6px!important;
+  background:#eee8d8!important;
+  color:#171b20!important;
+  border:1px solid rgba(0,0,0,.22)!important;
+  font-size:15px!important;
+  font-weight:900!important;
+  text-align:center!important;
+}
+
+/* FD title grows just enough to include T1-T5 averages */
+.player-matrix-table th.pm-fd-head{
+  height:82px!important;
+}
+
+.pm-fd-head-stats{
+  margin-top:4px!important;
+  padding-top:4px!important;
+}
+
+.pm-fd-main-perf{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:5px!important;
+}
+
+.pm-fd-main-perf>b{
+  font-size:15px!important;
+  color:#fff!important;
+  line-height:1!important;
+}
+
+.pm-fd-main-perf>small{
+  margin:0!important;
+  font-size:6.5px!important;
+  color:#aeb5bd!important;
+  white-space:nowrap!important;
+}
+
+.pm-fd-rounds{
+  display:grid!important;
+  grid-template-columns:repeat(5,1fr)!important;
+  gap:2px!important;
+  width:100%!important;
+  margin-top:4px!important;
+}
+
+.pm-fd-round{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  padding:2px 1px!important;
+  border-radius:3px!important;
+  background:rgba(255,255,255,.06)!important;
+  min-width:0!important;
+}
+
+.pm-fd-round i{
+  font-style:normal!important;
+  font-size:5px!important;
+  line-height:1!important;
+  color:#8f99a3!important;
+}
+
+.pm-fd-round b{
+  margin-top:1px!important;
+  font-size:7px!important;
+  line-height:1!important;
+  color:#7f8993!important;
+}
+
+.pm-fd-round.has-data b{
+  color:#fff!important;
+}
+
+/* History: opponent + turn scores on two compact lines */
+.pm-game-mission{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:flex-start!important;
+  justify-content:center!important;
+  min-width:0!important;
+}
+
+.pm-history-opponent{
+  width:100%!important;
+  color:#dfe4e8!important;
+  font-size:8px!important;
+  line-height:1!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+
+.pm-history-rounds{
+  width:100%!important;
+  margin-top:2px!important;
+  color:#929ca5!important;
+  font-size:6px!important;
+  line-height:1!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+
+
+/* ============================================================
+   V181 — vraie fenêtre d'édition d'une partie
+   ============================================================ */
+.pm-edit-card{
+  width:min(620px,calc(100vw - 24px))!important;
+  max-width:620px!important;
+  padding:16px!important;
+}
+.pm-edit-card .tg-modal-head h3{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  font-size:20px!important;
+}
+.pm-edit-card .tg-modal-head p{
+  color:#aeb6bd!important;
+  font-size:10px!important;
+}
+.pm-edit-main-grid{
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+  gap:7px!important;
+}
+.pm-edit-main-grid label{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:4px!important;
+}
+.pm-edit-main-grid .pm-edit-opponent{
+  grid-column:1/-1!important;
+}
+.pm-edit-main-grid label span{
+  color:#c9cfd4!important;
+  font-size:10px!important;
+  font-weight:850!important;
+}
+.pm-edit-main-grid input{
+  width:100%!important;
+  height:44px!important;
+  box-sizing:border-box!important;
+  padding:6px 9px!important;
+  border-radius:7px!important;
+  border:1px solid rgba(0,0,0,.22)!important;
+  background:#eee8d8!important;
+  color:#171b20!important;
+  font-size:18px!important;
+  font-weight:900!important;
+}
+.pm-edit-opponent input{
+  font-size:14px!important;
+}
+.pm-edit-conversion{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  margin-top:7px!important;
+  padding:8px 10px!important;
+  border:1px solid rgba(255,255,255,.12)!important;
+  border-radius:7px!important;
+  background:#11171d!important;
+}
+.pm-edit-conversion span{
+  color:#aeb6bd!important;
+  font-size:10px!important;
+  font-weight:850!important;
+}
+.pm-edit-conversion b{
+  color:#fff!important;
+  font-size:21px!important;
+}
+.pm-edit-rounds{
+  margin-top:7px!important;
+}
+
+
+/* ============================================================
+   V182 — fenêtre MODIFICATION visuellement distincte
+   ============================================================ */
+
+/* Fond général de la fenêtre d'édition : bleu acier, différent de l'ajout */
+#playerGameEditWindow .tg-modal-card.pm-edit-card{
+  background:
+    linear-gradient(145deg,#183247 0%,#122534 52%,#0d1923 100%)!important;
+  border:2px solid #43b8ff!important;
+  box-shadow:
+    0 0 0 1px rgba(67,184,255,.22),
+    0 18px 55px rgba(0,0,0,.65),
+    0 0 28px rgba(67,184,255,.18)!important;
+}
+
+/* Bandeau très identifiable */
+#playerGameEditWindow .tg-modal-head{
+  margin:-16px -16px 12px!important;
+  padding:12px 52px 11px 16px!important;
+  background:linear-gradient(90deg,#0d6fa6,#154966)!important;
+  border-bottom:1px solid rgba(255,255,255,.18)!important;
+  border-radius:10px 10px 0 0!important;
+}
+
+#playerGameEditWindow .tg-modal-kicker{
+  display:inline-block!important;
+  margin-bottom:3px!important;
+  padding:3px 7px!important;
+  border-radius:4px!important;
+  background:#ffd34d!important;
+  color:#18212a!important;
+  font-size:8px!important;
+  font-weight:950!important;
+  letter-spacing:.8px!important;
+}
+
+#playerGameEditWindow .tg-modal-head h3{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  text-shadow:none!important;
+}
+
+#playerGameEditWindow .tg-modal-head p{
+  color:#d7ecf8!important;
+}
+
+/* Croix intégrée au bandeau */
+#playerGameEditWindow .tg-modal-close{
+  z-index:5!important;
+  top:10px!important;
+  right:11px!important;
+  background:rgba(5,20,30,.55)!important;
+  border:1px solid rgba(255,255,255,.25)!important;
+  color:#fff!important;
+}
+
+/* Champs légèrement bleutés pour renforcer le mode édition */
+#playerGameEditWindow .pm-edit-main-grid input,
+#playerGameEditWindow .pm-round-score-grid input{
+  background:#e7f2f8!important;
+  border:1px solid #83bddb!important;
+  color:#102331!important;
+}
+
+/* Conversion spécifique */
+#playerGameEditWindow .pm-edit-conversion{
+  background:#0b1b26!important;
+  border:1px solid #2d7da8!important;
+}
+
+#playerGameEditWindow .pm-edit-conversion b{
+  color:#71d0ff!important;
+}
+
+/* Zone des rounds */
+#playerGameEditWindow .pm-edit-rounds{
+  background:rgba(4,18,27,.48)!important;
+  border:1px solid rgba(67,184,255,.32)!important;
+}
+
+/* Bouton principal clairement "Enregistrer les modifications" */
+#playerGameEditWindow .tg-modal-actions .btn.primary{
+  background:#1686c1!important;
+  border-color:#43b8ff!important;
+  color:#fff!important;
+  box-shadow:0 0 12px rgba(67,184,255,.16)!important;
+}
+#playerGameEditWindow .tg-modal-actions .btn.primary:hover{
+  background:#1c98d8!important;
+}
+
+/* Backdrop un peu plus marqué pour sentir le changement de fenêtre */
+#playerGameEditWindow .tg-modal-backdrop{
+  background:rgba(0,7,12,.78)!important;
+  backdrop-filter:blur(3px)!important;
+}
+
+
+/* ============================================================
+   V183 — la fenêtre d'édition doit passer AU-DESSUS de la fenêtre résultat
+   ============================================================ */
+#playerMatchupModal{
+  z-index:1000!important;
+}
+
+#playerGameEditWindow{
+  z-index:1200!important;
+}
+
+#playerGameEditWindow .tg-modal-backdrop{
+  z-index:1201!important;
+}
+
+#playerGameEditWindow .tg-modal-card{
+  position:relative!important;
+  z-index:1202!important;
+}
+
+/* Quand l'édition est ouverte, la fenêtre résultat reste derrière */
+body:has(#playerGameEditWindow[aria-hidden="false"]) #playerMatchupModal .tg-modal-card{
+  filter:brightness(.55)!important;
+}
+
+body:has(#playerGameEditWindow[aria-hidden="false"]) #playerMatchupModal .tg-modal-backdrop{
+  background:rgba(0,0,0,.18)!important;
+}
+
 </style>
 
 </head>
@@ -15318,6 +17216,12 @@ td.match-cell-wrap.enemy-defense-column-selected{
           <small>Analyse générale des Force Dispositions</small>
         </button>
 
+        <button class="dash-card" onclick="showPlayersHub()">
+          <span class="dash-icon">♟</span>
+          <b>JOUEURS</b>
+          <small>Profils individuels et matrices de matchups</small>
+        </button>
+
         <button class="dash-card" onclick="showTournamentHub()">
           <span class="dash-icon">⚔️</span>
           <b>RENCONTRES</b>
@@ -15330,7 +17234,7 @@ td.match-cell-wrap.enemy-defense-column-selected{
       </div>
     </div>
 
-    <div class="merged-home-version">TEAM GRID · VERSION 11 · V168 PC ONLY</div>
+    <div class="merged-home-version">TEAM GRID · VERSION 11 · V184 TRI ALPHABÉTIQUE</div>
   </div>
 </section>
 
@@ -15406,6 +17310,90 @@ td.match-cell-wrap.enemy-defense-column-selected{
   </section>
 
   
+
+
+<section id="players" class="view">
+  <div id="playersHub" class="players-hub">
+    <div class="players-toolbar">
+      <button class="btn" onclick="goHome()">← Accueil</button>
+      <button class="btn primary" onclick="openPlayerCreateModal()">+ Joueur</button>
+    </div>
+
+    <div class="players-page-title">
+      <h2 class="section-title">Joueurs</h2>
+      <p>Crée un profil par joueur et évalue sa liste contre les armées et archétypes adverses.</p>
+    </div>
+
+    <div id="playerProfileCards" class="player-profile-cards"></div>
+  </div>
+
+  <div id="playerMatrixDetail" class="player-matrix-detail" style="display:none">
+    <div class="player-matrix-toolbar">
+      <button class="btn" onclick="backToPlayersHub()">← Joueurs</button>
+      <div class="player-matrix-title">
+        <b id="playerMatrixTitle">Joueur</b>
+        <span id="playerMatrixMeta"></span>
+      </div>
+      <button class="btn" onclick="editCurrentPlayerProfile()">Modifier joueur</button>
+      <button class="btn danger" onclick="deleteCurrentPlayerProfile()">Supprimer</button>
+    </div>
+
+    <div id="playerPerformanceAnalysis" class="player-performance-analysis"></div>
+
+    <div class="player-matrix-actions">
+      <button class="btn primary" onclick="openOpponentRowModal()">+ Armée</button>
+    </div>
+
+    <div class="player-matrix-legend">
+      <span class="pm-chip pm-g2">Très favorable</span>
+      <span class="pm-chip pm-g1">Favorable</span>
+      <span class="pm-chip pm-o">Équilibré</span>
+      <span class="pm-chip pm-r">Défavorable</span>
+      <span class="pm-chip pm-p">Gamble</span>
+      <span class="pm-chip pm-empty">Non évalué</span>
+    </div>
+
+    <div class="player-matrix-wrap">
+      <table class="player-matrix-table">
+        <colgroup>
+          <col style="width:30%">
+          <col style="width:14%">
+          <col style="width:14%">
+          <col style="width:14%">
+          <col style="width:14%">
+          <col style="width:14%">
+        </colgroup>
+        <thead>
+          <tr>
+            <th>Armée adverse</th>
+            <th class="pm-fd-head" data-fd="pt">
+  <span class="pm-fd-head-name">Prendre & Tenir <small>(PT)</small></span>
+  <span class="pm-fd-head-stats" id="pmFdHead-pt">—</span>
+</th>
+            <th class="pm-fd-head" data-fd="ea">
+  <span class="pm-fd-head-name">Éliminez l'Adversaire <small>(EA)</small></span>
+  <span class="pm-fd-head-stats" id="pmFdHead-ea">—</span>
+</th>
+            <th class="pm-fd-head" data-fd="per">
+  <span class="pm-fd-head-name">Perturbation <small>(PE)</small></span>
+  <span class="pm-fd-head-stats" id="pmFdHead-per">—</span>
+</th>
+            <th class="pm-fd-head" data-fd="rec">
+  <span class="pm-fd-head-name">Reconnaissance <small>(RE)</small></span>
+  <span class="pm-fd-head-stats" id="pmFdHead-rec">—</span>
+</th>
+            <th class="pm-fd-head" data-fd="ap">
+  <span class="pm-fd-head-name">Atouts Prioritaires <small>(AP)</small></span>
+  <span class="pm-fd-head-stats" id="pmFdHead-ap">—</span>
+</th>
+          </tr>
+        </thead>
+        <tbody id="playerMatrixBody"></tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+</section>
 
 <section id="matchup" class="view">
   <div class="toolbar matchup-toolbar">
@@ -15568,10 +17556,872 @@ function showView(id){
   const target=document.getElementById(id);
   if(target) target.classList.add('active');
   if(id==='roster') renderRoster();
+  if(id==='players') { ensurePlayerProfiles(); renderPlayerProfileCards(); }
   window.scrollTo(0,0);
 }
 
 function goHome(){ showView('home'); }
+
+
+
+/* ============================================================
+   V169 — Profils JOUEURS + matrices personnelles de pairing
+   ============================================================ */
+
+const PLAYER_MATRIX_DEFAULT_ARMIES = [
+  "Adepta Sororitas",
+  "Adeptus Custodes",
+  "Adeptus Mechanicus",
+  "Aeldari",
+  "Astra Militarum",
+  "Chaos Daemons",
+  "Chaos Knights",
+  "Chaos Space Marines",
+  "Death Guard",
+  "Emperor's Children",
+  "Genestealer Cults",
+  "Grey Knights",
+  "Imperial Knights",
+  "Leagues of Votann",
+  "Necrons",
+  "Orks",
+  "Space Marines",
+  "T'au Empire",
+  "Thousand Sons",
+  "Tyranids",
+  "World Eaters"
+];
+
+const PLAYER_MATRIX_FDS = [
+  {id:"pt", short:"PT", name:"Prendre & Tenir"},
+  {id:"ea", short:"EA", name:"Éliminez l'Adversaire"},
+  {id:"per", short:"PE", name:"Perturbation"},
+  {id:"rec", short:"RE", name:"Reconnaissance"},
+  {id:"ap", short:"AP", name:"Atouts Prioritaires"}
+];
+
+let selectedPlayerProfileId=null;
+let editingPlayerProfileId=null;
+let editingOpponentRowId=null;
+let editingMatchupRowId=null;
+let editingMatchupFd=null;
+
+function ensurePlayerProfiles(){
+  if(!Array.isArray(state.playerProfiles)) state.playerProfiles=[];
+  for(const p of state.playerProfiles){
+    if(!Array.isArray(p.matrixRows)) p.matrixRows=[];
+    for(const r of p.matrixRows){
+      if(!r.cells || typeof r.cells!=="object") r.cells={};
+      for(const fd of PLAYER_MATRIX_FDS){
+        if(r.cells[fd.id] && !Array.isArray(r.cells[fd.id].games)) r.cells[fd.id].games=[];
+      }
+    }
+  }
+}
+
+function blankPlayerMatrixRows(){
+  return PLAYER_MATRIX_DEFAULT_ARMIES.map((army,i)=>({
+    id:Date.now()+i+Math.floor(Math.random()*100000),
+    army,
+    archetype:"",
+    cells:{}
+  }));
+}
+
+function currentPlayerProfile(){
+  ensurePlayerProfiles();
+  return state.playerProfiles.find(p=>Number(p.id)===Number(selectedPlayerProfileId)) || null;
+}
+
+function showPlayersHub(){
+  ensurePlayerProfiles();
+  showView('players');
+  const hub=document.getElementById('playersHub');
+  const detail=document.getElementById('playerMatrixDetail');
+  if(hub) hub.style.display='block';
+  if(detail) detail.style.display='none';
+  selectedPlayerProfileId=null;
+  renderPlayerProfileCards();
+}
+
+function backToPlayersHub(){
+  selectedPlayerProfileId=null;
+  document.getElementById('playersHub').style.display='block';
+  document.getElementById('playerMatrixDetail').style.display='none';
+  renderPlayerProfileCards();
+  window.scrollTo(0,0);
+}
+
+function renderPlayerProfileCards(){
+  ensurePlayerProfiles();
+  const host=document.getElementById('playerProfileCards');
+  if(!host) return;
+
+  if(!state.playerProfiles.length){
+    host.innerHTML=`<div class="players-empty">
+      <b>Aucun joueur créé</b>
+      <span>Crée un profil pour construire sa matrice de matchups personnelle.</span>
+    </div>`;
+    return;
+  }
+
+  host.innerHTML=state.playerProfiles.map(p=>{
+    const evaluated=(p.matrixRows||[]).reduce((n,r)=>n+PLAYER_MATRIX_FDS.filter(fd=>r.cells?.[fd.id]?.rating).length,0);
+    const total=(p.matrixRows||[]).length*PLAYER_MATRIX_FDS.length;
+    return `<div class="player-profile-card-wrap">
+      <button class="player-profile-card" onclick="openPlayerProfile(${Number(p.id)})">
+        <span class="player-profile-token">${esc((p.name||"?").slice(0,1).toUpperCase())}</span>
+        <span class="player-profile-info">
+          <b>${esc(p.name||"Joueur")}</b>
+          <small>${esc(p.army||"Armée")} · ${esc(fdFullLabel(p.fd||"pt"))}</small>
+          <em>${esc(p.listName||"Liste non nommée")}</em>
+        </span>
+        <span class="player-profile-progress">${evaluated}/${total}</span>
+        <span class="meeting-arrow">›</span>
+      </button>
+      <button class="meeting-edit player-profile-edit" onclick="event.stopPropagation();openPlayerEditModal(${Number(p.id)})" title="Modifier le joueur">✎</button>
+    </div>`;
+  }).join('');
+}
+
+function openPlayerProfile(id){
+  ensurePlayerProfiles();
+  selectedPlayerProfileId=Number(id);
+  const p=currentPlayerProfile();
+  if(!p) return;
+  document.getElementById('playersHub').style.display='none';
+  document.getElementById('playerMatrixDetail').style.display='block';
+  renderPlayerMatrix();
+  window.scrollTo(0,0);
+}
+
+function openPlayerCreateModal(){
+  ensurePlayerProfiles();
+  editingPlayerProfileId=null;
+  document.getElementById('playerProfileModalTitle').textContent='Nouveau joueur';
+  document.getElementById('profilePlayerName').value='';
+  document.getElementById('profilePlayerArmy').value='';
+  document.getElementById('profilePlayerFd').value='pt';
+  document.getElementById('profileListName').value='';
+  document.getElementById('profileListText').value='';
+  document.getElementById('playerProfileError').textContent='';
+  openTgModal('playerProfileModal');
+}
+
+function openPlayerEditModal(id){
+  ensurePlayerProfiles();
+  const p=state.playerProfiles.find(x=>Number(x.id)===Number(id));
+  if(!p) return;
+  editingPlayerProfileId=Number(id);
+  document.getElementById('playerProfileModalTitle').textContent='Modifier le joueur';
+  document.getElementById('profilePlayerName').value=p.name||'';
+  document.getElementById('profilePlayerArmy').value=p.army||'';
+  document.getElementById('profilePlayerFd').value=p.fd||'pt';
+  document.getElementById('profileListName').value=p.listName||'';
+  document.getElementById('profileListText').value=p.listText||'';
+  document.getElementById('playerProfileError').textContent='';
+  openTgModal('playerProfileModal');
+}
+
+function editCurrentPlayerProfile(){
+  const p=currentPlayerProfile();
+  if(p) openPlayerEditModal(p.id);
+}
+
+function closePlayerProfileModal(){ closeTgModal('playerProfileModal'); }
+
+function savePlayerProfileModal(){
+  ensurePlayerProfiles();
+  const name=(document.getElementById('profilePlayerName').value||'').trim();
+  const army=(document.getElementById('profilePlayerArmy').value||'').trim();
+  const fd=document.getElementById('profilePlayerFd').value||'pt';
+  const listName=(document.getElementById('profileListName').value||'').trim();
+  const listText=document.getElementById('profileListText').value||'';
+  const err=document.getElementById('playerProfileError');
+
+  if(!name){ err.textContent="Le nom du joueur est obligatoire."; return; }
+
+  if(editingPlayerProfileId===null){
+    const p={
+      id:Date.now(),
+      name,army,fd,listName,listText,
+      matrixRows:blankPlayerMatrixRows()
+    };
+    state.playerProfiles.push(p);
+    selectedPlayerProfileId=p.id;
+  }else{
+    const p=state.playerProfiles.find(x=>Number(x.id)===Number(editingPlayerProfileId));
+    if(!p) return;
+    p.name=name; p.army=army; p.fd=fd; p.listName=listName; p.listText=listText;
+    if(!Array.isArray(p.matrixRows)) p.matrixRows=blankPlayerMatrixRows();
+  }
+
+  save();
+  closePlayerProfileModal();
+  if(document.getElementById('playerMatrixDetail').style.display!=='none' && currentPlayerProfile()){
+    renderPlayerMatrix();
+  }else{
+    renderPlayerProfileCards();
+  }
+}
+
+function deleteCurrentPlayerProfile(){
+  const p=currentPlayerProfile();
+  if(!p) return;
+  if(!confirm(`Supprimer le profil de ${p.name} ?`)) return;
+  state.playerProfiles=state.playerProfiles.filter(x=>Number(x.id)!==Number(p.id));
+  save();
+  backToPlayersHub();
+}
+
+
+function sortPlayerMatrixRowsAlphabetically(p){
+  if(!p || !Array.isArray(p.matrixRows)) return;
+  p.matrixRows.sort((a,b)=>
+    String(a?.army||"").localeCompare(
+      String(b?.army||""),
+      "fr",
+      {sensitivity:"base",numeric:true}
+    )
+  );
+}
+
+function renderPlayerMatrix(){
+  const p=currentPlayerProfile();
+  sortPlayerMatrixRowsAlphabetically(p);
+  if(!p) return;
+  if(!Array.isArray(p.matrixRows)) p.matrixRows=blankPlayerMatrixRows();
+
+  document.getElementById('playerMatrixTitle').textContent=p.name||'Joueur';
+  document.getElementById('playerMatrixMeta').textContent=
+    `${p.army||"Armée"} · ${fdFullLabel(p.fd||"pt")}${p.listName?` · ${p.listName}`:""}`;
+
+  renderPlayerPerformanceAnalysis(p);
+  renderPlayerFdHeaderStats(p);
+
+  const body=document.getElementById('playerMatrixBody');
+  body.innerHTML=p.matrixRows.map(row=>{
+    const label=row.archetype ? `${row.army} · ${row.archetype}` : row.army;
+    return `<tr>
+      <td class="pm-opponent-cell">
+        <button class="pm-opponent-name" onclick="openOpponentRowModal(${Number(row.id)})">
+          <b>${esc(row.army||"Armée")}</b>
+          ${row.archetype?`<small>${esc(row.archetype)}</small>`:''}
+        </button>
+      </td>
+      ${PLAYER_MATRIX_FDS.map(fd=>renderPlayerMatrixCell(row,fd)).join('')}
+    </tr>`;
+  }).join('');
+}
+
+function pmRatingLabel(code){
+  return ({g2:"Très bon",g1:"Bon",o:"Équilibré",r:"Compliqué",p:"Gamble"})[code] || "";
+}
+function pmCellClass(code){ return code ? `pm-${code}` : 'pm-empty-cell'; }
+
+function pmGameOutcome(g){
+  const us=Number(g.wtcUs), opp=Number(g.wtcOpp);
+  if(us>opp) return "W";
+  if(us<opp) return "L";
+  return "D";
+}
+
+function pmStatsFromGames(games){
+  games=Array.isArray(games)?games:[];
+  const valid=games.filter(g=>Number.isFinite(Number(g.wtcUs)) && Number.isFinite(Number(g.wtcOpp)));
+  const wins=valid.filter(g=>pmGameOutcome(g)==="W").length;
+  const losses=valid.filter(g=>pmGameOutcome(g)==="L").length;
+  const draws=valid.filter(g=>pmGameOutcome(g)==="D").length;
+  const avg=valid.length ? valid.reduce((a,g)=>a+Number(g.wtcUs),0)/valid.length : null;
+  const winRate=valid.length ? wins/valid.length*100 : null;
+  return {games:valid.length,wins,losses,draws,avg,winRate};
+}
+
+function renderPlayerMatrixCell(row,fd){
+  const c=row.cells?.[fd.id] || {};
+  if(!Array.isArray(c.games)) c.games=[];
+
+  const st=pmStatsFromGames(c.games);
+
+  const validGames=c.games.filter(g =>
+    Number.isFinite(Number(g.rawUs)) &&
+    Number.isFinite(Number(g.wtcUs))
+  );
+
+  let minGame=null, maxGame=null;
+  if(validGames.length){
+    minGame=[...validGames].sort((a,b)=>Number(a.wtcUs)-Number(b.wtcUs))[0];
+    maxGame=[...validGames].sort((a,b)=>Number(b.wtcUs)-Number(a.wtcUs))[0];
+  }
+
+  let empiricalClass='pm-empty-cell';
+  if(st.games){
+    if(st.winRate>=70) empiricalClass='pm-g2';
+    else if(st.winRate>=55) empiricalClass='pm-g1';
+    else if(st.winRate>=45) empiricalClass='pm-o';
+    else empiricalClass='pm-r';
+  }
+
+  const record=st.games
+    ? `${st.games}J · ${st.wins}V · ${st.losses}D · ${st.draws}N`
+    : '0J · 0V · 0D · 0N';
+
+  const minText=minGame
+    ? `${Number(minGame.wtcUs)}/20 (${Number(minGame.rawUs)}/100)`
+    : '—';
+  const maxText=maxGame
+    ? `${Number(maxGame.wtcUs)}/20 (${Number(maxGame.rawUs)}/100)`
+    : '—';
+
+  return `<td class="pm-cell-wrap">
+    <button class="pm-cell ${empiricalClass} ${st.games?'has-results':''}" onclick="openPlayerMatchupModal(${Number(row.id)},'${fd.id}')">
+      <div class="pm-winrate">${st.games?`${Math.round(st.winRate)}%`:'—'}</div>
+      <div class="pm-record">${record}</div>
+      <div class="pm-extreme-line">
+        <span>Min <b>${minText}</b></span>
+        <span>Max <b>${maxText}</b></span>
+      </div>
+    </button>
+  </td>`;
+}
+
+function openOpponentRowModal(rowId=null){
+  const p=currentPlayerProfile();
+  if(!p) return;
+  editingOpponentRowId=rowId===null?null:Number(rowId);
+  const row=editingOpponentRowId===null?null:p.matrixRows.find(r=>Number(r.id)===editingOpponentRowId);
+
+  document.getElementById('opponentRowModalTitle').textContent=row?'Modifier l’armée':'Ajouter une armée';
+  document.getElementById('opponentRowArmy').value=row?.army||'';
+  document.getElementById('opponentRowError').textContent='';
+  document.getElementById('opponentRowDeleteBtn').style.display=row?'':'none';
+  openTgModal('opponentRowModal');
+}
+function closeOpponentRowModal(){ closeTgModal('opponentRowModal'); }
+
+function saveOpponentRowModal(){
+  const p=currentPlayerProfile(); if(!p) return;
+  const army=(document.getElementById('opponentRowArmy').value||'').trim();
+  const err=document.getElementById('opponentRowError');
+  if(!army){err.textContent="L'armée adverse est obligatoire.";return;}
+
+  if(editingOpponentRowId===null){
+    p.matrixRows.push({id:Date.now(),army,archetype:"",cells:{}});
+  }else{
+    const row=p.matrixRows.find(r=>Number(r.id)===Number(editingOpponentRowId));
+    if(row){ row.army=army; row.archetype=""; }
+  }
+  sortPlayerMatrixRowsAlphabetically(p);
+  save();
+  closeOpponentRowModal();
+  renderPlayerMatrix();
+}
+
+function deleteOpponentRowFromModal(){
+  const p=currentPlayerProfile(); if(!p || editingOpponentRowId===null) return;
+  const row=p.matrixRows.find(r=>Number(r.id)===Number(editingOpponentRowId));
+  if(!row) return;
+  if(!confirm(`Supprimer ${row.army}${row.archetype?` · ${row.archetype}`:''} ?`)) return;
+  p.matrixRows=p.matrixRows.filter(r=>Number(r.id)!==Number(editingOpponentRowId));
+  save();
+  closeOpponentRowModal();
+  renderPlayerMatrix();
+}
+
+function openPlayerMatchupModal(rowId,fd){
+  const p=currentPlayerProfile(); if(!p) return;
+  const row=p.matrixRows.find(r=>Number(r.id)===Number(rowId)); if(!row) return;
+
+  editingMatchupRowId=Number(rowId);
+  editingMatchupFd=fd;
+  const fdObj=PLAYER_MATRIX_FDS.find(x=>x.id===fd);
+
+  document.getElementById('playerMatchupModalTitle').textContent=
+    `${row.army}${row.archetype?` · ${row.archetype}`:''}`;
+  document.getElementById('playerMatchupModalSub').textContent=
+    `Force Disposition adverse : ${fdObj?.name||fd}`;
+
+  document.getElementById('pmOpponentName').value='';
+  document.getElementById('pmRawUs').value='';
+  document.getElementById('pmRawOpp').value='';
+  for(let t=1;t<=5;t++){
+    const el=document.getElementById(`pmRound${t}`);
+    if(el) el.value='';
+  }
+  document.getElementById('pmGameError').textContent='';
+  updatePmRawPreview();
+  renderPmGameHistory();
+  openTgModal('playerMatchupModal');
+}
+
+function closePlayerMatchupModal(){ closeTgModal('playerMatchupModal'); }
+
+function updatePmCentralPreview(){
+  const minRaw=document.getElementById('pmMin')?.value;
+  const maxRaw=document.getElementById('pmMax')?.value;
+  const out=document.getElementById('pmCentralPreview');
+  if(!out) return;
+  if(minRaw===''){out.textContent='—';return;}
+  const min=Math.max(0,Math.min(20,Number(minRaw)));
+  const max=maxRaw===''?min:Math.max(0,Math.min(20,Number(maxRaw)));
+  out.textContent=((min+max)/2).toFixed((min+max)%2?1:0)+"/20";
+}
+
+function savePlayerMatchupModal(){
+  const p=currentPlayerProfile(); if(!p) return;
+  const row=p.matrixRows.find(r=>Number(r.id)===Number(editingMatchupRowId)); if(!row) return;
+  if(!row.cells) row.cells={};
+
+  const rating=document.getElementById('pmRating').value||'';
+  const minRaw=document.getElementById('pmMin').value;
+  const maxRaw=document.getElementById('pmMax').value;
+  const mission=(document.getElementById('pmMission').value||'').trim();
+  const notes=(document.getElementById('pmNotes').value||'').trim();
+  const err=document.getElementById('playerMatchupError');
+
+  let min=minRaw===''?'':Math.max(0,Math.min(20,Number(minRaw)));
+  let max=maxRaw===''?'':Math.max(0,Math.min(20,Number(maxRaw)));
+  if(min!=='' && max!=='' && max<min){err.textContent="Le maximum ne peut pas être inférieur au minimum.";return;}
+
+  const previous=row.cells[editingMatchupFd] || {};
+  row.cells[editingMatchupFd]={rating,min,max,mission,notes,games:Array.isArray(previous.games)?previous.games:[]};
+  save();
+  closePlayerMatchupModal();
+  renderPlayerMatrix();
+}
+
+
+function currentEditedMatrixCell(create=false){
+  const p=currentPlayerProfile(); if(!p) return null;
+  const row=p.matrixRows.find(r=>Number(r.id)===Number(editingMatchupRowId)); if(!row) return null;
+  if(!row.cells) row.cells={};
+  if(create && !row.cells[editingMatchupFd]){
+    row.cells[editingMatchupFd]={games:[]};
+  }
+  const cell=row.cells[editingMatchupFd] || null;
+  if(cell && !Array.isArray(cell.games)) cell.games=[];
+  return {p,row,cell};
+}
+
+function renderPmGameHistory(){
+  const ctx=currentEditedMatrixCell(false);
+  const host=document.getElementById('pmGameHistory');
+  const summary=document.getElementById('pmHistorySummary');
+  if(!host || !summary) return;
+
+  const games=ctx?.cell?.games || [];
+  const st=pmStatsFromGames(games);
+
+  summary.textContent=st.games
+    ? `${st.games} partie${st.games>1?'s':''} · ${st.wins}V ${st.losses}D${st.draws?` ${st.draws}N`:''} · moy. ${st.avg.toFixed(1).replace('.0','')}/20`
+    : '0 partie';
+
+  if(!games.length){
+    host.innerHTML='<div class="pm-history-empty">Aucun résultat enregistré pour ce matchup.</div>';
+    return;
+  }
+
+  host.innerHTML=[...games].reverse().map((g,revIndex)=>{
+    const index=games.length-1-revIndex;
+    const outcome=pmGameOutcome(g);
+    const cls=outcome==="W"?'win':outcome==="L"?'loss':'draw';
+    const label=outcome==="W"?'Victoire':outcome==="L"?'Défaite':'Nul';
+
+    return `<div class="pm-game-row ${cls}">
+      <span class="pm-game-result">${label}</span>
+      <b>${Number(g.rawUs)}–${Number(g.rawOpp)}</b>
+      <span>${Number(g.wtcUs)}–${Number(g.wtcOpp)} /20</span>
+      <span class="pm-game-mission">
+        <b class="pm-history-opponent">${esc(g.opponentName||"Adversaire non renseigné")}</b>
+        <small class="pm-history-rounds">${[1,2,3,4,5].map(t=>{
+          const v=g.rounds?.[`t${t}`];
+          return `T${t} ${v===undefined||v===null||v===''?'—':v}`;
+        }).join(' · ')}</small>
+      </span>
+      <div class="pm-game-actions">
+        <button type="button" class="pm-game-edit" onclick="editPlayerMatchupGame(${index})" title="Modifier">✎</button>
+        <button type="button" onclick="deletePlayerMatchupGame(${index})" title="Supprimer">×</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function convertRaw100ToWtc20(us,opp){
+  us=Number(us); opp=Number(opp);
+  if(!Number.isFinite(us)||!Number.isFinite(opp)) return null;
+
+  // Même logique que l'application : conversion d'un différentiel brut
+  // vers un score d'équipe /20.
+  const diff=us-opp;
+
+  // Barème WTC simplifié basé sur le différentiel :
+  // 0 => 10-10, puis progression symétrique jusqu'à 20-0.
+  const steps=[
+    [0,10],[5,11],[10,12],[15,13],[20,14],
+    [25,15],[30,16],[35,17],[40,18],[45,19],[50,20]
+  ];
+
+  let pts=10;
+  const ad=Math.abs(diff);
+  for(const [d,p] of steps){
+    if(ad>=d) pts=p;
+  }
+
+  const usPts=diff>=0?pts:20-pts;
+  return {us:usPts,opp:20-usPts};
+}
+
+function updatePmRawPreview(){
+  const us=document.getElementById('pmRawUs')?.value;
+  const opp=document.getElementById('pmRawOpp')?.value;
+  const out=document.getElementById('pmConvertedPreview');
+  if(!out) return;
+
+  if(us==='' || opp===''){out.textContent='—';return;}
+  const conv=convertRaw100ToWtc20(us,opp);
+  out.textContent=conv ? `${conv.us}–${conv.opp}` : '—';
+}
+
+function addPlayerMatchupRawResult(){
+  const ctx=currentEditedMatrixCell(true); if(!ctx) return;
+  const usRaw=document.getElementById('pmRawUs').value;
+  const oppRaw=document.getElementById('pmRawOpp').value;
+  const err=document.getElementById('pmGameError');
+
+  if(usRaw==='' || oppRaw===''){
+    err.textContent="Renseigne les deux scores sur 100.";
+    return;
+  }
+
+  const us=Number(usRaw), opp=Number(oppRaw);
+  if(!Number.isFinite(us)||!Number.isFinite(opp)||us<0||us>100||opp<0||opp>100){
+    err.textContent="Les scores doivent être compris entre 0 et 100.";
+    return;
+  }
+
+  const conv=convertRaw100ToWtc20(us,opp);
+  if(!conv){
+    err.textContent="Impossible de convertir ce résultat.";
+    return;
+  }
+
+  const rounds={};
+  for(let t=1;t<=5;t++){
+    const raw=document.getElementById(`pmRound${t}`)?.value ?? "";
+    if(raw!==""){
+      const value=Number(raw);
+      if(!Number.isFinite(value) || value<0 || value>100){
+        err.textContent=`Le score T${t} doit être compris entre 0 et 100.`;
+        return;
+      }
+      rounds[`t${t}`]=value;
+    }
+  }
+
+  ctx.cell.games.push({
+    id:Date.now(),
+    opponentName:(document.getElementById('pmOpponentName').value||"").trim(),
+    rawUs:us,
+    rawOpp:opp,
+    wtcUs:conv.us,
+    wtcOpp:conv.opp,
+    rounds
+  });
+
+  save();
+  err.textContent="";
+  document.getElementById('pmOpponentName').value="";
+  document.getElementById('pmRawUs').value="";
+  document.getElementById('pmRawOpp').value="";
+  for(let t=1;t<=5;t++){
+    const el=document.getElementById(`pmRound${t}`);
+    if(el) el.value="";
+  }
+  updatePmRawPreview();
+  renderPmGameHistory();
+  renderPlayerMatrix();
+}
+
+
+let editingHistoryGameIndex=null;
+
+function editPlayerMatchupGame(index){
+  const ctx=currentEditedMatrixCell(false);
+  if(!ctx?.cell?.games) return;
+  const game=ctx.cell.games[Number(index)];
+  if(!game) return;
+
+  editingHistoryGameIndex=Number(index);
+
+  document.getElementById('pmEditOpponent').value=game.opponentName||"";
+  document.getElementById('pmEditRawUs').value=game.rawUs ?? "";
+  document.getElementById('pmEditRawOpp').value=game.rawOpp ?? "";
+
+  for(let t=1;t<=5;t++){
+    const el=document.getElementById(`pmEditRound${t}`);
+    if(el) el.value=game.rounds?.[`t${t}`] ?? "";
+  }
+
+  const ctxRow=currentEditedMatrixCell(false)?.row;
+  const fdObj=PLAYER_MATRIX_FDS.find(x=>x.id===editingMatchupFd);
+  document.getElementById('pmEditTitle').textContent=
+    `${ctxRow?.army||"Matchup"} · ${fdObj?.name||editingMatchupFd}`;
+
+  document.getElementById('pmEditError').textContent="";
+  updatePlayerGameEditConversion();
+  openTgModal('playerGameEditWindow');
+}
+
+function updatePlayerGameEditConversion(){
+  const us=document.getElementById('pmEditRawUs')?.value;
+  const opp=document.getElementById('pmEditRawOpp')?.value;
+  const out=document.getElementById('pmEditConversion');
+  if(!out) return;
+  if(us==="" || opp===""){
+    out.textContent="—";
+    return;
+  }
+  const conv=convertRaw100ToWtc20(us,opp);
+  out.textContent=conv ? `${conv.us}–${conv.opp}` : "—";
+}
+
+function closePlayerGameEditWindow(){
+  closeTgModal('playerGameEditWindow');
+  editingHistoryGameIndex=null;
+}
+
+function savePlayerGameEditWindow(){
+  const ctx=currentEditedMatrixCell(false);
+  const err=document.getElementById('pmEditError');
+  if(!ctx?.cell?.games || editingHistoryGameIndex===null) return;
+
+  const game=ctx.cell.games[editingHistoryGameIndex];
+  if(!game) return;
+
+  const us=Number(document.getElementById('pmEditRawUs').value);
+  const opp=Number(document.getElementById('pmEditRawOpp').value);
+
+  if(!Number.isFinite(us)||!Number.isFinite(opp)||us<0||us>100||opp<0||opp>100){
+    err.textContent="Les scores doivent être compris entre 0 et 100.";
+    return;
+  }
+
+  const conv=convertRaw100ToWtc20(us,opp);
+  if(!conv){
+    err.textContent="Impossible de convertir ce résultat.";
+    return;
+  }
+
+  const rounds={};
+  for(let t=1;t<=5;t++){
+    const raw=document.getElementById(`pmEditRound${t}`)?.value ?? "";
+    if(raw!==""){
+      const v=Number(raw);
+      if(!Number.isFinite(v)||v<0||v>100){
+        err.textContent=`Le score T${t} doit être compris entre 0 et 100.`;
+        return;
+      }
+      rounds[`t${t}`]=v;
+    }
+  }
+
+  game.opponentName=(document.getElementById('pmEditOpponent').value||"").trim();
+  game.rawUs=us;
+  game.rawOpp=opp;
+  game.wtcUs=conv.us;
+  game.wtcOpp=conv.opp;
+  game.rounds=rounds;
+
+  save();
+  renderPmGameHistory();
+  renderPlayerMatrix();
+  closePlayerGameEditWindow();
+}
+
+function deletePlayerMatchupGame(index){
+  const ctx=currentEditedMatrixCell(false); if(!ctx?.cell?.games) return;
+  ctx.cell.games.splice(Number(index),1);
+  save();
+  renderPmGameHistory();
+  renderPlayerMatrix();
+}
+
+function pmAllObservedCells(p){
+  const rows=[];
+  for(const row of (p.matrixRows||[])){
+    for(const fd of PLAYER_MATRIX_FDS){
+      const cell=row.cells?.[fd.id];
+      const games=cell?.games||[];
+      if(!games.length) continue;
+      const st=pmStatsFromGames(games);
+      rows.push({row,fd,cell,st});
+    }
+  }
+  return rows;
+}
+
+function pmTotalStats(p){
+  const games=[];
+  for(const x of pmAllObservedCells(p)) games.push(...x.cell.games);
+  return pmStatsFromGames(games);
+}
+
+function pmFdStats(p,fdId){
+  const games=[];
+  for(const row of (p.matrixRows||[])){
+    const c=row.cells?.[fdId];
+    if(c?.games?.length) games.push(...c.games);
+  }
+  return pmStatsFromGames(games);
+}
+
+function pmReliabilityLabel(n){
+  if(n>=5) return "solide";
+  if(n>=3) return "correct";
+  if(n>=2) return "à confirmer";
+  return "faible échantillon";
+}
+
+function pmObservedScore(x){
+  // Classement empirique : score moyen d'abord, taux de victoire ensuite.
+  return (x.st.avg??10) + ((x.st.winRate??50)-50)/100;
+}
+
+
+
+function pmFdRoundAverages(p,fdId){
+  const buckets={t1:[],t2:[],t3:[],t4:[],t5:[]};
+  for(const row of (p.matrixRows||[])){
+    const games=row.cells?.[fdId]?.games || [];
+    for(const g of games){
+      const rounds=g.rounds || {};
+      for(let t=1;t<=5;t++){
+        const key=`t${t}`;
+        const v=rounds[key];
+        if(v!=="" && v!==null && v!==undefined && Number.isFinite(Number(v))){
+          buckets[key].push(Number(v));
+        }
+      }
+    }
+  }
+  const out={};
+  for(let t=1;t<=5;t++){
+    const key=`t${t}`;
+    const arr=buckets[key];
+    out[key]=arr.length ? {
+      avg:arr.reduce((a,b)=>a+b,0)/arr.length,
+      count:arr.length
+    } : null;
+  }
+  return out;
+}
+
+function renderPlayerFdHeaderStats(p){
+  for(const fd of PLAYER_MATRIX_FDS){
+    const el=document.getElementById(`pmFdHead-${fd.id}`);
+    if(!el) continue;
+    const st=pmFdStats(p,fd.id);
+
+    if(!st.games){
+      el.parentElement.classList.remove('fd-perf-g2','fd-perf-g1','fd-perf-o','fd-perf-r');
+      el.innerHTML=`
+        <div class="pm-fd-main-perf"><b>0%</b><small>aucune partie</small></div>
+        <div class="pm-fd-rounds">
+          ${[1,2,3,4,5].map(t=>`<span class="pm-fd-round"><i>T${t}</i><b>—</b></span>`).join('')}
+        </div>`;
+      continue;
+    }
+
+    const rate=Math.round(st.winRate);
+    el.parentElement.classList.remove('fd-perf-g2','fd-perf-g1','fd-perf-o','fd-perf-r');
+    if(rate>=70) el.parentElement.classList.add('fd-perf-g2');
+    else if(rate>=55) el.parentElement.classList.add('fd-perf-g1');
+    else if(rate>=45) el.parentElement.classList.add('fd-perf-o');
+    else el.parentElement.classList.add('fd-perf-r');
+
+    const roundAvgs=pmFdRoundAverages(p,fd.id);
+    const roundsHtml=[1,2,3,4,5].map(t=>{
+      const d=roundAvgs[`t${t}`];
+      return `<span class="pm-fd-round ${d?'has-data':''}"><i>T${t}</i><b>${d?d.avg.toFixed(1).replace('.0',''):'—'}</b></span>`;
+    }).join('');
+
+    el.innerHTML=`
+      <div class="pm-fd-main-perf">
+        <b>${rate}%</b>
+        <small>${st.games}J · ${st.wins}V · ${st.losses}D · ${st.draws}N</small>
+      </div>
+      <div class="pm-fd-rounds">${roundsHtml}</div>
+    `;
+  }
+}
+
+function renderPlayerPerformanceAnalysis(p){
+  const host=document.getElementById('playerPerformanceAnalysis');
+  if(!host) return;
+
+  const total=pmTotalStats(p);
+  const observed=pmAllObservedCells(p);
+
+  if(!total.games){
+    host.innerHTML=`<div class="ppa-empty">
+      <b>Analyse automatique</b>
+      <span>Ajoute des résultats dans la matrice pour faire apparaître les statistiques globales du joueur.</span>
+    </div>`;
+    return;
+  }
+
+  const wr=Math.round(total.winRate||0);
+  const sampleClass=total.games>=20?'solid':total.games>=10?'medium':'light';
+  const sampleText=total.games>=20?'échantillon solide':total.games>=10?'échantillon correct':'échantillon encore limité';
+
+  host.innerHTML=`
+    <div class="ppa-head">
+      <div>
+        <span class="ppa-kicker">ANALYSE AUTOMATIQUE</span>
+        <h3>Performance réelle</h3>
+      </div>
+      <span class="ppa-confidence ${sampleClass}">${total.games} parties · ${sampleText}</span>
+    </div>
+
+    <div class="ppa-kpis ppa-kpis-compact">
+      <div class="ppa-kpi ppa-winrate-kpi">
+        <span>Taux de victoire</span>
+        <div class="ppa-winrate-line">
+          <b>${wr}%</b>
+          <small>${total.wins}V · ${total.losses}D · ${total.draws}N</small>
+        </div>
+      </div>
+      <div class="ppa-kpi">
+        <span>Parties jouées</span>
+        <b>${total.games}</b>
+        <small>résultats enregistrés</small>
+      </div>
+    </div>
+  `;
+}
+
+function clearPlayerMatchupCell(){
+  const p=currentPlayerProfile(); if(!p) return;
+  const row=p.matrixRows.find(r=>Number(r.id)===Number(editingMatchupRowId)); if(!row) return;
+  if(row.cells) delete row.cells[editingMatchupFd];
+  save();
+  closePlayerMatchupModal();
+  renderPlayerMatrix();
+}
+
+function openTgModal(id){
+  const m=document.getElementById(id); if(!m) return;
+  m.classList.add('open'); m.setAttribute('aria-hidden','false');
+}
+function closeTgModal(id){
+  const m=document.getElementById(id); if(!m) return;
+  m.classList.remove('open'); m.setAttribute('aria-hidden','true');
+}
+
+document.addEventListener('input',ev=>{
+  if(ev.target?.id==='pmRawUs' || ev.target?.id==='pmRawOpp') updatePmRawPreview();
+  if(ev.target?.id==='pmEditRawUs' || ev.target?.id==='pmEditRawOpp') updatePlayerGameEditConversion();
+});
 
 
 function renderLegend(){
@@ -18803,6 +21653,198 @@ document.addEventListener('DOMContentLoaded',()=>{
 })();
 </script>
 
+
+
+<div id="playerProfileModal" class="tg-modal" aria-hidden="true">
+  <div class="tg-modal-backdrop" onclick="closePlayerProfileModal()"></div>
+  <div class="tg-modal-card player-profile-modal-card">
+    <button class="tg-modal-close" onclick="closePlayerProfileModal()">×</button>
+    <div class="tg-modal-head">
+      <span class="tg-modal-kicker">JOUEUR</span>
+      <h3 id="playerProfileModalTitle">Nouveau joueur</h3>
+      <p>Ces informations décrivent la liste utilisée pour sa matrice personnelle.</p>
+    </div>
+    <div class="player-profile-form">
+      <label>
+        <span>Nom du joueur</span>
+        <input id="profilePlayerName" type="text" placeholder="Ex : Sizear">
+      </label>
+      <label>
+        <span>Armée</span>
+        <input id="profilePlayerArmy" type="text" placeholder="Ex : Necrons">
+      </label>
+      <label>
+        <span>Force Disposition</span>
+        <select id="profilePlayerFd">
+          <option value="pt">Prendre & Tenir (PT)</option>
+          <option value="ea">Éliminez l'Adversaire (EA)</option>
+          <option value="per">Perturbation (PE)</option>
+          <option value="rec">Reconnaissance (RE)</option>
+          <option value="ap">Atouts Prioritaires (AP)</option>
+        </select>
+      </label>
+      <label class="wide">
+        <span>Nom / description de la liste</span>
+        <input id="profileListName" type="text" placeholder="Ex : Double C'tan + Destroyers">
+      </label>
+      <label class="wide">
+        <span>Liste / notes</span>
+        <textarea id="profileListText" rows="5" placeholder="Colle ici la liste ou les informations importantes..."></textarea>
+      </label>
+    </div>
+    <div id="playerProfileError" class="meeting-edit-error"></div>
+    <div class="tg-modal-actions">
+      <button class="btn" onclick="closePlayerProfileModal()">Annuler</button>
+      <button class="btn primary" onclick="savePlayerProfileModal()">Enregistrer</button>
+    </div>
+  </div>
+</div>
+
+<div id="opponentRowModal" class="tg-modal" aria-hidden="true">
+  <div class="tg-modal-backdrop" onclick="closeOpponentRowModal()"></div>
+  <div class="tg-modal-card opponent-row-modal-card">
+    <button class="tg-modal-close" onclick="closeOpponentRowModal()">×</button>
+    <div class="tg-modal-head">
+      <span class="tg-modal-kicker">ADVERSAIRE</span>
+      <h3 id="opponentRowModalTitle">Armée</h3>
+      <p>Ajoute une armée adverse à la matrice.</p>
+    </div>
+    <div class="opponent-row-form single">
+      <label>
+        <span>Armée adverse</span>
+        <input id="opponentRowArmy" type="text" placeholder="Ex : Imperial Knights">
+      </label>
+    </div>
+    <div id="opponentRowError" class="meeting-edit-error"></div>
+    <div class="tg-modal-actions">
+      <button class="btn danger" id="opponentRowDeleteBtn" onclick="deleteOpponentRowFromModal()" style="display:none;margin-right:auto">Supprimer</button>
+      <button class="btn" onclick="closeOpponentRowModal()">Annuler</button>
+      <button class="btn primary" onclick="saveOpponentRowModal()">Enregistrer</button>
+    </div>
+  </div>
+</div>
+
+
+<div id="playerGameEditWindow" class="tg-modal pm-edit-window" aria-hidden="true">
+  <div class="tg-modal-backdrop" onclick="closePlayerGameEditWindow()"></div>
+  <div class="tg-modal-card pm-edit-card">
+    <button class="tg-modal-close" onclick="closePlayerGameEditWindow()">×</button>
+
+    <div class="tg-modal-head">
+      <span class="tg-modal-kicker">MODIFIER LA PARTIE</span>
+      <h3 id="pmEditTitle">Résultat enregistré</h3>
+      <p>Modifie les informations puis enregistre.</p>
+    </div>
+
+    <div class="pm-edit-main-grid">
+      <label class="pm-edit-opponent">
+        <span>Nom de l’adversaire</span>
+        <input id="pmEditOpponent" type="text" placeholder="Ex : Julien">
+      </label>
+
+      <label>
+        <span>Score joueur /100</span>
+        <input id="pmEditRawUs" type="number" min="0" max="100" step="1">
+      </label>
+
+      <label>
+        <span>Score adverse /100</span>
+        <input id="pmEditRawOpp" type="number" min="0" max="100" step="1">
+      </label>
+    </div>
+
+    <div class="pm-edit-conversion">
+      <span>Conversion /20</span>
+      <b id="pmEditConversion">—</b>
+    </div>
+
+    <div class="pm-round-scores pm-edit-rounds">
+      <div class="pm-round-scores-head">
+        <strong>Score par round</strong>
+        <span>Optionnel</span>
+      </div>
+      <div class="pm-round-score-grid">
+        <label><span>T1</span><input id="pmEditRound1" type="number" min="0" max="100" step="1" placeholder="—"></label>
+        <label><span>T2</span><input id="pmEditRound2" type="number" min="0" max="100" step="1" placeholder="—"></label>
+        <label><span>T3</span><input id="pmEditRound3" type="number" min="0" max="100" step="1" placeholder="—"></label>
+        <label><span>T4</span><input id="pmEditRound4" type="number" min="0" max="100" step="1" placeholder="—"></label>
+        <label><span>T5</span><input id="pmEditRound5" type="number" min="0" max="100" step="1" placeholder="—"></label>
+      </div>
+    </div>
+
+    <div id="pmEditError" class="pm-game-error"></div>
+
+    <div class="tg-modal-actions">
+      <button class="btn" onclick="closePlayerGameEditWindow()">Annuler</button>
+      <button class="btn primary" onclick="savePlayerGameEditWindow()">Enregistrer les modifications</button>
+    </div>
+  </div>
+</div>
+
+<div id="playerMatchupModal" class="tg-modal" aria-hidden="true">
+  <div class="tg-modal-backdrop" onclick="closePlayerMatchupModal()"></div>
+  <div class="tg-modal-card player-matchup-modal-card">
+    <button class="tg-modal-close" onclick="closePlayerMatchupModal()">×</button>
+
+    <div class="tg-modal-head">
+      <span class="tg-modal-kicker">RÉSULTAT</span>
+      <h3 id="playerMatchupModalTitle">Matchup</h3>
+      <p id="playerMatchupModalSub"></p>
+    </div>
+
+    <div class="pm-simple-result-form">
+      <label class="pm-opponent-player-field">
+        <span>Nom de l’adversaire</span>
+        <input id="pmOpponentName" type="text" placeholder="Ex : Julien">
+      </label>
+      <label>
+        <span>Score joueur /100</span>
+        <input id="pmRawUs" type="number" min="0" max="100" step="1" placeholder="72">
+      </label>
+      <label>
+        <span>Score adverse /100</span>
+        <input id="pmRawOpp" type="number" min="0" max="100" step="1" placeholder="58">
+      </label>
+    </div>
+
+    <div class="pm-round-scores">
+      <div class="pm-round-scores-head">
+        <strong>Score par round</strong>
+        <span>Optionnel</span>
+      </div>
+      <div class="pm-round-score-grid">
+        <label><span>T1</span><input id="pmRound1" type="number" min="0" max="100" step="1" placeholder="—"></label>
+        <label><span>T2</span><input id="pmRound2" type="number" min="0" max="100" step="1" placeholder="—"></label>
+        <label><span>T3</span><input id="pmRound3" type="number" min="0" max="100" step="1" placeholder="—"></label>
+        <label><span>T4</span><input id="pmRound4" type="number" min="0" max="100" step="1" placeholder="—"></label>
+        <label><span>T5</span><input id="pmRound5" type="number" min="0" max="100" step="1" placeholder="—"></label>
+      </div>
+    </div>
+
+    <div class="pm-conversion-preview">
+      <span>Conversion automatique /20</span>
+      <b id="pmConvertedPreview">—</b>
+    </div>
+
+    <div id="pmGameError" class="pm-game-error"></div>
+
+    <section class="pm-history-section">
+      <div class="pm-history-head">
+        <div>
+          <strong>Historique du matchup</strong>
+          <small>Chaque résultat ajouté alimente automatiquement les statistiques du joueur.</small>
+        </div>
+        <div id="pmHistorySummary" class="pm-history-summary">0 partie</div>
+      </div>
+      <div id="pmGameHistory" class="pm-game-history"></div>
+    </section>
+
+    <div class="tg-modal-actions">
+      <button class="btn" onclick="closePlayerMatchupModal()">Annuler</button>
+      <button class="btn primary" onclick="addPlayerMatchupRawResult()">Ajouter le résultat</button>
+    </div>
+  </div>
+</div>
 
 <div id="meetingEditModal" class="tg-modal" aria-hidden="true">
   <div class="tg-modal-backdrop" onclick="closeMeetingEditModal()"></div>
